@@ -1,0 +1,11 @@
+E:\Work\xibuxiedu\src\net\Xbxd\Bode.Common\bin\Release\Bode.Common.dll
+E:\Work\xibuxiedu\src\net\Xbxd\Bode.Common\bin\Release\Bode.Common.pdb
+E:\Work\xibuxiedu\src\net\Xbxd\Bode.Common\bin\Release\ICSharpCode.SharpZipLib.dll
+E:\Work\xibuxiedu\src\net\Xbxd\Bode.Common\bin\Release\Qiniu.4.0.dll
+E:\Work\xibuxiedu\src\net\Xbxd\Bode.Common\bin\Release\System.Web.Mvc.dll
+E:\Work\xibuxiedu\src\net\Xbxd\Bode.Common\bin\Release\Newtonsoft.Json.dll
+E:\Work\xibuxiedu\src\net\Xbxd\Bode.Common\bin\Release\System.Web.Mvc.xml
+E:\Work\xibuxiedu\src\net\Xbxd\Bode.Common\bin\Release\zh-Hans\System.Web.Mvc.resources.dll
+E:\Work\xibuxiedu\src\net\Xbxd\Bode.Common\obj\Release\Bode.Common.dll
+E:\Work\xibuxiedu\src\net\Xbxd\Bode.Common\obj\Release\Bode.Common.pdb
+E:\Work\xibuxiedu\src\net\Xbxd\Bode.Common\obj\Release\Bode.Common.csprojResolveAssemblyReference.cache
