@@ -14,7 +14,7 @@ using System.Configuration;
 using System.Web.Http;
 using OSharp.Core.Data.Extensions;
 
-namespace Jkt.Web.Areas.Api.Controllers
+namespace Bode.Web.Areas.Api.Controllers
 {
     [Description("账户接口")]
     public class AccountController : BaseApiController

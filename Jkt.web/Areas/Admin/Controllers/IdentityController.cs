@@ -17,7 +17,7 @@ using OSharp.Web.Mvc.Security;
 using OSharp.Web.Mvc.UI;
 using OSharp.Web.Mvc;
 
-namespace Jkt.Web.Areas.Admin.Controllers
+namespace Bode.Web.Areas.Admin.Controllers
 {
     //[Authorize]
     [Description("权限管理")]

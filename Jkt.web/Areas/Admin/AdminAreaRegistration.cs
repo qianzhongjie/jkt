@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Jkt.Web.Areas.Admin
+namespace Bode.Web.Areas.Admin
 {
     public class AdminAreaRegistration : AreaRegistration 
     {

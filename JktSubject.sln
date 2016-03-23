@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bode.Common", "Bode.Common\Bode.Common.csproj", "{D6B5B374-333E-49CB-8D3A-B923C0F4C83F}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bode.Services.Core", "Bode.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bode.Services.Implement", "Bode.Services.Implement\Bode.Services.Implement.csproj", "{8E8A6B02-4D39-4664-B026-C37F375B69C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jkt.Web", "Jkt.web\Jkt.Web.csproj", "{89E8D4D4-F964-4A9D-BBF8-297CBCDCA62B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bode.Web", "Jkt.web\Bode.Web.csproj", "{89E8D4D4-F964-4A9D-BBF8-297CBCDCA62B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

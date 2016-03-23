@@ -17,7 +17,7 @@ using Bode.Sms.Md;
 using OSharp.Web.Http.Context;
 using Bode.Services.Implement;
 
-namespace Jkt.Web
+namespace Bode.Web
 {
     public class MvcApplication : HttpApplication
     {
@@ -41,7 +41,7 @@ namespace Jkt.Web
                 "Default",
                 "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                new[] { "Jkt.Web.Controllers" });
+                new[] { "Bode.Web.Controllers" });
         }
 
         private static void DelegatingHandlerRegister(HttpConfiguration config)

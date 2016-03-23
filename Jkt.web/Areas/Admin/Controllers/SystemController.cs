@@ -12,7 +12,7 @@ using OSharp.Web.Mvc.UI;
 using OSharp.Web.Mvc;
 using OSharp.Utility.Windows;
 
-namespace Jkt.Web.Areas.Admin.Controllers
+namespace Bode.Web.Areas.Admin.Controllers
 {
     //[Authorize]
     [Description("系统管理")]

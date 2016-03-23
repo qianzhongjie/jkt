@@ -13,16 +13,16 @@ using Bode.Services.Core.Dtos.User;
 using Bode.Services.Core.Models.User;
 using System.Threading;
 
-namespace Jkt.Web.Controllers
+namespace Bode.Web.Controllers
 {
-     [Description("系统主页")]
+    [Description("系统主页")]
     public class HomeController : Controller
     {
         public IUserContract UserContract { get; set; }
 
-         // GET: Home
+        // GET: Home
 
-         [Description("主页")]
+        [Description("主页")]
         public async Task<ActionResult> Index()
         {
             //string modelFile = Path.Combine(projectPath, @"bin\Debug\Bode.Services.Core.dll");
@@ -31,17 +31,17 @@ namespace Jkt.Web.Controllers
             //Type baseType = typeof(EntityBase<>);
             //IEnumerable<Type> modelTypes = assembly.GetTypes().Where(m => baseType.IsGenericAssignableFrom(m) && !m.IsAbstract && m.HasAttribute<GenerateAttribute>());
 
-             ValidateCodeDto validate = new ValidateCodeDto()
-             {
-                 CodeKey = "15884517874",
-                 Code = "123456",
-                 CodeType = CodeType.用户注册
-             };
+            //ValidateCodeDto validate = new ValidateCodeDto()
+            //{
+            //    CodeKey = "18628303252",
+            //    Code = "123456",
+            //    CodeType = CodeType.用户注册
+            //};
 
             //await UserContract.SaveValidateCodes(dtos: validate);
             int threadId1 = Thread.CurrentThread.ManagedThreadId;
 
-             var codes= await UserContract.ValidateCodes.ToListAsync().ConfigureAwait(false);
+            var codes = await UserContract.ValidateCodes.ToListAsync().ConfigureAwait(false);
 
             int threadId2 = Thread.CurrentThread.ManagedThreadId;
 

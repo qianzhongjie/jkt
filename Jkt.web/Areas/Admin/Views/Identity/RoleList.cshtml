@@ -14,9 +14,9 @@
         var controllerActionMap = {}, actionIdMap = {};
         var curRoleId = 0;
 
-        $(function() {
+        $(function () {
             //获取所有角色数据
-            $.get("@Url.Action("GetAllActionBriefs")", {}, function(data) {
+            $.get("@Url.Action("GetAllActionBriefs")", {}, function (data) {
                 actions = data;
 
                 for (var i = 0, n = actions.length; i < n; i++) {
@@ -38,14 +38,14 @@
                 }
             });
             //获取所有组织机构数据
-            $.get("@Url.Action("GetControllers")", {}, function(data) {
+            $.get("@Url.Action("GetControllers")", {}, function (data) {
                 controllers = data;
             });
         });
 
         //根据func的状态初始化复选框
         function initFuncSelect() {
-            $('.modal-dialog :checkbox').each(function() {
+            $('.modal-dialog :checkbox').each(function () {
                 var actionId = $(this).val();
                 $(this).attr("checked", actionIdMap[actionId]["Checked"]);
             });
@@ -62,12 +62,12 @@
                     success: {
                         label: "保存",
                         className: "btn-blue",
-                        callback: function() {
+                        callback: function () {
                             var funcIds = [];
-                            $('.modal-dialog :checkbox:checked').each(function() {
+                            $('.modal-dialog :checkbox:checked').each(function () {
                                 funcIds.push($(this).val());
                             });
-                            $.post("@Url.Action("SetRoleFunctions")", { roleId: roleId, strFuncIds: JSON.stringify(funcIds) }, function(data) {
+                            $.post("@Url.Action("SetRoleFunctions")", { roleId: roleId, strFuncIds: JSON.stringify(funcIds) }, function (data) {
                                 if (data.Type === "Error") {
                                     Notify(data.Content, 'bottom-right', '5000', 'danger', 'fa-bolt', true);
                                 } else {
@@ -78,12 +78,12 @@
                     },
                     "取消": {
                         className: "btn-danger",
-                        callback: function() {}
+                        callback: function () { }
                     },
                     "全选": {
                         className: "btn-sky",
-                        callback: function() {
-                            $('.modal-dialog :checkbox:visible').each(function() {
+                        callback: function () {
+                            $('.modal-dialog :checkbox:visible').each(function () {
                                 if (!$(this).is(":checked")) {
                                     $(this).click();
                                 }
@@ -94,7 +94,7 @@
                     },
                     "反选": {
                         className: "btn-magenta",
-                        callback: function() {
+                        callback: function () {
                             $('.modal-dialog :checkbox:visible').each(function () {
                                 $(this).click();
                             });
@@ -104,7 +104,7 @@
                     }
                 }
             });
-            $(".modal-dialog").width(document.body.clientWidth - 224 * 3);
+            //$(".modal-dialog").width(document.body.clientWidth - 224 * 3);
 
             //初始化复选框状态
             if (curRoleId !== roleId) {
@@ -112,7 +112,7 @@
                     actions[i]["Checked"] = false;
                 }
 
-                $.get("@Url.Action("GetRoleFuncIds")", { roleId: roleId }, function(data) {
+                $.get("@Url.Action("GetRoleFuncIds")", { roleId: roleId }, function (data) {
                     for (var i = 0, n = data.length; i < n; i++) {
                         actionIdMap[data[i]]["Checked"] = true;
                     }
@@ -123,36 +123,36 @@
             }
             curRoleId = roleId;
 
-            //绑定树
-            var tree = new $.osharp.Treeview(".modal-dialog .col-xs-4 .widget-body .tree", {
-                source: controllers,
-                itemSelect: function(item) {
-                    $('.modal-dialog').find(".widget-body .col-sm-4").hide();
-                    var curFuncs = controllerActionMap[item.value] || [];
-                    for (var i = 0, n = curFuncs.length; i < n; i++) {
-                        $('.modal-dialog :checkbox[value="' + curFuncs[i]["Id"] + '"]').closest(".col-sm-4").show();
-                    }
-                }
-            });
+            ////绑定树
+            //var tree = new $.osharp.treeview(".modal-dialog .col-xs-4 .widget-body .tree", {
+            //    source: controllers,
+            //    itemselect: function (item) {
+            //        $('.modal-dialog').find(".widget-body .col-sm-4").hide();
+            //        var curfuncs = controlleractionmap[item.value] || [];
+            //        for (var i = 0, n = curfuncs.length; i < n; i++) {
+            //            $('.modal-dialog :checkbox[value="' + curfuncs[i]["id"] + '"]').closest(".col-sm-4").show();
+            //        }
+            //    }
+            //});
 
-            //添加复选框点击事件
-            $('.modal-dialog :checkbox').click(function() {
-                var actionId = $(this).val();
-                actionIdMap[actionId]["Checked"] = $(this).is(":checked");
+            添加复选框点击事件
+            $('.modal-dialog :checkbox').click(function () {
+                var actionid = $(this).val();
+                actionidmap[actionid]["checked"] = $(this).is(":checked");
             });
         }
 
         columns = [
             { data: "Id", title: "编号" },
             { data: "Name", title: "角色名称", type: "text", search: true, editor: {}, validation: { required: true } },
-            { data: "IsAdmin", title: "是否管理员", type: "switch", search: true, editor: {} },
-            { data: "IsLocked", title: "是否锁定", type: "switch", search: true, editor: {} },
+           // { data: "IsAdmin", title: "是否管理员", type: "switch", search: true, editor: {} },
+            { data: "IsLocked", title: "是否禁用", type: "switch", search: true, editor: {} },
             {
                 data: "CreatedTime",
                 title: "创建时间",
                 type: "timepicker",
                 search: true,
-                format: function(d) {
+                format: function (d) {
                     return $.osharp.tools.formatDate(d);
                 },
                 isformatval: true
@@ -162,13 +162,13 @@
                 data: "Id",
                 title: "操作选项",
                 type: "opt",
-                format: function(id) {
+                format: function (id) {
                     return '<a href="javascript:setFunction(' + id + ')">设置功能</a>';
                 }
             }
         ];
 
-        startfunction = function() {
+        @* startfunction = function () {
             var tabArea = $(".page-body>.row>div");
             tabArea.attr("class", "col-xs-8 col-md-9 col-lg-10");
             tabArea.before($("#tree"));
@@ -177,21 +177,21 @@
             //UITree.init();
             var tree = new $.osharp.Treeview("#treeContent", {
                 ajax: "@Url.Action("GetOrganizationTree")",
-                itemSelect: function(item) {
+                itemSelect: function (item) {
                     dataTable.conf.ajax = "@ViewBag.GridDataUrl?organizationId=" + item.value;
 
-                    dataTable.beforeEdit = function(index, row) {
+                    dataTable.beforeEdit = function (index, row) {
                         row.OrganizationId = item.value;
                     }
                     dataTable.reload();
                 }
             });
-        }
+        }*@
     </script>
 }
 
 @section headHtml{
-    <div id="tree" class="col-xs-4 col-md-3 col-lg-2">
+    <div id="tree" class="col-xs-4 col-md-3 col-lg-2 hidden">
         <div class="widget flat radius-bordered">
             <div class="widget-header bg-info">
                 <span class="widget-caption">组织机构</span>
@@ -205,35 +205,35 @@
     </div>
 
 
-<div id="modal" style="display:none;">
-    <div class="row">
-        <div id="controllerTree" class="col-xs-4">
-            <div class="widget flat radius-bordered">
-                <div class="widget-header bg-info">
-                    <span class="widget-caption">控制器</span>
-                </div>
+    <div id="modal" style="display:none;">
+        <div class="row">
+            <div id="controllerTree" class="col-xs-4">
+                <div class="widget flat radius-bordered">
+                    <div class="widget-header bg-info">
+                        <span class="widget-caption">控制器</span>
+                    </div>
 
-                <div class="widget-body">
-                    <div id="controllerContent" class="tree tree-solid-line">
+                    <div class="widget-body">
+                        <div id="controllerContent" class="tree tree-solid-line">
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-xs-8">
-            <div class="widget flat radius-bordered">
-                <div class="widget-header bg-info">
-                    <span class="widget-caption">功能组</span>
-                </div>
-                <div class="widget-body">
-                    <div id="actionContent" class="row">
+            <div class="col-xs-8">
+                <div class="widget flat radius-bordered">
+                    <div class="widget-header bg-info">
+                        <span class="widget-caption">功能组</span>
+                    </div>
+                    <div class="widget-body">
+                        <div id="actionContent" class="row">
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 }
 

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
 using Bode.Services.Core.Contracts;
-using Jkt.Web.Areas.Admin.ViewModes;
+using Bode.Web.Areas.Admin.ViewModes;
 using OSharp.Core.Security;
 using OSharp.Utility.Data;
 using OSharp.Web.Mvc.Security;

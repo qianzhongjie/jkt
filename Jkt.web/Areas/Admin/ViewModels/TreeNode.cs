@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace Jkt.Web.Areas.Admin.ViewModes
+namespace Bode.Web.Areas.Admin.ViewModes
 {
     /// <summary>
     /// 树节点

@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using System.Web.Mvc;
 
-namespace Jkt.Web.Areas.Api
+namespace Bode.Web.Areas.Api
 {
     public class ApiAreaRegistration : AreaRegistration 
     {

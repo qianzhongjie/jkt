@@ -33,8 +33,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -215,20 +215,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ContractsCodeScript.cs</LastGenOutput>
       <LastOutputs>
-..\Contracts\IBrandContract.generated.cs
-..\Contracts\IConfigContract.generated.cs
-..\Contracts\ICustomMadeContract.generated.cs
-..\Contracts\ICustomUserContract.generated.cs
-..\Contracts\IDeliveryContract.generated.cs
-..\Contracts\IGoodsAttrContract.generated.cs
-..\Contracts\IGoodsContract.generated.cs
-..\Contracts\IGoodsServiceContract.generated.cs
-..\Contracts\IGoodsStoreContract.generated.cs
-..\Contracts\IHelpContract.generated.cs
-..\Contracts\IOrderContract.generated.cs
-..\Contracts\IPresellGoodsContract.generated.cs
-..\Contracts\IPresellOrderContract.generated.cs
-..\Contracts\IStylistContract.generated.cs
 ..\Contracts\IUserContract.generated.cs
 .\ContractsCodeScript.cs
 </LastOutputs>
@@ -245,64 +231,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DtosCodeScript.cs</LastGenOutput>
       <LastOutputs>
-..\Dtos\Brand\BrandBannerDto.generated.cs
-..\Dtos\Brand\BrandInfoDto.generated.cs
-..\Dtos\Config\AliConfigDto.generated.cs
-..\Dtos\Config\AppBasicInfoDto.generated.cs
-..\Dtos\Config\WxConfigDto.generated.cs
-..\Dtos\CustomMade\BaseModelDto.generated.cs
-..\Dtos\CustomMade\BaseModelPicDto.generated.cs
-..\Dtos\CustomMade\MaterialDto.generated.cs
-..\Dtos\CustomMade\ModelSizeDto.generated.cs
-..\Dtos\CustomMade\PicDto.generated.cs
-..\Dtos\CustomMade\PublicColorDto.generated.cs
-..\Dtos\CustomMade\PublicPositionDto.generated.cs
-..\Dtos\CustomMade\ShoesAccPicDto.generated.cs
-..\Dtos\CustomUser\BasePicDto.generated.cs
-..\Dtos\CustomUser\PositionDto.generated.cs
-..\Dtos\CustomUser\ShoesMaterialDto.generated.cs
-..\Dtos\Delivery\DeliveryAddressDto.generated.cs
-..\Dtos\Delivery\LogisticsModeDto.generated.cs
-..\Dtos\Goods\GoodsBannerDto.generated.cs
-..\Dtos\Goods\GoodsColorDto.generated.cs
-..\Dtos\Goods\GoodsExtraInfoDto.generated.cs
-..\Dtos\Goods\GoodsInfoDto.generated.cs
-..\Dtos\Goods\GoodsSizeDto.generated.cs
-..\Dtos\GoodsAttr\ClassifyInfoDto.generated.cs
-..\Dtos\GoodsAttr\ColorDto.generated.cs
-..\Dtos\GoodsAttr\ColorSchemeDto.generated.cs
-..\Dtos\GoodsAttr\GoodsByLableDto.generated.cs
-..\Dtos\GoodsAttr\GoodsLabelTypeDto.generated.cs
-..\Dtos\GoodsAttr\GoodsLableDto.generated.cs
-..\Dtos\GoodsAttr\PresellGoodsByLableDto.generated.cs
-..\Dtos\GoodsAttr\PriceIntervalDto.generated.cs
-..\Dtos\GoodsService\AfterServiceDto.generated.cs
-..\Dtos\GoodsService\ServicePicDto.generated.cs
-..\Dtos\GoodsStore\PresellBagDto.generated.cs
-..\Dtos\GoodsStore\ShoppingBagDto.generated.cs
-..\Dtos\GoodsStore\WishListDto.generated.cs
-..\Dtos\Help\AboutDistributionDto.generated.cs
-..\Dtos\Help\AboutExchangeDto.generated.cs
-..\Dtos\Help\AboutFootMeasuringDto.generated.cs
-..\Dtos\Help\AboutMaintaincsDto.generated.cs
-..\Dtos\Help\AboutPaymentDto.generated.cs
-..\Dtos\Help\AboutRegisterDto.generated.cs
-..\Dtos\Help\AboutShoppingDto.generated.cs
-..\Dtos\Help\ContentDto.generated.cs
-..\Dtos\Help\MuemuDto.generated.cs
-..\Dtos\Help\NewbieGuideDto.generated.cs
-..\Dtos\Help\ThemeDto.generated.cs
-..\Dtos\Order\OrderInfoDto.generated.cs
-..\Dtos\Order\OrderLineDto.generated.cs
-..\Dtos\PresellGoods\PresellColorDto.generated.cs
-..\Dtos\PresellGoods\PresellGoodsBannerDto.generated.cs
-..\Dtos\PresellGoods\PresellGoodsInfoDto.generated.cs
-..\Dtos\PresellGoods\PresellGoodsSizeDto.generated.cs
-..\Dtos\PresellGoods\PresellPicDto.generated.cs
-..\Dtos\PresellGoods\SizeInfoDto.generated.cs
-..\Dtos\PresellOrder\PresellOrderInfoDto.generated.cs
-..\Dtos\PresellOrder\PresellOrderLineDto.generated.cs
-..\Dtos\Stylist\StylistInfoDto.generated.cs
 ..\Dtos\User\FeedBackDto.generated.cs
 ..\Dtos\User\UserInfoDto.generated.cs
 ..\Dtos\User\ValidateCodeDto.generated.cs

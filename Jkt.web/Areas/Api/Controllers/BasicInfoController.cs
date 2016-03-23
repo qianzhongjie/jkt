@@ -15,7 +15,7 @@ using OSharp.Web.Http.Upload;
 using OSharp.Core.Caching;
 using System;
 
-namespace Jkt.Web.Areas.Api.Controllers
+namespace Bode.Web.Areas.Api.Controllers
 {
     [Description("基础功能接口")]
     public class BasicInfoController : ApiController
