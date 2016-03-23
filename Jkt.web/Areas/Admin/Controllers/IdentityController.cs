@@ -238,6 +238,20 @@ namespace Bode.Web.Areas.Admin.Controllers
             return Json(result.ToAjaxResult());
         }
 
+        [HttpPost]
+        [Description("添加管理员")]
+        public async Task<ActionResult> AddSysUser(string account, string pwd)
+        {
+            var count = IdentityContract.Users.Count(x => x.UserName == account);
+            if (count > 0) return Json(new OperationResult(OperationResultType.QueryNull, "此账号已存在").ToAjaxResult());
+            SysUserDto dto = new SysUserDto
+            {
+                UserName = account,
+                Password = pwd
+            };
+            OperationResult result = await IdentityContract.SaveUsers(dto);
+            return Json(result.ToAjaxResult());
+        }
         #endregion
 
         #region 功能

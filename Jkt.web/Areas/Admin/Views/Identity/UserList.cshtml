@@ -122,22 +122,63 @@
             { data: "Id", title: "编号" },
             { data: "UserName", title: "用户名称", type: "text", search: true, editor: {}, validation: { required: true } },
             { data: "NickName", title: "用户昵称", type: "text", search: true, editor: {} },
-             { data: "Password", title: "用户密码", type: "text", editor: {} },
             { data: "Email", title: "电子邮箱", type: "hide" },
             { data: "IsLocked", title: "是否锁定", type: "switch", search: true, editor: {} },
-            { data: "CreatedTime", title: "创建时间", type: "timepicker", search: true, format: function (d) { return $.osharp.tools.formatDate(d); }, isformatval: true },
+            { data: "CreatedTime", title: "创建时间", type: "datepicker", search: true, format: function (d) { return $.osharp.tools.formatDate(d); }, isformatval: true },
             {
-                data: "Id", title: "操作选项", type: "opt",
+                data: "Id",
+                title: "操作选项",
+                type: "opt",
                 format: function (id) {
                     return '<a href="javascript:setRole(' + id + ')">设置角色</a>';
                 }
             }
         ];
+        endfunction = function () {
+            $("#btAdd").unbind();
+            $("#btAdd").click(function () {
+                //弹出框
+                bootbox.dialog({
+                    message: $("#goodsInventory").html(),
+                    title: "添加管理员",
+                    className: "modal-blue",
+                    buttons: {
+                        success: {
+                            label: "确定",
+                            className: "btn-blue",
+                            callback: function () {
+                                if ($(".modal-content").find('input:eq(0)').val() === '') {
+                                    Notify("请输入账号", 'bottom-right', '5000', 'warning', 'fa-warning', true);
+                                    return;
+                                }
+                                if ($(".modal-content").find('input:eq(1)').val() === '') {
+                                    Notify("请输入密码", 'bottom-right', '5000', 'warning', 'fa-warning', true);
+                                    return;
+                                }
+                                $.post("@Url.Action("AddSysUser")", { account: $(".modal-content").find('input:eq(0)').val(), pwd: $(".modal-content").find('input:eq(1)').val() }, function (data) {
+                                    if (data.Type === "Error") {
+                                        Notify(data.Content, 'bottom-right', '5000', 'danger', 'fa-bolt', true);
+                                    } else {
+                                        Notify(data.Content, 'bottom-right', '5000', 'info', 'fa-envelope', true);
+                                        $("#btSearch").click();
+                                    }
+                                });
+                            },
+
+                        },
+                        "取消": {
+                            className: "btn-danger",
+                            callback: function () { }
+                        }
+                    }
+                });
+            });
+        }
     </script>
 }
 
 @section headHtml{
-    <div id="modal" style="display:none;">
+    <div id="modal" style="display: none;">
         <div class="row">
             <div id="organizationTree" class="col-xs-4">
                 <div class="widget flat radius-bordered">
@@ -166,6 +207,23 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="goodsInventory" style="display: none;">
+        <form class="form-horizontal form-bordered" role="form">
+            <div class="form-group">
+
+                <label for="Account" class="col-sm-3 control-label no-padding-right">账号：</label>
+                <div class="col-sm-6">
+                    <input class="form-control" id="Account" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Pwd" class="col-sm-3 control-label no-padding-right">密码：</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="Pwd">
+                </div>
+            </div>
+        </form>
     </div>
 }
 

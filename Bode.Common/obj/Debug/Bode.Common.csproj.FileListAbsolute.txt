@@ -29,3 +29,14 @@ G:\GitHub\jkt\Bode.Common\bin\Debug\System.Web.Mvc.xml
 G:\GitHub\jkt\Bode.Common\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
 G:\GitHub\jkt\Bode.Common\obj\Debug\Bode.Common.dll
 G:\GitHub\jkt\Bode.Common\obj\Debug\Bode.Common.pdb
+E:\Work\JktSubject\jkt\Bode.Common\bin\Debug\Bode.Common.dll
+E:\Work\JktSubject\jkt\Bode.Common\bin\Debug\Bode.Common.pdb
+E:\Work\JktSubject\jkt\Bode.Common\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\Work\JktSubject\jkt\Bode.Common\bin\Debug\Qiniu.4.0.dll
+E:\Work\JktSubject\jkt\Bode.Common\bin\Debug\System.Web.Mvc.dll
+E:\Work\JktSubject\jkt\Bode.Common\bin\Debug\Newtonsoft.Json.dll
+E:\Work\JktSubject\jkt\Bode.Common\bin\Debug\System.Web.Mvc.xml
+E:\Work\JktSubject\jkt\Bode.Common\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+E:\Work\JktSubject\jkt\Bode.Common\obj\Debug\Bode.Common.dll
+E:\Work\JktSubject\jkt\Bode.Common\obj\Debug\Bode.Common.pdb
+E:\Work\JktSubject\jkt\Bode.Common\obj\Debug\Bode.Common.csprojResolveAssemblyReference.cache

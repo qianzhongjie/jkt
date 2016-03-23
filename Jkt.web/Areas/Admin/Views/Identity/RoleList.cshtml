@@ -104,7 +104,7 @@
                     }
                 }
             });
-            //$(".modal-dialog").width(document.body.clientWidth - 224 * 3);
+            $(".modal-dialog").width(document.body.clientWidth - 224 * 3);
 
             //初始化复选框状态
             if (curRoleId !== roleId) {
@@ -123,34 +123,35 @@
             }
             curRoleId = roleId;
 
-            ////绑定树
-            //var tree = new $.osharp.treeview(".modal-dialog .col-xs-4 .widget-body .tree", {
-            //    source: controllers,
-            //    itemselect: function (item) {
-            //        $('.modal-dialog').find(".widget-body .col-sm-4").hide();
-            //        var curfuncs = controlleractionmap[item.value] || [];
-            //        for (var i = 0, n = curfuncs.length; i < n; i++) {
-            //            $('.modal-dialog :checkbox[value="' + curfuncs[i]["id"] + '"]').closest(".col-sm-4").show();
-            //        }
-            //    }
-            //});
+            //绑定树
+            var tree = new $.osharp.Treeview(".modal-dialog .col-xs-4 .widget-body .tree", {
+                source: controllers,
+                itemSelect: function (item) {
+                    $('.modal-dialog').find(".widget-body .col-sm-4").hide();
+                    var curFuncs = controllerActionMap[item.value] || [];
+                    for (var i = 0, n = curFuncs.length; i < n; i++) {
+                        $('.modal-dialog :checkbox[value="' + curFuncs[i]["Id"] + '"]').closest(".col-sm-4").show();
+                    }
+                }
+            });
 
-            添加复选框点击事件
+            //添加复选框点击事件
             $('.modal-dialog :checkbox').click(function () {
-                var actionid = $(this).val();
-                actionidmap[actionid]["checked"] = $(this).is(":checked");
+                var actionId = $(this).val();
+                actionIdMap[actionId]["Checked"] = $(this).is(":checked");
             });
         }
 
         columns = [
             { data: "Id", title: "编号" },
             { data: "Name", title: "角色名称", type: "text", search: true, editor: {}, validation: { required: true } },
-           // { data: "IsAdmin", title: "是否管理员", type: "switch", search: true, editor: {} },
+            { data: "IsAdmin", title: "是否管理员", type: "switch", search: true, editor: {} },
+             { data: "Remark", title: "描述", type: "text", search: true, editor: {} },
             { data: "IsLocked", title: "是否禁用", type: "switch", search: true, editor: {} },
             {
                 data: "CreatedTime",
                 title: "创建时间",
-                type: "timepicker",
+                type: "datepicker",
                 search: true,
                 format: function (d) {
                     return $.osharp.tools.formatDate(d);
@@ -168,11 +169,11 @@
             }
         ];
 
-        @* startfunction = function () {
+        @*startfunction = function () {
             var tabArea = $(".page-body>.row>div");
             tabArea.attr("class", "col-xs-8 col-md-9 col-lg-10");
             tabArea.before($("#tree"));
-            $("#tree .widget-body").height(document.body.scrollHeight - 140);
+            //$("#tree .widget-body").height(document.body.scrollHeight - 140);
 
             //UITree.init();
             var tree = new $.osharp.Treeview("#treeContent", {
