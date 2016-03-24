@@ -16,17 +16,21 @@ using OSharp.Utility.Filter;
 using OSharp.Web.Mvc.Security;
 using OSharp.Web.Mvc.UI;
 using OSharp.Web.Mvc;
+using OSharp.Core.Logging;
 
 namespace Bode.Web.Areas.Admin.Controllers
 {
     //[Authorize]
-    [Description("权限管理")]
+    [Description("系统管理")]
     public class IdentityController : AdminBaseController
     {
         public IIdentityContract IdentityContract { get; set; }
-
+        public IUserContract UserContract { get; set; }
         public ISecurityContract SecurityContract { get; set; }
-
+        /// <summary>
+        /// 获取或设置 日志业务对象
+        /// </summary>
+        public ILoggingContract LoggingContract { get; set; }
         #region Ajax功能
 
         #region 组织机构
@@ -252,6 +256,16 @@ namespace Bode.Web.Areas.Admin.Controllers
             OperationResult result = await IdentityContract.SaveUsers(dto);
             return Json(result.ToAjaxResult());
         }
+
+        [HttpPost]
+        [Description("保存修改密码数据")]
+        public async Task<ActionResult> EidtPassword(string oldPwd, string newPwd)
+        {
+            if (string.IsNullOrWhiteSpace(User.Identity.Name))
+                return Json(new OperationResult(OperationResultType.QueryNull, "登录信息丢失，请重新登录").ToAjaxResult());
+            var result = await IdentityContract.ResetPassword(User.Identity.Name, oldPwd, newPwd);
+            return Json(result.ToAjaxResult());
+        }
         #endregion
 
         #region 功能
@@ -395,6 +409,63 @@ namespace Bode.Web.Areas.Admin.Controllers
 
         #endregion
 
+        #region 操作日志
+
+        [AjaxOnly]
+        [Description("获取操作日志数据")]
+        public ActionResult GetOperateLogData()
+        {
+            int total;
+            GridRequest request = new GridRequest(Request);
+            if (request.PageCondition.SortConditions.Length == 0)
+            {
+                request.PageCondition.SortConditions = new[] { new SortCondition("CreatedTime", ListSortDirection.Descending) };
+            }
+            var datas = GetQueryData<OperateLog, int>(LoggingContract.OperateLogs.Include(p => p.DataLogs), out total, request).Select(m => new
+            {
+                m.Id,
+                m.FunctionName,
+                m.Operator.UserId,
+                m.Operator.UserName,
+                m.Operator.Ip,
+                m.CreatedTime
+            }).ToList();
+            return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
+        }
+
+        [AjaxOnly]
+        [HttpPost]
+        [Description("删除操作日志数据")]
+        public ActionResult DeleteOperateLogs(int[] ids)
+        {
+            ids.CheckNotNull("ids");
+            OperationResult result = LoggingContract.DeleteOperateLogs(ids);
+            return Json(result.ToAjaxResult());
+        }
+
+        [AjaxOnly]
+        [Description("获取数据日志数据")]
+        public ActionResult GetDataLogData(int operateLogId)
+        {
+            var data = LoggingContract.DataLogs.Where(p => p.OperateLog != null && p.OperateLog.Id == operateLogId).Select(m => new
+            {
+                m.Id,
+                m.Name,
+                m.EntityName,
+                m.OperateType,
+                LogItems = m.LogItems.Select(n => new
+                {
+                    n.Field,
+                    n.FieldName,
+                    n.OriginalValue,
+                    n.NewValue,
+                    n.DataType
+                })
+            }).ToList();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
         #endregion
 
         #region 视图页面
@@ -431,6 +502,23 @@ namespace Bode.Web.Areas.Admin.Controllers
 
         [Description("实体列表")]
         public ActionResult EntityInfoList()
+        {
+            return View();
+        }
+
+        [Description("操作日志列表")]
+        public ActionResult OperateLogList()
+        {
+            ViewBag.OperatingTypes = typeof(OperatingType).ToDictionary().Select(p => new
+            {
+                val = p.Key,
+                text = p.Value
+            }).ToList();
+            return View();
+        }
+
+        [Description("修改密码")]
+        public ActionResult Epassword()
         {
             return View();
         }

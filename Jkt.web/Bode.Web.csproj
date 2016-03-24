@@ -1409,7 +1409,6 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\IdentityController.cs" />
-    <Compile Include="Areas\Admin\Controllers\SystemController.cs" />
     <Compile Include="Areas\Admin\ViewModels\BannerSumViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\BannerViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ClassifyNode.cs" />
@@ -1463,8 +1462,8 @@
     <Content Include="Areas\Admin\Views\Identity\UserList.cshtml" />
     <Content Include="Areas\Admin\Views\Identity\FunctionList.cshtml" />
     <Content Include="Areas\Admin\Views\Identity\EntityInfoList.cshtml" />
-    <Content Include="Areas\Admin\Views\System\OperateLogList.cshtml" />
-    <Content Include="Areas\Admin\Views\System\DataLogList.cshtml" />
+    <Content Include="Areas\Admin\Views\Identity\OperateLogList.cshtml" />
+    <Content Include="Areas\Admin\Views\Identity\DataLogList.cshtml" />
     <Content Include="Areas\Admin\Views\System\ServerInfo.cshtml" />
     <Content Include="Content\js\angular\angular-animate.min.js.map" />
     <Content Include="Content\js\angular\angular-aria.min.js.map" />
@@ -1490,6 +1489,7 @@
     <Content Include="Content\js\ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="Content\js\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Content\js\ueditor\third-party\video-js\font\vjs.woff" />
+    <Content Include="Areas\Admin\Views\Identity\Epassword.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

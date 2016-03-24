@@ -103,7 +103,7 @@ namespace Bode.Services.Implement.Services
             userName.CheckNotNullOrEmpty("userName");
             userName.CheckNotNullOrEmpty("password");
 
-            var sUser = UserManager.FindById(int.Parse(userName));
+            var sUser = UserManager.FindByName(userName);
 
             var check = await UserManager.CheckPasswordAsync(sUser, oldPsw);
             if (!check)
