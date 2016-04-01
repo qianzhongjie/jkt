@@ -28,6 +28,22 @@ namespace Bode.Services.Implement.Services
 {
     public partial class UserService
     {
+
+        public async Task<OperationResult> TokenLogin(string openId)
+        {
+            var user = UserInfoRepo.GetByPredicate(x => x.Token == openId).Single();
+            if(user==null)
+            {
+               // 跳转注册
+            }
+            if(user.SysUser.UserType==UserType.系统用户)
+            {
+                return new OperationResult(OperationResultType.ValidError,"系统用户无法登录");
+            }
+            return new OperationResult();
+
+        }
+
         // public IUserContract UserContract { get; set; }
         /// <summary>
         /// 获取手机验证码

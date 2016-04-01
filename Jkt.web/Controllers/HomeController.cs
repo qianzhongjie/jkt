@@ -49,6 +49,28 @@ namespace Bode.Web.Controllers
             return Content(content);
         }
 
+        [Description("微信Url授权")]
+        public ActionResult Notifly_url()
+        {
+            string token = "didijiakao";
+            if (string.IsNullOrEmpty(token))
+            {
+                return Content("");
+            }
 
+            string echoString = HttpContext.Request.QueryString["echoStr"];
+            string signature = HttpContext.Request.QueryString["signature"];
+            string timestamp = HttpContext.Request.QueryString["timestamp"];
+            string nonce = HttpContext.Request.QueryString["nonce"];
+
+            if (!string.IsNullOrEmpty(echoString))
+            {
+                HttpContext.Response.Write(echoString);
+                HttpContext.Response.End();
+            }
+            return Content(echoString);
+        }
+
+       
     }
 }

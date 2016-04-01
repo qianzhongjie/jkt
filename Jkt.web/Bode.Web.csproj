@@ -1517,6 +1517,10 @@
       <Project>{8E8A6B02-4D39-4664-B026-C37F375B69C2}</Project>
       <Name>Bode.Services.Implement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Business\WXFramework.csproj">
+      <Project>{5765cfa5-1892-4a06-81a8-f5e4c8a28dff}</Project>
+      <Name>WXFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
