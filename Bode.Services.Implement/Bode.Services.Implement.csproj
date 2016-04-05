@@ -96,6 +96,10 @@
     <Compile Include="ModelConfigs\Security\FunctionConfiguration.cs" />
     <Compile Include="ModelConfigs\Security\FunctionRoleMapConfiguration.cs" />
     <Compile Include="ModelConfigs\Security\FunctionUserMapConfiguration.cs" />
+    <Compile Include="ModelConfigs\Student\CityConfiguration.cs" />
+    <Compile Include="ModelConfigs\Student\JCUConfiguration.cs" />
+    <Compile Include="ModelConfigs\Student\JcuSystemConfiguration.cs" />
+    <Compile Include="ModelConfigs\Student\StudentInfoConfiguration.cs" />
     <Compile Include="ModelConfigs\User\FeedBackConfiguration.cs" />
     <Compile Include="ModelConfigs\User\ValidateCodeConfiguration.cs" />
     <Compile Include="ModelConfigs\User\UserInfoConfiguration.cs" />
@@ -138,6 +142,8 @@
     <Compile Include="Services\Security\SecurityService.Function.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Services\Student\StudentService.cs" />
+    <Compile Include="Services\Student\StudentService.generated.cs" />
     <Compile Include="Services\User\UserService.Account.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -179,6 +185,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ServicesCodeScript.cs</LastGenOutput>
       <LastOutputs>
+..\Services\Student\StudentService.generated.cs
 ..\Services\User\UserService.generated.cs
 .\ServicesCodeScript.cs
 </LastOutputs>

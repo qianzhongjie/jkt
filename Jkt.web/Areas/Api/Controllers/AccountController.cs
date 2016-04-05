@@ -56,12 +56,12 @@ namespace Bode.Web.Areas.Api.Controllers
             return Json(result.ToApiResult());
         }
 
-        [Description("登录验证openid")]
-        [HttpPost]
-        public async Task<IHttpActionResult> LoginToken(string openId)
-        {
-            var result=await 
-        }
+        //[Description("登录验证openid")]
+        //[HttpPost]
+        //public async Task<IHttpActionResult> LoginToken(string openId)
+        //{
+        //    var result=await 
+        //}
 
         [System.Web.Http.HttpPost]
         [Description("用户登录")]

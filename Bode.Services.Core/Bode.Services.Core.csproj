@@ -74,6 +74,7 @@
     <Compile Include="Contracts\ISecurityContract.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Contracts\IStudentContract.generated.cs" />
     <Compile Include="Contracts\IUserContract.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -113,6 +114,10 @@
     <Compile Include="Dtos\Security\FunctionUserMapDto.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Dtos\Student\CityDto.generated.cs" />
+    <Compile Include="Dtos\Student\JCUDto.generated.cs" />
+    <Compile Include="Dtos\Student\JcuSystemDto.generated.cs" />
+    <Compile Include="Dtos\Student\StudentInfoDto.generated.cs" />
     <Compile Include="Dtos\User\FeedBackDto.generated.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -164,6 +169,10 @@
     <Compile Include="Models\Security\FunctionUserMap.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Student\City.cs" />
+    <Compile Include="Models\Student\JCU.cs" />
+    <Compile Include="Models\Student\JcuSystem.cs" />
+    <Compile Include="Models\Student\StudentInfo.cs" />
     <Compile Include="Models\User\FeedBack.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -215,6 +224,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ContractsCodeScript.cs</LastGenOutput>
       <LastOutputs>
+..\Contracts\IStudentContract.generated.cs
 ..\Contracts\IUserContract.generated.cs
 .\ContractsCodeScript.cs
 </LastOutputs>
@@ -231,6 +241,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DtosCodeScript.cs</LastGenOutput>
       <LastOutputs>
+..\Dtos\Student\CityDto.generated.cs
+..\Dtos\Student\JCUDto.generated.cs
+..\Dtos\Student\JcuSystemDto.generated.cs
+..\Dtos\Student\StudentInfoDto.generated.cs
 ..\Dtos\User\FeedBackDto.generated.cs
 ..\Dtos\User\UserInfoDto.generated.cs
 ..\Dtos\User\ValidateCodeDto.generated.cs

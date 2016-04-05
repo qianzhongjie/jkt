@@ -8,6 +8,8 @@
 using AutoMapper;
         using Bode.Services.Core.Models.User;
         using Bode.Services.Core.Dtos.User;
+                using Bode.Services.Core.Models.Student;
+        using Bode.Services.Core.Dtos.Student;
         
 namespace Bode.Services.Core.Dtos
 {
@@ -18,6 +20,10 @@ namespace Bode.Services.Core.Dtos
                                 Mapper.CreateMap<FeedBackDto, FeedBack>();
                                         Mapper.CreateMap<UserInfoDto, UserInfo>();
                                         Mapper.CreateMap<ValidateCodeDto, ValidateCode>();
+                                        Mapper.CreateMap<CityDto, City>();
+                                        Mapper.CreateMap<JCUDto, JCU>();
+                                        Mapper.CreateMap<JcuSystemDto, JcuSystem>();
+                                        Mapper.CreateMap<StudentInfoDto, StudentInfo>();
                     
             MapperRegisterCustom();
         }

@@ -20,5 +20,6 @@ namespace Bode.Services.Core.Dtos.User
                                         public System.String ChannelCode { get; set; }
                                         public System.Int32 SysUserId { get; set; }
                                         public System.String Qq { get; set; }
+                                        public System.String Token { get; set; }
                     	}
 }

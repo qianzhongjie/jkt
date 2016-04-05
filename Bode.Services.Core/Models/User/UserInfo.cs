@@ -32,15 +32,19 @@ namespace Bode.Services.Core.Models.User
         [Description("系统用户")]
         public virtual SysUser SysUser { get; set; }
 
-       // [Description("生日")]
+        // [Description("生日")]
         public DateTime? Birthday { get; set; }
 
         [Description("qq")]
         public string Qq { get; set; }
 
+       // [Description("上任时间")]
+        public DateTime? UpTime { get; set; }
+
         /// <summary>
         /// 登录凭据
         /// </summary>
+        [Description("登录凭据")]
         public string Token { get; set; }
     }
 
