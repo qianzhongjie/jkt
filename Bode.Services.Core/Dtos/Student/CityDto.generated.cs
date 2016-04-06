@@ -14,5 +14,6 @@ namespace Bode.Services.Core.Dtos.Student
 	{
         public System.Int32 Id { get; set; }
                             public System.String Name { get; set; }
+                                        public System.String ProName { get; set; }
                     	}
 }

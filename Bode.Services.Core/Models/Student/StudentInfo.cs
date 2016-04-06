@@ -30,7 +30,7 @@ namespace Bode.Services.Core.Models.Student
     }
     public enum Schedule
     {
-        不限 = 0,
+        未试练 = 0,
         已试炼 = 1,
         已报名 = 2,
         科目一 = 3,

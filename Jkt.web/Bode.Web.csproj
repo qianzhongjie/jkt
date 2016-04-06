@@ -1409,6 +1409,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\IdentityController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StudentController.cs" />
     <Compile Include="Areas\Admin\ViewModels\BannerSumViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\BannerViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ClassifyNode.cs" />
@@ -1499,6 +1500,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\Views\Student\" />
     <Folder Include="Content\js\angular\i18n\ngLocale\" />
     <Folder Include="Content\js\ueditor\net\Bin\" />
     <Folder Include="Views\Home\" />

@@ -20,7 +20,10 @@ namespace Bode.Services.Core.Models.Student
         [Description("名称")]
         public string Name { get; set; }
 
-        public ICollection<JCU> Jcu { get; set; }
+        [Description("省")]
+        public string ProName { get; set; }
+
+        public virtual ICollection<JCU> Jcu { get; set; }
 
     }
 }

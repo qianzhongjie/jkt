@@ -36,8 +36,8 @@ namespace Bode.Services.Core.Models.Student
         public virtual City City { get; set; }
 
         //校区管理员
-        public ICollection<JcuSystem> SysUser { get; set; }
+        public virtual ICollection<JcuSystem> SysUser { get; set; }
         //校区的学员
-        public ICollection<StudentInfo> StudenInfos { get; set; }
+        public virtual ICollection<StudentInfo> StudenInfos { get; set; }
     }
 }
