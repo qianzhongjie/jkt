@@ -23,6 +23,9 @@ namespace Bode.Services.Core.Models.Student
         [Description("所属校区")]
         public virtual JCU Jcu { get; set; }
 
+        [Description("所属经理")]
+        public virtual JcuSystem JcuSystem { get; set; }
+
         //[Description("预约考试时间")]
         public DateTime? ExaminationTime { get; set; }
 

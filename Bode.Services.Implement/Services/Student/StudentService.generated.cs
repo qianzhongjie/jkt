@@ -243,6 +243,7 @@ namespace Bode.Services.Implement.Services
                             {
                                                                         entity.UserInfo = UserInfoRepo.GetByKey(dto.UserInfoId);
                                                                                 entity.Jcu = JCURepo.GetByKey(dto.JcuId);
+                                                                                entity.JcuSystem = JcuSystemRepo.GetByKey(dto.JcuSystemId);
                                                                     }
                             return entity; 
                         };

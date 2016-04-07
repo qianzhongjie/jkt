@@ -18,12 +18,12 @@ namespace Bode.Web.Areas.Admin.Controllers
         public ISecurityContract SecurityContract { get; set; }
         public IIdentityContract IdentityContract { get; set; }
 
-        [Authorize]
+       // [Authorize]
         [Description("后台首页")]
         public ActionResult Index()
         {
-            var user = IdentityContract.Users.SingleOrDefault(p => p.UserName == User.Identity.Name);
-            ViewBag.User = user;
+            //var user = IdentityContract.Users.SingleOrDefault(p => p.UserName == User.Identity.Name);
+            ViewBag.User = null;
             return View();
         }
 

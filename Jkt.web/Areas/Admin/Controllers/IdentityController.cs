@@ -17,6 +17,7 @@ using OSharp.Web.Mvc.Security;
 using OSharp.Web.Mvc.UI;
 using OSharp.Web.Mvc;
 using OSharp.Core.Logging;
+using System.Data.Entity;
 
 namespace Bode.Web.Areas.Admin.Controllers
 {

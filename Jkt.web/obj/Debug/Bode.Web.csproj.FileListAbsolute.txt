@@ -126,6 +126,7 @@ G:\GitHub\jkt\Jkt.web\bin\Bode.Services.Core.dll
 G:\GitHub\jkt\Jkt.web\bin\Bode.Services.Implement.dll
 G:\GitHub\jkt\Jkt.web\bin\Bode.Sms.Md.dll
 G:\GitHub\jkt\Jkt.web\bin\ICSharpCode.SharpZipLib.dll
+G:\GitHub\jkt\Jkt.web\bin\JCSoft.WX.Framework.dll
 G:\GitHub\jkt\Jkt.web\bin\log4net.dll
 G:\GitHub\jkt\Jkt.web\bin\Microsoft.Web.Infrastructure.dll
 G:\GitHub\jkt\Jkt.web\bin\OSharp.Autofac.Mvc.dll
@@ -153,6 +154,7 @@ G:\GitHub\jkt\Jkt.web\bin\AutoMapper.dll
 G:\GitHub\jkt\Jkt.web\bin\Bode.Common.pdb
 G:\GitHub\jkt\Jkt.web\bin\Bode.Services.Core.pdb
 G:\GitHub\jkt\Jkt.web\bin\Bode.Services.Implement.pdb
+G:\GitHub\jkt\Jkt.web\bin\JCSoft.WX.Framework.pdb
 G:\GitHub\jkt\Jkt.web\bin\Autofac.xml
 G:\GitHub\jkt\Jkt.web\bin\Autofac.Integration.Mvc.xml
 G:\GitHub\jkt\Jkt.web\bin\Autofac.Integration.WebApi.xml
@@ -172,6 +174,7 @@ G:\GitHub\jkt\Jkt.web\bin\System.Web.WebPages.Deployment.xml
 G:\GitHub\jkt\Jkt.web\bin\System.Web.WebPages.Razor.xml
 G:\GitHub\jkt\Jkt.web\bin\AutoMapper.xml
 G:\GitHub\jkt\Jkt.web\bin\en-us\Bode.Services.Implement.resources.dll
+G:\GitHub\jkt\Jkt.web\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
 G:\GitHub\jkt\Jkt.web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
 G:\GitHub\jkt\Jkt.web\bin\zh-Hans\System.Web.Helpers.resources.dll
 G:\GitHub\jkt\Jkt.web\bin\zh-Hans\System.Web.Http.resources.dll
@@ -184,6 +187,3 @@ G:\GitHub\jkt\Jkt.web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
 G:\GitHub\jkt\Jkt.web\obj\Debug\Bode.Web.csprojResolveAssemblyReference.cache
 G:\GitHub\jkt\Jkt.web\obj\Debug\Bode.Web.dll
 G:\GitHub\jkt\Jkt.web\obj\Debug\Bode.Web.pdb
-G:\GitHub\jkt\Jkt.web\bin\JCSoft.WX.Framework.dll
-G:\GitHub\jkt\Jkt.web\bin\JCSoft.WX.Framework.pdb
-G:\GitHub\jkt\Jkt.web\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll

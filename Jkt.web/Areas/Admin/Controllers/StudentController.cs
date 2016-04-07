@@ -24,8 +24,12 @@ namespace Bode.Web.Areas.Admin.Controllers
 
         [AjaxOnly]
         [Description("获取学员信息")]
-        public ActionResult GetStudentData()
+        public ActionResult GetStudentData(int sysUserId = 0)
         {
+            if (sysUserId == 0)
+            {
+                return Json(new { });
+            }
             int total;
             GridRequest request = new GridRequest(Request);
             var datas = GetQueryData<StudentInfo, int>(studentContract.StudentInfos, out total,
@@ -36,7 +40,6 @@ namespace Bode.Web.Areas.Admin.Controllers
                         UserInfoId = m.UserInfo.Id,
                         m.Jcu.Name,
                         m.ScheduleState,
-
                     });
             return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
         }
@@ -46,5 +49,7 @@ namespace Bode.Web.Areas.Admin.Controllers
         {
             return View();
         }
+
+
     }
 }

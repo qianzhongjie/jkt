@@ -14,6 +14,7 @@ namespace Bode.Services.Implement.ModelConfigs.Student
         {
             HasRequired(x => x.UserInfo);
             HasRequired(x => x.Jcu).WithMany(x => x.StudenInfos);
+            HasRequired(x => x.JcuSystem).WithMany(x => x.StudentInfo);
         }
     }
 }

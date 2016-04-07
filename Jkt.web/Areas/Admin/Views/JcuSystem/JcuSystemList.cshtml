@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "校区经理列表";
+    Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
+    ViewBag.GridDataUrl = Url.Action("GetJcuSystemData");
+    ViewBag.DeleteUrl = Url.Action("DeleteJcuSystem");
+    ViewBag.ToolbarItem = "add,delete";
+}
+@section customScript
+{
+    <script src="~/Content/js/osharp/osharp.treeview.js"></script>
+    <script type="text/javascript">
+        var jcuId = 0;
+        columns = [
+        { data: "Id", title: "编号" }, { data: "JcusId", title: "校区Id", type: "hide" }, { data: "SystemInfoId", title: "校区经理用户Id", type: "hide" },
+        { data: "NickName", title: "昵称", type: "text" },
+          { data: "RealName", title: "真实姓名", type: "text" },
+
+               { data: "PhoneNumber", title: "电话号码", type: "text" },
+        { data: "Name", title: "所属校区", type: "text" }, { data: "Sum", title: "学员数量", type: "text" },
+      {
+          data: "CreatedTime",
+          title: "上任时间",
+          type: "datepicker",
+          search: true,
+          format: function (d) {
+              return $.osharp.tools.formatDate(d);
+          },
+          isformatval: true
+      }
+        ];
+
+        startfunction = function () {
+            $("#btAdd").unbind();
+            $("#btAdd").click(function () {
+                var html = "";
+                $.post("@Url.Action("GetSystemUser")", {}, function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        html += '<option value="' + data[i].Id + '">' + data[i].NickName + '<option>';
+                    }
+                    $("#Account").html(html);
+                });
+
+                //弹出框
+                bootbox.dialog({
+                    message: $("#goodsInventory").html(),
+                    title: "设置功能",
+                    className: "modal-blue",
+                    buttons: {
+                        success: {
+                            label: "保存",
+                            className: "btn-blue",
+                            callback: function () {
+                                var dtos = [];
+                                dtos.push({
+                                    SystemInfoId: $(".modal-content").find('select').val(),
+                                    JcusId: jcuId
+                                });
+                                $.post("@Url.Action("SaveJcuSystemData")", { dtos: dtos }, function (data) {
+                                    if (data.Type === "Error") {
+                                        Notify(data.Content, 'bottom-right', '5000', 'danger', 'fa-bolt', true);
+                                    } else {
+                                        Notify(data.Content, 'bottom-right', '5000', 'info', 'fa-envelope', true);
+                                    }
+                                });
+                            }
+                        },
+                        "取消": {
+                            className: "btn-danger",
+                            callback: function () { }
+                        }
+                    }
+                });
+            });
+
+            var tabArea = $(".page-body>.row>div");
+            tabArea.attr("class", "col-xs-8 col-md-9 col-lg-10");
+            tabArea.before($("#tree"));
+            $("#tree .widget-body").height(document.body.scrollHeight - 140);
+
+            // UITree.init();
+            var tree = new $.osharp.Treeview("#treeContent", {
+                ajax: "@Url.Action("GetJcuSystemTree")",
+                itemSelect: function (item) {
+                    dataTable.conf.ajax = "@ViewBag.GridDataUrl?jcusId=" + item.value;
+
+                    dataTable.beforeEdit = function (index, row) {
+                        row.jcusId = item.value;
+                        jcuId = item.value;
+                    }
+                    dataTable.reload();
+                }
+            });
+        }
+    </script>
+}
+@section headHtml{
+    <div id="tree" class="col-xs-4 col-md-3 col-lg-2">
+        <div class="widget flat radius-bordered">
+            <div class="widget-header bg-info">
+                <span class="widget-caption">城市/校区</span>
+            </div>
+            <div class="widget-body" style="overflow-y: auto;">
+                <div id="treeContent" class="tree tree-solid-line">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="goodsInventory" style="display: none;">
+        <form class="form-horizontal form-bordered" role="form">
+            <div class="form-group">
+
+                <label for="Account" class="col-sm-3 control-label no-padding-right">关联用户：</label>
+                <div class="col-sm-6">
+                    <select class="form-control" id="Account"></select>
+                </div>
+            </div>
+        </form>
+    </div>
+}

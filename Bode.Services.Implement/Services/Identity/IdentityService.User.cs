@@ -21,7 +21,7 @@ using Bode.Services.Implement.Permissions.Identity;
 using OSharp.Utility;
 using OSharp.Utility.Data;
 using OSharp.Utility.Extensions;
-
+using OSharp.Core.Data;
 
 namespace Bode.Services.Implement.Services
 {
@@ -29,6 +29,7 @@ namespace Bode.Services.Implement.Services
     {
         #region Implementation of IIdentityContract
 
+        public IRepository<SysUser, int> SysUserRepo { protected get; set; }
         /// <summary>
         /// 获取 用户信息查询数据集
         /// </summary>
@@ -79,7 +80,9 @@ namespace Bode.Services.Implement.Services
         {
             userName.CheckNotNullOrEmpty("userName");
             password.CheckNotNullOrEmpty("password");
-            SysUser sUser = await UserManager.FindByNameAsync(userName);
+            var User = SysUserRepo.GetByPredicate(x => x.UserName == userName);
+            if (!User.Any()) return new OperationResult(OperationResultType.ValidError, "用户不存在");
+            var sUser = User.First();
             if (sUser.UserType == UserType.App用户)
             {
                 return new OperationResult(OperationResultType.ValidError, "非法用户");

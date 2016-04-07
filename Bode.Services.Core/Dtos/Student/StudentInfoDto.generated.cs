@@ -16,5 +16,6 @@ namespace Bode.Services.Core.Dtos.Student
                             public System.Int32 UserInfoId { get; set; }
                                         public Bode.Services.Core.Models.Student.Schedule ScheduleState { get; set; }
                                         public System.Int32 JcuId { get; set; }
+                                        public System.Int32 JcuSystemId { get; set; }
                     	}
 }
