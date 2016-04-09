@@ -115,7 +115,7 @@
 
             var jqTds = $('>td', cRow);
 
-            for (var i = this.isBatch?1:0, n = jqTds.length; i < n; i++) {
+            for (var i = this.isBatch ? 1 : 0, n = jqTds.length; i < n; i++) {
                 var dataKey = this.tab.find("thead>tr:eq(0)>th:eq(" + i + ")").attr("data-key");
                 var editor = this.columnsHash[dataKey]["editor"];
                 var colType = this.columnsHash[dataKey]["type"];
@@ -165,11 +165,11 @@
                             }
                         });
 
-                    } else if (colType === "datepicker"||colType==="timepicker") {
+                    } else if (colType === "datepicker" || colType === "timepicker") {
                         jqTds[i].innerHTML = '<input class="input-sm date-picker" data-vv="' + data[dataKey] + '" type="text" style="width:90%;" value="' + data[dataKey] + '" readonly>';
 
                         var minView = colType === "datepicker" ? 2 : 1;
-                        var format = colType === "datepicker"?"yyyy-MM-dd":"yyyy-MM-dd hh:ii";
+                        var format = colType === "datepicker" ? "yyyy-MM-dd" : "yyyy-MM-dd hh:ii";
                         $('.date-picker').datetimepicker({
                             minView: minView,
                             todayBtn: 1,
@@ -204,11 +204,10 @@
         //保存单行数据
         this.saveRow = function (row) {
             var i = 0, cN = this.columns.length;
-            if (this.isBatch)
-            {
+            if (this.isBatch) {
                 i++; cN++;
             }
-            while (i< cN) {
+            while (i < cN) {
                 var colIndex = this.isBatch ? i - 1 : i;
                 var editor = this.columns[colIndex].editor;
                 if (typeof (editor) == "undefined" || this.columns[colIndex]["data"] === "Id") { i++; continue; }
@@ -278,7 +277,7 @@
                     } else if (colType === "img") {
                         row.find("td:eq(" + j + ")").html('<img src="' + ov + '" style="width:120px;height:80px;"/>');
                     } else {
-                        row.find("td:eq(" + j + ")").html(this.tool.format(ov,d, f));
+                        row.find("td:eq(" + j + ")").html(this.tool.format(ov, d, f));
                     }
                 }
             }
@@ -328,8 +327,8 @@
             },
 
             //数据展示format
-            format: function (v,d, f) {
-                if (typeof (f) == 'function') return f(v,d);
+            format: function (v, d, f) {
+                if (typeof (f) == 'function') return f(v, d);
                 return v;
             },
 
@@ -372,7 +371,7 @@
             for (var i = 0, n = this.originData.length; i < n; i++) {
                 var d = this.originData[i];
                 var tr = $('<tr></tr>');
-                
+
                 if (this.isBatch) {
                     $('<td style="width:25px;"><div class="checkbox"><label><input type="checkbox" value="' + d["Id"] + '"><span class="text"></span></label></div></td>').appendTo(tr);
                 }
@@ -383,7 +382,7 @@
                     //处理时间类型
                     var ov = d[this.columns[j]["data"]];
                     if (this.columns[j]["isformatval"]) {
-                        ov = this.tool.format(ov,d, f);
+                        ov = this.tool.format(ov, d, f);
                     }
                     if (colType === "combobox" || colType === "switch") {
                         var source = this.columns[j].source;
@@ -393,7 +392,7 @@
                         $('<td data-ov="' + ov + '"><img src="' + ov + '" style="width:120px;height:80px;"/></td>').appendTo(tr);
                     } else {
                         var display = colType === "hide" ? 'style="display:none;"' : '';
-                        $('<td ' + display + ' data-ov="' + ov + '">' + this.tool.format(ov,d, f) + '</td>').appendTo(tr);
+                        $('<td ' + display + ' data-ov="' + ov + '">' + this.tool.format(ov, d, f) + '</td>').appendTo(tr);
                     }
                 }
                 tr.appendTo(this.tab.find("tbody"));
@@ -405,9 +404,8 @@
 
         this.initHead = function () {
             var tab = this;
-            if (tab.isBatch)
-            {
-                var th=$('<th style="width:35px;"><div class="checkbox"><label><input type="checkbox"><span class="text"></span></label></div></th>')
+            if (tab.isBatch) {
+                var th = $('<th style="width:35px;"><div class="checkbox"><label><input type="checkbox"><span class="text"></span></label></div></th>')
                 th.find("input:checkbox").click(function () {
                     if ($(this).is(":checked")) {
                         tab.tab.find("tbody>tr").find("td:eq(0) input:checkbox").attr("checked", true);
@@ -424,7 +422,7 @@
                 //初始化switch的数据源
                 var colType = this.columns[i]["type"];
                 //初始化switch的format与数据源
-                if (colType === "switch" && typeof (this.columns[i]["source"]) === "undefined"){
+                if (colType === "switch" && typeof (this.columns[i]["source"]) === "undefined") {
                     this.columns[i]["source"] = { data: [{ "val": "false", "text": "否" }, { "val": "true", "text": "是" }] };
                 }
 
@@ -438,7 +436,7 @@
                 var display = colType === "hide" ? 'style="display:none;"' : '';
                 var sortHtml = this.columns[i].sortDisable ? '' : ' class="sorting"';
                 var width = this.columns[i].width || '251px';
-                $('<th ' + display + sortHtml + ' data-key="' + this.columns[i].data + '" style="width: '+width+';">' + this.columns[i].title + '</th>').click(function () {
+                $('<th ' + display + sortHtml + ' data-key="' + this.columns[i].data + '" style="width: ' + width + ';">' + this.columns[i].title + '</th>').click(function () {
                     if (typeof ($(this).attr("class")) == "undefined") return;
                     tab.queryParams.sortField = $(this).attr("data-key");
                     tab.queryParams.sortOrder = $(this).attr("class") === "sorting_asc" ? "desc" : "asc";
@@ -617,6 +615,7 @@
         }
 
         this.reload = function () {
+            this.queryParams.sortField = '';
             if (this.queryParams.where) delete this.queryParams.where;
             this.query();
         }

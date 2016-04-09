@@ -417,6 +417,45 @@
                     //打开第一个菜单
                     $("#navMenus .active .submenu").slideDown();
                     $("#navMenus .active").addClass("open");
+                    $("#navMenus li").find('span').each(function () {
+                        if ($(this).text() === " Bode.Plugin.WebControles.MvcCaptcha._MvcCaptchaController ") {
+                            $(this).parents('li').addClass('hidden');
+                        }
+                        if ($(this).text() === " Web账户接口 ") {
+                            $(this).parents('li').addClass('hidden');
+                        }
+                        if ($(this).text() === " API个人定制化 ") {
+                            $(this).parents('li').addClass('hidden');
+                        }
+                        if ($(this).text() === " Web新品预售 ") {
+                            $(this).parents('li').addClass('hidden');
+                        }
+                        if ($(this).text() === " 在线设计 ") {
+                            $(this).parents('li').addClass('hidden');
+                        }
+                        if ($(this).text() === " Web个人定制化 ") {
+                            $(this).parents('li').addClass('hidden');
+                        }
+                        if ($(this).text() === " Web设计师 ") {
+                            $(this).parents('li').addClass('hidden');
+                        }
+                        if ($(this).text() === "订单列表") {
+                            $(this).parent('li').addClass('hidden');
+                        }
+                        if ($(this).text() === " Web用户信息获取 ") {
+                            $(this).parents('li').addClass('hidden');
+                        } if ($(this).text() === " web支付 ") {
+                            $(this).parents('li').addClass('hidden');
+                        }
+                        if ($(this).text() === "实体列表") {
+                            $(this).parent().parent().addClass('hidden');
+                        } if ($(this).text() === "功能列表") {
+                            $(this).parent().parent().addClass('hidden');
+                        } if ($(this).text() === "组织结构列表") {
+                            $(this).parent().parent().addClass('hidden');
+                        }
+                    }
+                   );
                 });
             });
         });

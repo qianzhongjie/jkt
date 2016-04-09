@@ -4,7 +4,8 @@
     Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
     ViewBag.GridDataUrl = Url.Action("GetJcuSystemData");
     ViewBag.DeleteUrl = Url.Action("DeleteJcuSystem");
-    ViewBag.ToolbarItem = "add,delete";
+    ViewBag.SaveUrl = Url.Action("SaveJcuSystemData");
+    ViewBag.ToolbarItem = "add,save,cancel";
 }
 @section customScript
 {
@@ -13,13 +14,13 @@
         var jcuId = 0;
         columns = [
         //{ data: "Id", title: "编号" },
-        { data: "JcusId", title: "校区Id", type: "hide" }, { data: "SystemInfoId", title: "校区经理用户Id", type: "hide" },
+        { data: "JcusId", title: "校区Id", type: "hide" },
+        { data: "SystemInfoId", title: "校区经理用户Id", type: "hide" },
         { data: "Id", title: "用户Id", type: "hide" },
         { data: "HeadPic", title: "头像", type: "img", editor: {} },
-        { data: "NickName", title: "昵称", type: "text", editor: {} },
+        { data: "UserName", title: "用户帐号", type: "text" },
           { data: "RealName", title: "真实姓名", type: "text", editor: {} },
-
-               { data: "PhoneNumber", title: "电话号码", type: "text", editor: {} },
+               { data: "PhoneNumber", title: "电话号码", type: "number", editor: {} },
         { data: "Name", title: "所属校区", type: "text" }, { data: "Sum", title: "学员数量", type: "text" },
       {
           data: "CreatedTime",
@@ -32,8 +33,13 @@
           isformatval: true
       }
         ];
-
+        //$(function () {
+        //    dataTable.beforeEdit = function (index, row) {
+        //        row.Id = row.SystemInfoId;
+        //    }
+        //})
         startfunction = function () {
+
             $("#btAdd").unbind();
             $("#btAdd").click(function () {
 
@@ -53,7 +59,7 @@
                                     SystemInfoId: $(".modal-content").find('select').val(),
                                     JcusId: jcuId
                                 });
-                                $.post("@Url.Action("SaveJcuSystemData")", { dtos: dtos }, function (data) {
+                                $.post("@Url.Action("AddJcuSystem")", { dtos: dtos }, function (data) {
                                     if (data.Type === "Error") {
                                         Notify(data.Content, 'bottom-right', '5000', 'danger', 'fa-bolt', true);
                                     } else {
@@ -116,14 +122,12 @@
             });
         }
         function contents(obj, pId) {
+            jcuId = pId;
             $('.bg-palegreen').removeClass('bg-palegreen');
             $(obj).addClass('bg-palegreen');
-            dataTable.conf.ajax = "@ViewBag.GridDataUrl?jcusId=" + pId;
-            dataTable.beforeEdit = function (index, row) {
-                row.Id = row.SystemInfoId;
-            }
+            dataTable.conf.ajax = "@ViewBag.GridDataUrl" + "?jcusId=" + pId;
             dataTable.reload();
-            jcuId = pId;
+
         }
     </script>
 }

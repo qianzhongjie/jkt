@@ -31,33 +31,57 @@ namespace Bode.Web.Areas.Admin.Controllers
         {
             int total;
             var student = studentContract.StudentInfos.Where(x => x.ScheduleState > Schedule.未试练);
-            GridRequest request = new GridRequest(Request);
-            var datas = GetQueryData<JcuSystem, int>(studentContract.JcuSystems.Where(x => x.Jcus.Id == jcusId), out total,
-                    request).Select(m => new
-                    {
-                        m.CreatedTime,
-                        m.Id,
-                        //HeadPic = m.SystemInfo.HeadPic,
-                        //RealName = m.SystemInfo.RealName,
-                        NickName = m.SystemInfo.SysUser.NickName,
-                        SystemInfoId = m.SystemInfo.Id,
-                        Name = m.Jcus.Name,
-                        JcusId = m.Jcus.Id,
-                        PhoneNumber = m.SystemInfo.SysUser.PhoneNumber,
-                        Sum = student.Count(x => x.JcuSystem.Id == m.Id)
-                    });
-            return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
+            try
+            {
+                GridRequest request = new GridRequest(Request);
+                var datas = GetQueryData<JcuSystem, int>(studentContract.JcuSystems.Where(x => x.Jcus.Id == jcusId), out total,
+                        request).Select(m => new
+                        {
+                            m.CreatedTime,
+                            Id = m.SystemInfo.Id,//m.Id,
+                            HeadPic = m.SystemInfo.HeadPic,
+                            RealName = m.SystemInfo.RealName,
+                            UserName = m.SystemInfo.SysUser.UserName,
+                            SystemInfoId = m.SystemInfo.Id,
+                            Name = m.Jcus.Name,
+                            JcusId = m.Jcus.Id,
+                            PhoneNumber = m.SystemInfo.SysUser.PhoneNumber,
+                            Sum = student.Count(x => x.JcuSystem.Id == m.Id)
+                        });
+                return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new { });
+            }
+
         }
         [Description("保存校区经理数据")]
+        [AjaxOnly]
+        [HttpPost]
         public async Task<ActionResult> SaveJcuSystemData(UserInfoEditDto[] dtos)
         {
             dtos.CheckNotNull("dtos");
             OperationResult result = await UserContract.EditUserInfos(dtos: dtos);
             return Json(result.ToAjaxResult());
         }
+        [Description("添加校区经理")]
+        [HttpPost]
+        public async Task<ActionResult> AddJcuSystem(JcuSystemDto[] dtos)
+        {
+            dtos.CheckNotNull("dtos");
+            foreach (var item in dtos)
+            {
+                var data = studentContract.JcuSystems.Where(x => x.SystemInfo.Id == item.SystemInfoId);
+                if (data.Any()) return Json(new OperationResult(OperationResultType.QueryNull, "用户已存在").ToAjaxResult());
+            }
 
+            OperationResult result = await studentContract.SaveJcuSystems(dtos: dtos);
+            return Json(result.ToAjaxResult());
+        }
 
         [HttpPost]
+        [AjaxOnly]
         [Description("删除校区经理数据")]
         public async Task<ActionResult> DeleteJcuSystem(int[] ids)
         {

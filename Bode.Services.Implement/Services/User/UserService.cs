@@ -43,6 +43,7 @@ namespace Bode.Services.Implement.Services
             {
                 var sysUser = userInfo.SysUser;
                 sysUser.NickName = dto.NickName;
+                sysUser.PhoneNumber = dto.PhoneNumber;
                 return userInfo;
             });
             return await Task.FromResult(result);
