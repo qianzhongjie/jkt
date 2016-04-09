@@ -18,12 +18,12 @@ namespace Bode.Web.Areas.Admin.Controllers
         public ISecurityContract SecurityContract { get; set; }
         public IIdentityContract IdentityContract { get; set; }
 
-       // [Authorize]
+        [Authorize]
         [Description("后台首页")]
         public ActionResult Index()
         {
-            //var user = IdentityContract.Users.SingleOrDefault(p => p.UserName == User.Identity.Name);
-            ViewBag.User = null;
+            var user = IdentityContract.Users.SingleOrDefault(p => p.UserName == User.Identity.Name);
+            ViewBag.User = user;
             return View();
         }
 
@@ -39,8 +39,8 @@ namespace Bode.Web.Areas.Admin.Controllers
                 "fa-credit-card","fa-laptop", "fa-hdd-o", "fa-tasks"," fa-list-alt"
             };
 
-            //var userRoleIds = IdentityContract.UserRoleMaps
-            //    .Where(p => p.User.UserName == User.Identity.Name).Select(p => p.Role.Id).Distinct().ToList();
+            var userRoleIds = IdentityContract.UserRoleMaps
+                .Where(p => p.User.UserName == User.Identity.Name).Select(p => p.Role.Id).Distinct().ToList();
 
             //var functions = SecurityContract.FunctionRoleMaps
             //    .Where(p => userRoleIds.Contains(p.Role.Id))

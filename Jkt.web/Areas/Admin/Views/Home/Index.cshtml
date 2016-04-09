@@ -50,13 +50,13 @@
                                     <img src="/Content/images/user.png" />
                                 </div>
                                 <section style="margin-top: 6px;">
-                                    <h2><span class="profile"><span>@*@ViewBag.User.UserName*@</span></span></h2>
+                                    <h2><span class="profile"><span>@ViewBag.User.UserName</span></span></h2>
                                 </section>
                             </a>
                             <!--Login Area Dropdown-->
                             <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                <li class="username"><a>@*@ViewBag.User.UserName*@</a></li>
-                                <li class="email"><a>@*@ViewBag.User.Email*@</a></li>
+                                <li class="username"><a>@ViewBag.User.UserName</a></li>
+                                <li class="email"><a>@ViewBag.User.Email</a></li>
                                 <!--Avatar Area-->
                                 <!--Avatar Area-->
                                 <li class="edit">
@@ -154,7 +154,7 @@
                                     </ul>
                                     <div id="content" class="tab-content tabs-flat" style="background: #eee;padding:0">
                                         <div id="Index" class="tab-pane in active">
-                                            @*@{
+                                            @{
                                                 if (ViewBag.User.UserType == Bode.Services.Core.Models.Identity.UserType.系统用户)
                                                 {
                                                     <iframe frameborder="0" src="@Url.Action("Welcome", "Home", new {area = "Admin"})" style="width: 100%; height: 100%;"></iframe>
@@ -163,7 +163,7 @@
                                                 {
                                                     <iframe frameborder="0" src="@Url.Action("Welcome", "Home", new {area = "Channel"})" style="width: 100%; height: 100%;"></iframe>
                                                 }
-                                            }*@
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -399,7 +399,7 @@
                             tab.find("a").tab("show");
                             var tabFrame = $(tab.find("a").attr("href")).find("iframe");
                             //如果frame有跳转，点击菜单刷新frame
-                            if (tabFrame.get(0).contentWindow.location.href.indexOf($(this).attr("data-href"))===-1) {
+                            if (tabFrame.get(0).contentWindow.location.href.indexOf($(this).attr("data-href")) === -1) {
                                 tabFrame.attr("src", $(this).attr("data-href"));
                             }
                         } else {

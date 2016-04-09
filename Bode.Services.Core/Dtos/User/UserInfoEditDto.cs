@@ -19,5 +19,7 @@ namespace Bode.Services.Core.Dtos.User
         public string Birthday { get; set; }
 
         public string Qq { get; set; }
+
+        public string RealName { get; set; }
     }
 }

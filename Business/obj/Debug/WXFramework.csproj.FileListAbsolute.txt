@@ -9,5 +9,6 @@ G:\GitHub\jkt\Business\bin\Debug\JCSoft.WX.Framework.dll
 G:\GitHub\jkt\Business\bin\Debug\JCSoft.WX.Framework.pdb
 G:\GitHub\jkt\Business\bin\Debug\Newtonsoft.Json.dll
 G:\GitHub\jkt\Business\bin\Debug\Newtonsoft.Json.xml
+G:\GitHub\jkt\Business\obj\Debug\WXFramework.csprojResolveAssemblyReference.cache
 G:\GitHub\jkt\Business\obj\Debug\JCSoft.WX.Framework.dll
 G:\GitHub\jkt\Business\obj\Debug\JCSoft.WX.Framework.pdb

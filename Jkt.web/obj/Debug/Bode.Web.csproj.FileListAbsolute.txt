@@ -174,7 +174,6 @@ G:\GitHub\jkt\Jkt.web\bin\System.Web.WebPages.Deployment.xml
 G:\GitHub\jkt\Jkt.web\bin\System.Web.WebPages.Razor.xml
 G:\GitHub\jkt\Jkt.web\bin\AutoMapper.xml
 G:\GitHub\jkt\Jkt.web\bin\en-us\Bode.Services.Implement.resources.dll
-G:\GitHub\jkt\Jkt.web\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
 G:\GitHub\jkt\Jkt.web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
 G:\GitHub\jkt\Jkt.web\bin\zh-Hans\System.Web.Helpers.resources.dll
 G:\GitHub\jkt\Jkt.web\bin\zh-Hans\System.Web.Http.resources.dll

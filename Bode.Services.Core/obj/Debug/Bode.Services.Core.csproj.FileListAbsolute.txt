@@ -73,5 +73,6 @@ G:\GitHub\jkt\Bode.Services.Core\bin\Debug\OSharp.Core.xml
 G:\GitHub\jkt\Bode.Services.Core\bin\Debug\OSharp.Data.Entity.xml
 G:\GitHub\jkt\Bode.Services.Core\bin\Debug\OSharp.Utility.xml
 G:\GitHub\jkt\Bode.Services.Core\bin\Debug\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
+G:\GitHub\jkt\Bode.Services.Core\obj\Debug\Bode.Services.Core.csprojResolveAssemblyReference.cache
 G:\GitHub\jkt\Bode.Services.Core\obj\Debug\Bode.Services.Core.dll
 G:\GitHub\jkt\Bode.Services.Core\obj\Debug\Bode.Services.Core.pdb

@@ -38,5 +38,6 @@ G:\GitHub\jkt\Bode.Common\bin\Debug\System.Web.Mvc.dll
 G:\GitHub\jkt\Bode.Common\bin\Debug\Microsoft.Web.Infrastructure.dll
 G:\GitHub\jkt\Bode.Common\bin\Debug\System.Web.Mvc.xml
 G:\GitHub\jkt\Bode.Common\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+G:\GitHub\jkt\Bode.Common\obj\Debug\Bode.Common.csprojResolveAssemblyReference.cache
 G:\GitHub\jkt\Bode.Common\obj\Debug\Bode.Common.dll
 G:\GitHub\jkt\Bode.Common\obj\Debug\Bode.Common.pdb

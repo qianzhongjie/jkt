@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using OSharp.Utility;
 using OSharp.Utility.Data;
 using Bode.Services.Core.Models.Identity;
+using Bode.Services.Core.Dtos.User;
 
 namespace Bode.Web.Areas.Admin.Controllers
 {
@@ -22,7 +23,7 @@ namespace Bode.Web.Areas.Admin.Controllers
     public class JcuSystemController : AdminBaseController
     {
         public IStudentContract studentContract { get; set; }
-        public IdentityController dentityController { get; set; }
+        public IUserContract UserContract { get; set; }
         // GET: Admin/JcuSystem
         [AjaxOnly]
         [Description("获取校区经理信息")]
@@ -36,21 +37,22 @@ namespace Bode.Web.Areas.Admin.Controllers
                     {
                         m.CreatedTime,
                         m.Id,
-                        m.SystemInfo.RealName,
-                        m.SystemInfo.SysUser.NickName,
+                        //HeadPic = m.SystemInfo.HeadPic,
+                        //RealName = m.SystemInfo.RealName,
+                        NickName = m.SystemInfo.SysUser.NickName,
                         SystemInfoId = m.SystemInfo.Id,
-                        m.Jcus.Name,
+                        Name = m.Jcus.Name,
                         JcusId = m.Jcus.Id,
-                        m.SystemInfo.SysUser.PhoneNumber,
+                        PhoneNumber = m.SystemInfo.SysUser.PhoneNumber,
                         Sum = student.Count(x => x.JcuSystem.Id == m.Id)
                     });
             return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
         }
         [Description("保存校区经理数据")]
-        public async Task<ActionResult> SaveJcuSystemData(JcuSystemDto[] dtos)
+        public async Task<ActionResult> SaveJcuSystemData(UserInfoEditDto[] dtos)
         {
             dtos.CheckNotNull("dtos");
-            OperationResult result = await studentContract.SaveJcuSystems(dtos: dtos);
+            OperationResult result = await UserContract.EditUserInfos(dtos: dtos);
             return Json(result.ToAjaxResult());
         }
 
@@ -68,7 +70,7 @@ namespace Bode.Web.Areas.Admin.Controllers
         {
             return View();
         }
-        [AjaxOnly]
+        [HttpPost]
         [Description("获取城市树数据")]
         public ActionResult GetJcuSystemTree()
         {
@@ -84,16 +86,15 @@ namespace Bode.Web.Areas.Admin.Controllers
                 text = x.Name,
                 parentId = x.City.Id
             });
-            data.AddRange(datas);
-            return Json(data, JsonRequestBehavior.AllowGet);
+            return Json(new { data = data, datas = datas }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         [Description("获取系统用户")]
         public ActionResult GetSystemUser()
         {
-            var user = dentityController.UserContract.UserInfos.Where(x => x.SysUser.UserType == UserType.系统用户 && x.SysUser.IsLocked == false).Select(x => new { x.SysUser.NickName, x.Id });
-            return Json(user.ToList());
+            var user = UserContract.UserInfos.Where(x => x.SysUser.UserType == UserType.系统用户 && x.SysUser.IsLocked == false).Select(x => new { x.SysUser.UserName, x.Id }).ToList();
+            return Json(user);
         }
     }
 }
