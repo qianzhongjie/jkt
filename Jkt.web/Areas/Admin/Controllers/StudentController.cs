@@ -32,11 +32,30 @@ namespace Bode.Web.Areas.Admin.Controllers
 
         [AjaxOnly]
         [Description("获取学员信息")]
-        public ActionResult GetStudentData(int jcusId)
+        public ActionResult GetStudentData(int jcusId, int userId)
         {
+            var user = UserContract.UserInfos.SingleOrDefault(p => p.Id == userId);
             int total;
             GridRequest request = new GridRequest(Request);
             var datas = GetQueryData<StudentInfo, int>(studentContract.StudentInfos.Where(x => x.Jcu.Id == jcusId), out total,
+                    request).Select(m => new
+                    {
+                        m.CreatedTime,
+                        m.Id,
+                        UserInfoId = m.UserInfo.Id,
+                        JcuName = m.Jcu.Name,
+                        m.UserInfo.HeadPic,
+                        m.UserRealName,
+                        m.UserInfo.SysUser.NickName,
+                        m.ScheduleState,
+                        SysRealName = m.JcuSystem.SystemInfo.RealName,
+                        m.ExaminationTime
+                    });
+            if (user.SysUser.UserName == "admin" || user.SysUser.UserName == "Admin")
+            {
+                return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
+            }
+            datas = GetQueryData<StudentInfo, int>(studentContract.StudentInfos.Where(x => x.Jcu.Id == jcusId && x.JcuSystem.Id == userId), out total,
                     request).Select(m => new
                     {
                         m.CreatedTime,
@@ -101,21 +120,20 @@ namespace Bode.Web.Areas.Admin.Controllers
             });
             if (user.SysUser.UserName == "admin" || user.SysUser.UserName == "Admin")
             {
+                return Json(new { data = data, datas = datas }, JsonRequestBehavior.AllowGet);
             }
-            else {
-                data = ccc.Where(x => x.SystemInfo.Id == userId).Select(p => new
-                {
-                    value = p.Jcus.City.Id,
-                    text = p.Jcus.City.Name,
-                    parentId = 0
-                }).ToList();
-                datas = ccc.Where(x => x.SystemInfo.Id == userId).Select(x => new
-                {
-                    value = x.Jcus.Id,
-                    text = x.Jcus.Name,
-                    parentId = x.Jcus.City.Id
-                });
-            }
+            data = ccc.Where(x => x.SystemInfo.Id == userId).Select(p => new
+            {
+                value = p.Jcus.City.Id,
+                text = p.Jcus.City.Name,
+                parentId = 0
+            }).ToList();
+            datas = ccc.Where(x => x.SystemInfo.Id == userId).Select(x => new
+            {
+                value = x.Jcus.Id,
+                text = x.Jcus.Name,
+                parentId = x.Jcus.City.Id
+            });
             return Json(new { data = data, datas = datas }, JsonRequestBehavior.AllowGet);
         }
     }

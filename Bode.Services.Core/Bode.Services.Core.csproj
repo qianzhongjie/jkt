@@ -172,6 +172,7 @@
     <Compile Include="Models\Student\City.cs" />
     <Compile Include="Models\Student\JCU.cs" />
     <Compile Include="Models\Student\JcuSystem.cs" />
+    <Compile Include="Models\Student\PracticeEntry.cs" />
     <Compile Include="Models\Student\StudentInfo.cs" />
     <Compile Include="Models\User\FeedBack.cs">
       <SubType>Code</SubType>

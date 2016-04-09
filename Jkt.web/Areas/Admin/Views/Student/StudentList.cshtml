@@ -96,7 +96,13 @@
             jcuId = pId;
             $('.bg-palegreen').removeClass('bg-palegreen');
             $(obj).addClass('bg-palegreen');
-            dataTable.conf.ajax = "@ViewBag.GridDataUrl" + "?jcusId=" + pId;
+            uid='@ViewBag.UserId';
+            if(Number(uid)===0)
+            {
+                window.location.href='/Admin/Home/Login';
+                return false;
+            }
+            dataTable.conf.ajax = "@ViewBag.GridDataUrl" + "?jcusId=" + pId+"&userId="+uid;
             dataTable.reload();
 
         }

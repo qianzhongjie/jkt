@@ -45,7 +45,7 @@ namespace Bode.Web.Areas.Admin.Controllers
                             m.SystemInfo.RealName,
                             SystemInfoId = m.SystemInfo.Id,
                             Name = m.Jcus.Name,
-                           m.SystemInfo.Qq,
+                            m.SystemInfo.Qq,
                             JcusId = m.Jcus.Id,
                             PhoneNumber = m.SystemInfo.SysUser.PhoneNumber,
                             Sum = student.Count(x => x.JcuSystem.Id == m.Id)
@@ -93,7 +93,7 @@ namespace Bode.Web.Areas.Admin.Controllers
                 var data = studentContract.StudentInfos.Where(x => x.JcuSystem.Id == item && x.IsDeleted == false);
                 if (data.Any()) return Json(new OperationResult(OperationResultType.QueryNull, "此管理员下还有学员，不能删除").ToAjaxResult());
             }
-            OperationResult result = await Task.Run(() => studentContract.DeleteJcuSystems(ids));
+            OperationResult result = await studentContract.DeleteJcuSystems(ids);
             return Json(result.ToAjaxResult());
         }
         [Description("校区经理列表")]
