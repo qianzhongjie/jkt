@@ -1497,6 +1497,7 @@
     <Content Include="Areas\Admin\Views\City\CityList.cshtml" />
     <Content Include="Areas\Admin\Views\Jcu\JcuList.cshtml" />
     <Content Include="Areas\Admin\Views\JcuSystem\JcuSystemList.cshtml" />
+    <Content Include="Areas\Admin\Views\Student\StudentList.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1507,7 +1508,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Puc\" />
-    <Folder Include="Areas\Admin\Views\Student\" />
     <Folder Include="Content\js\angular\i18n\ngLocale\" />
     <Folder Include="Content\js\ueditor\net\Bin\" />
     <Folder Include="Views\Home\" />

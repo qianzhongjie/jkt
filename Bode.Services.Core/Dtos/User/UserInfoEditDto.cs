@@ -7,7 +7,7 @@ namespace Bode.Services.Core.Dtos.User
     public class UserInfoEditDto : IEditDto<int>
     {
         public int Id { get; set; }
-
+        public int UserInfoId { get; set; }
         public string HeadPic { get; set; }
 
         public Sex Sex { get; set; }

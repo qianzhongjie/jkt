@@ -50,6 +50,7 @@
 
         //设置角色点击事件
         function setRole(userId) {
+            //$('#organizationTree').remove();
             //弹出框
             bootbox.dialog({
                 message: $("#modal").html(),
@@ -120,10 +121,15 @@
 
         columns = [
             { data: "Id", title: "编号" },
-            { data: "UserName", title: "用户名称", type: "text", search: true, editor: {}, validation: { required: true } },
-            { data: "NickName", title: "用户昵称", type: "text", search: true, editor: {} },
-            { data: "Email", title: "电子邮箱", type: "hide" },
-            { data: "IsLocked", title: "是否锁定", type: "switch", search: true, editor: {} },
+
+            { data: "HeadPic", title: "头像", type: "img", editor: {} },
+            { data: "UserInfoId", type: "hide" },
+                     { data: "RealName", title: "姓名", type: "text", search: true, editor: {} },
+            { data: "UserName", title: "帐号", type: "text", editor: {}, validation: { required: true } },
+            { data: "NickName", title: "昵称", type: "text", editor: {} },
+               { data: "Qq", title: "QQ", type: "number", search: true, editor: {} },
+            { data: "PhoneNumber", title: "电话号码", type: "number" },
+            { data: "IsLocked", title: "是否锁定", type: "switch", editor: {} },
             { data: "CreatedTime", title: "创建时间", type: "datepicker", search: true, format: function (d) { return $.osharp.tools.formatDate(d); }, isformatval: true },
             {
                 data: "Id",
@@ -180,7 +186,7 @@
 @section headHtml{
     <div id="modal" style="display: none;">
         <div class="row">
-            <div id="organizationTree" class="col-xs-4">
+            <div id="organizationTree" class="col-xs-4 hidden">
                 <div class="widget flat radius-bordered">
                     <div class="widget-header bg-info">
                         <span class="widget-caption">组织机构</span>
@@ -194,7 +200,7 @@
                 </div>
             </div>
 
-            <div class="col-xs-8">
+            <div class="col-xs-12">
                 <div class="widget flat radius-bordered">
                     <div class="widget-header bg-info">
                         <span class="widget-caption">角色组</span>

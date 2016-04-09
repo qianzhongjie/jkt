@@ -42,6 +42,7 @@ namespace Bode.Services.Implement.Services
             var result = UserInfoRepo.Update(dtos, updateFunc: (dto, userInfo) =>
             {
                 var sysUser = userInfo.SysUser;
+                userInfo.Id = dto.UserInfoId;
                 sysUser.NickName = dto.NickName;
                 sysUser.PhoneNumber = dto.PhoneNumber;
                 return userInfo;

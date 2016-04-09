@@ -18,6 +18,8 @@ using OSharp.Web.Mvc.UI;
 using OSharp.Web.Mvc;
 using OSharp.Core.Logging;
 using System.Data.Entity;
+using Bode.Services.Core.Dtos.User;
+using Bode.Services.Core.Models.User;
 
 namespace Bode.Web.Areas.Admin.Controllers
 {
@@ -188,14 +190,18 @@ namespace Bode.Web.Areas.Admin.Controllers
         {
             int total;
             GridRequest request = new GridRequest(Request);
-            var datas = GetQueryData<SysUser, int>(IdentityContract.Users.Where(p => p.UserType == UserType.系统用户), out total, request).Select(m => new
+            var datas = GetQueryData<UserInfo, int>(UserContract.UserInfos.Where(p => p.SysUser.UserType == UserType.系统用户), out total, request).Select(m => new
             {
+                UserInfoId = m.Id,
                 m.Id,
-                m.UserName,
-                m.NickName,
-                Password = m.PasswordHash,
-                m.Email,
-                m.IsLocked,
+                m.SysUser.UserName,
+                m.SysUser.PhoneNumber,
+                m.RealName,
+                m.HeadPic,
+                m.SysUser.NickName,
+                m.Qq,
+                //Password = m.PasswordHash,
+                m.SysUser.IsLocked,
                 m.CreatedTime,
             });
             return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
@@ -204,10 +210,10 @@ namespace Bode.Web.Areas.Admin.Controllers
         [AjaxOnly]
         [HttpPost]
         [Description("保存用户数据")]
-        public async Task<ActionResult> SaveUserData(SysUserDto[] dtos)
+        public async Task<ActionResult> SaveUserData(UserInfoEditDto[] dtos)
         {
             dtos.CheckNotNull("dtos");
-            OperationResult result = await IdentityContract.SaveUsers(dtos);
+            OperationResult result = await UserContract.EditUserInfos(dtos);
             return Json(result.ToAjaxResult());
         }
 
@@ -471,11 +477,11 @@ namespace Bode.Web.Areas.Admin.Controllers
 
         #region 视图页面
 
-        [Description("组织结构列表")]
-        public ActionResult OrganizationList()
-        {
-            return View();
-        }
+        //[Description("组织结构列表")]
+        //public ActionResult OrganizationList()
+        //{
+        //    return View();
+        //}
 
         [Description("角色列表")]
         public ActionResult RoleList()
@@ -489,23 +495,23 @@ namespace Bode.Web.Areas.Admin.Controllers
             return View();
         }
 
-        [Description("功能列表")]
-        public ActionResult FunctionList()
-        {
-            ViewBag.FunctionTypes = typeof(FunctionType).ToDictionary().Select(p => new
-            {
-                val = p.Key,
-                text = p.Value
-            }).ToList();
+        //[Description("功能列表")]
+        //public ActionResult FunctionList()
+        //{
+        //    ViewBag.FunctionTypes = typeof(FunctionType).ToDictionary().Select(p => new
+        //    {
+        //        val = p.Key,
+        //        text = p.Value
+        //    }).ToList();
 
-            return View();
-        }
+        //    return View();
+        //}
 
-        [Description("实体列表")]
-        public ActionResult EntityInfoList()
-        {
-            return View();
-        }
+        //[Description("实体列表")]
+        //public ActionResult EntityInfoList()
+        //{
+        //    return View();
+        //}
 
         [Description("操作日志列表")]
         public ActionResult OperateLogList()

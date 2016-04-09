@@ -1,11 +1,12 @@
 ﻿
+
 @{
-    ViewBag.Title = "校区经理列表";
+    ViewBag.Title = "学员列表";
     Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
     ViewBag.GridDataUrl = Url.Action("GetJcuSystemData");
     ViewBag.DeleteUrl = Url.Action("DeleteJcuSystem");
     //ViewBag.SaveUrl = Url.Action("SaveJcuSystemData");
-    ViewBag.ToolbarItem = "add,cancel,delete";
+    ViewBag.ToolbarItem = "edit,cancel";
 }
 @section customScript
 {
@@ -14,7 +15,7 @@
         var jcuId = 0;
         columns = [
         //{ data: "Id", title: "编号" },
-        { data: "JcusId", title: "校区Id", type: "hide" },
+        { data: "UserInfoId", title: "校区Id", type: "hide" },
         { data: "SystemInfoId", title: "校区经理用户Id", type: "hide" },
         { data: "Id", title: "用户Id", type: "hide" },
         { data: "HeadPic", title: "头像", type: "img"},
@@ -168,3 +169,7 @@
         </form>
     </div>
 }
+
+
+
+

@@ -44,6 +44,19 @@
             <div class="navbar-header pull-right">
                 <div class="navbar-account">
                     <ul class="account-area">
+                        @*<li>
+                            <a title="修改密码" href="javascript:setUserInfoContentFunction()">
+                                <i class="icon fa fa-wrench"></i>
+                            </a>
+                        </li>*@
+                        <li>
+                            <a title="退出" href="@Url.Action("SignOut")">
+
+                                <i class="icon glyphicon glyphicon-off">退出</i>
+                            </a>
+                        </li>
+                    </ul>
+                    @*<ul class="account-area">
                         <li>
                             <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                 <div class="avatar" title="View your public profile" style="border-left-width:0;margin-right:5px;">
@@ -89,7 +102,7 @@
                             <!--/Login Area Dropdown-->
                         </li>
                         <!-- /Account Area -->
-                    </ul>
+                    </ul>*@
                 </div>
             </div>
             <!-- /Account Area and Settings -->
@@ -418,35 +431,7 @@
                     $("#navMenus .active .submenu").slideDown();
                     $("#navMenus .active").addClass("open");
                     $("#navMenus li").find('span').each(function () {
-                        if ($(this).text() === " Bode.Plugin.WebControles.MvcCaptcha._MvcCaptchaController ") {
-                            $(this).parents('li').addClass('hidden');
-                        }
-                        if ($(this).text() === " Web账户接口 ") {
-                            $(this).parents('li').addClass('hidden');
-                        }
-                        if ($(this).text() === " API个人定制化 ") {
-                            $(this).parents('li').addClass('hidden');
-                        }
-                        if ($(this).text() === " Web新品预售 ") {
-                            $(this).parents('li').addClass('hidden');
-                        }
-                        if ($(this).text() === " 在线设计 ") {
-                            $(this).parents('li').addClass('hidden');
-                        }
-                        if ($(this).text() === " Web个人定制化 ") {
-                            $(this).parents('li').addClass('hidden');
-                        }
-                        if ($(this).text() === " Web设计师 ") {
-                            $(this).parents('li').addClass('hidden');
-                        }
-                        if ($(this).text() === "订单列表") {
-                            $(this).parent('li').addClass('hidden');
-                        }
-                        if ($(this).text() === " Web用户信息获取 ") {
-                            $(this).parents('li').addClass('hidden');
-                        } if ($(this).text() === " web支付 ") {
-                            $(this).parents('li').addClass('hidden');
-                        }
+                       
                         if ($(this).text() === "实体列表") {
                             $(this).parent().parent().addClass('hidden');
                         } if ($(this).text() === "功能列表") {

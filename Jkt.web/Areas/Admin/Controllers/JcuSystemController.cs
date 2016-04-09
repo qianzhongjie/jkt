@@ -38,12 +38,14 @@ namespace Bode.Web.Areas.Admin.Controllers
                         request).Select(m => new
                         {
                             m.CreatedTime,
-                            Id = m.SystemInfo.Id,//m.Id,
+                            Id = m.Id,
                             HeadPic = m.SystemInfo.HeadPic,
-                            RealName = m.SystemInfo.RealName,
+                            NickName = m.SystemInfo.SysUser.NickName,
                             UserName = m.SystemInfo.SysUser.UserName,
+                            m.SystemInfo.RealName,
                             SystemInfoId = m.SystemInfo.Id,
                             Name = m.Jcus.Name,
+                           m.SystemInfo.Qq,
                             JcusId = m.Jcus.Id,
                             PhoneNumber = m.SystemInfo.SysUser.PhoneNumber,
                             Sum = student.Count(x => x.JcuSystem.Id == m.Id)
@@ -56,15 +58,15 @@ namespace Bode.Web.Areas.Admin.Controllers
             }
 
         }
-        [Description("保存校区经理数据")]
-        [AjaxOnly]
-        [HttpPost]
-        public async Task<ActionResult> SaveJcuSystemData(UserInfoEditDto[] dtos)
-        {
-            dtos.CheckNotNull("dtos");
-            OperationResult result = await UserContract.EditUserInfos(dtos: dtos);
-            return Json(result.ToAjaxResult());
-        }
+        //[Description("保存校区经理数据")]
+        //[AjaxOnly]
+        //[HttpPost]
+        //public async Task<ActionResult> SaveJcuSystemData(UserInfoEditDto[] dtos)
+        //{
+        //    dtos.CheckNotNull("dtos");
+        //    OperationResult result = await UserContract.EditUserInfos(dtos: dtos);
+        //    return Json(result.ToAjaxResult());
+        //}
         [Description("添加校区经理")]
         [HttpPost]
         public async Task<ActionResult> AddJcuSystem(JcuSystemDto[] dtos)
@@ -72,7 +74,7 @@ namespace Bode.Web.Areas.Admin.Controllers
             dtos.CheckNotNull("dtos");
             foreach (var item in dtos)
             {
-                var data = studentContract.JcuSystems.Where(x => x.SystemInfo.Id == item.SystemInfoId);
+                var data = studentContract.JcuSystems.Where(x => x.SystemInfo.Id == item.SystemInfoId && x.Jcus.Id == item.JcusId);
                 if (data.Any()) return Json(new OperationResult(OperationResultType.QueryNull, "用户已存在").ToAjaxResult());
             }
 
@@ -86,6 +88,11 @@ namespace Bode.Web.Areas.Admin.Controllers
         public async Task<ActionResult> DeleteJcuSystem(int[] ids)
         {
             ids.CheckNotNull("ids");
+            foreach (var item in ids)
+            {
+                var data = studentContract.StudentInfos.Where(x => x.JcuSystem.Id == item && x.IsDeleted == false);
+                if (data.Any()) return Json(new OperationResult(OperationResultType.QueryNull, "此管理员下还有学员，不能删除").ToAjaxResult());
+            }
             OperationResult result = await Task.Run(() => studentContract.DeleteJcuSystems(ids));
             return Json(result.ToAjaxResult());
         }
