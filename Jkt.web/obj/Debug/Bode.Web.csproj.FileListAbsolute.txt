@@ -186,3 +186,4 @@ G:\GitHub\jkt\Jkt.web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
 G:\GitHub\jkt\Jkt.web\obj\Debug\Bode.Web.csprojResolveAssemblyReference.cache
 G:\GitHub\jkt\Jkt.web\obj\Debug\Bode.Web.dll
 G:\GitHub\jkt\Jkt.web\obj\Debug\Bode.Web.pdb
+G:\GitHub\jkt\Jkt.web\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll

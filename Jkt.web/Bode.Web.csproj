@@ -1498,6 +1498,7 @@
     <Content Include="Areas\Admin\Views\Jcu\JcuList.cshtml" />
     <Content Include="Areas\Admin\Views\JcuSystem\JcuSystemList.cshtml" />
     <Content Include="Areas\Admin\Views\Student\StudentList.cshtml" />
+    <Content Include="Areas\Admin\Views\Identity\FeedBackList.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

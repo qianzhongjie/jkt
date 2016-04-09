@@ -41,6 +41,9 @@ namespace Bode.Services.Core.Models.User
        // [Description("上任时间")]
         public DateTime? UpTime { get; set; }
 
+        //[Description("预约试练时间")]
+        public DateTime? PracticeTime { get; set; }
+
         /// <summary>
         /// 登录凭据
         /// </summary>

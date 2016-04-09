@@ -185,6 +185,36 @@ namespace Bode.Web.Areas.Admin.Controllers
         #region 用户
 
         [AjaxOnly]
+        [Description("获取用户反馈")]
+        public ActionResult GetFeedBackData()
+        {
+            int total;
+            GridRequest request = new GridRequest(Request);
+            var datas =
+                GetQueryData<FeedBack, int>(UserContract.FeedBacks.Include(p => p.UserInfo.SysUser), out total, request).Select(m => new
+                {
+                    m.Id,
+                    m.UserInfo.SysUser.UserName,
+                    m.UserInfo.SysUser.NickName,
+                    m.Content,
+                    m.CreatedTime
+                });
+            return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
+        }
+
+        [AjaxOnly]
+        [HttpPost]
+        [Description("删除用户反馈")]
+        public async Task<ActionResult> DeleteFeedBacks(int[] ids)
+        {
+            ids.CheckNotNull("ids");
+            OperationResult result = await UserContract.DeleteFeedBacks(ids);
+            return Json(result.ToAjaxResult());
+        }
+
+
+
+        [AjaxOnly]
         [Description("获取用户数据")]
         public ActionResult GetUserData()
         {
@@ -489,7 +519,7 @@ namespace Bode.Web.Areas.Admin.Controllers
             return View();
         }
 
-        [Description("用户列表")]
+        [Description("系统用户列表")]
         public ActionResult UserList()
         {
             return View();
@@ -526,6 +556,12 @@ namespace Bode.Web.Areas.Admin.Controllers
 
         [Description("修改密码")]
         public ActionResult Epassword()
+        {
+            return View();
+        }
+
+        [Description("会员反馈")]
+        public ActionResult FeedBackList()
         {
             return View();
         }
