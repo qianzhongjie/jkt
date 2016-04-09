@@ -116,7 +116,7 @@ namespace Bode.Web.Areas.Admin.Controllers
                 value = x.Id,
                 text = x.Name,
                 parentId = x.City.Id
-            });
+            }).ToList();
             return Json(new { data = data, datas = datas }, JsonRequestBehavior.AllowGet);
         }
 

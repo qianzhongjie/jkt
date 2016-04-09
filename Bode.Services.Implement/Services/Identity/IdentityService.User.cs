@@ -22,6 +22,7 @@ using OSharp.Utility;
 using OSharp.Utility.Data;
 using OSharp.Utility.Extensions;
 using OSharp.Core.Data;
+using Bode.Services.Core.Models.User;
 
 namespace Bode.Services.Implement.Services
 {
@@ -30,6 +31,7 @@ namespace Bode.Services.Implement.Services
         #region Implementation of IIdentityContract
 
         public IRepository<SysUser, int> SysUserRepo { protected get; set; }
+        public IRepository<UserInfo, int> UserInfoRepo { protected get; set; }
         /// <summary>
         /// 获取 用户信息查询数据集
         /// </summary>
@@ -154,12 +156,22 @@ namespace Bode.Services.Implement.Services
                     user.PasswordHash = UserManager.PasswordHasher.HashPassword(dto.Password);
                 }
                 result = dto.Id > 0 ? await UserManager.UpdateAsync(user) : await UserManager.CreateAsync(user);
+                if (dto.Id == 0)
+                {
+                    UserInfo userInfo = new UserInfo()
+                    {
+                        SysUser= user
+                    };
+                    UserInfoRepo.Insert(userInfo);
+                }
                 if (!result.Succeeded)
                 {
                     return new OperationResult(OperationResultType.Error, result.Errors.ExpandAndToString());
                 }
             }
-            return UserRepository.UnitOfWork.SaveChanges() > 0
+            var count = UserRepository.UnitOfWork.SaveChanges();
+
+            return count > 0
                 ? new OperationResult(OperationResultType.Success, "保存成功")
                 : OperationResult.NoChanged;
         }

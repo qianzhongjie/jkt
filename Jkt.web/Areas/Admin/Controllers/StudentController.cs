@@ -53,6 +53,7 @@ namespace Bode.Web.Areas.Admin.Controllers
                     });
             if (user.SysUser.UserName == "admin" || user.SysUser.UserName == "Admin")
             {
+
                 return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
             }
             datas = GetQueryData<StudentInfo, int>(studentContract.StudentInfos.Where(x => x.Jcu.Id == jcusId && x.JcuSystem.Id == userId), out total,
@@ -106,34 +107,34 @@ namespace Bode.Web.Areas.Admin.Controllers
         {
             var user = UserContract.UserInfos.SingleOrDefault(p => p.Id == userId);
             var ccc = studentContract.JcuSystems.Include(x => x.StudentInfo);
-            var data = ccc.Select(p => new
+            var data = ccc.Where(x => x.SystemInfo.Id == userId).Select(p => new
             {
                 value = p.Jcus.City.Id,
                 text = p.Jcus.City.Name,
                 parentId = 0
             }).ToList();
-            var datas = ccc.Select(x => new
+            var datas = ccc.Where(x => x.SystemInfo.Id == userId).Select(x => new
             {
                 value = x.Jcus.Id,
                 text = x.Jcus.Name,
                 parentId = x.Jcus.City.Id
-            });
+            }).ToList();
             if (user.SysUser.UserName == "admin" || user.SysUser.UserName == "Admin")
             {
+                data = studentContract.Citys.Include(x => x.Jcu).Select(p => new
+                {
+                    value = p.Id,
+                    text = p.Name,
+                    parentId = 0
+                }).ToList();
+                datas = studentContract.JCUs.Include(x => x.StudenInfos).Include(x => x.SysUser).Select(x => new
+                {
+                    value = x.Id,
+                    text = x.Name,
+                    parentId = x.City.Id
+                }).ToList();
                 return Json(new { data = data, datas = datas }, JsonRequestBehavior.AllowGet);
             }
-            data = ccc.Where(x => x.SystemInfo.Id == userId).Select(p => new
-            {
-                value = p.Jcus.City.Id,
-                text = p.Jcus.City.Name,
-                parentId = 0
-            }).ToList();
-            datas = ccc.Where(x => x.SystemInfo.Id == userId).Select(x => new
-            {
-                value = x.Jcus.Id,
-                text = x.Jcus.Name,
-                parentId = x.Jcus.City.Id
-            });
             return Json(new { data = data, datas = datas }, JsonRequestBehavior.AllowGet);
         }
     }

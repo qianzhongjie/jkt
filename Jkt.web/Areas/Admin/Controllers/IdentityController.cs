@@ -223,7 +223,7 @@ namespace Bode.Web.Areas.Admin.Controllers
             var datas = GetQueryData<UserInfo, int>(UserContract.UserInfos.Where(p => p.SysUser.UserType == UserType.系统用户), out total, request).Select(m => new
             {
                 UserInfoId = m.Id,
-                m.Id,
+                m.SysUser.Id,
                 m.SysUser.UserName,
                 m.SysUser.PhoneNumber,
                 m.RealName,
