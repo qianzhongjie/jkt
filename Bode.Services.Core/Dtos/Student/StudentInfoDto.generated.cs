@@ -19,5 +19,7 @@ namespace Bode.Services.Core.Dtos.Student
                                         public System.Int32 JcuSystemId { get; set; }
                                         public System.String UserRealName { get; set; }
                                         public System.String IdCard { get; set; }
+                                        public System.String Lng { get; set; }
+                                        public System.String Lat { get; set; }
                     	}
 }

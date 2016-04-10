@@ -36,6 +36,27 @@
                 return v;
             }
         },
+                {
+                    data: "SubscribeTime",
+                    title: "预约试练时间",
+                    type: "datepicker",
+                    search: true,
+                    format: function (d) {
+                        return $.osharp.tools.formatDate(d);
+                    },
+                    isformatval: true
+                },
+
+        {
+            data: "CreatedTime",
+            title: "提交时间",
+            type: "datepicker",
+            search: true,
+            format: function (d) {
+                return $.osharp.tools.formatDate(d);
+            },
+            isformatval: true
+        },
         {
             data: "ExaminationTime",
             title: "预约考试时间",
@@ -46,16 +67,6 @@
             },
             isformatval: true
         },
-        {
-            data: "CreatedTime",
-            title: "报名时间",
-            type: "datepicker",
-            search: true,
-            format: function (d) {
-                return $.osharp.tools.formatDate(d);
-            },
-            isformatval: true
-        }
         ];
 
         startfunction = function () {

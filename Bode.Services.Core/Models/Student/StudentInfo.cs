@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Bode.Services.Core.Models.Student
 {
     [Generate]
-    [Description("认证-系统角色")]
+    [Description("学员实体")]
     public class StudentInfo : EntityBase<int>
     {
         [Description("关联的用户信息")]
@@ -29,16 +29,24 @@ namespace Bode.Services.Core.Models.Student
         //[Description("预约考试时间")]
         public DateTime? ExaminationTime { get; set; }
 
+        //[Description("预约时间")]
+        public DateTime? SubscribeTime { get; set; }
+
         [Description("姓名")]
         public string UserRealName { get; set; }
 
         [Description("身份证号")]
         public string IdCard { get; set; }
 
+        [Description("经度")]
+        public string Lng { get; set; }
+
+        [Description("纬度")]
+        public string Lat { get; set; }
     }
     public enum Schedule
     {
-        未试练 = 0,
+        申请试练 = 0,
         已试炼 = 1,
         已报名 = 2,
         科目一 = 3,

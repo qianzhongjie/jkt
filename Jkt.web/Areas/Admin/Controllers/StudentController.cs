@@ -49,7 +49,8 @@ namespace Bode.Web.Areas.Admin.Controllers
                         m.UserInfo.SysUser.NickName,
                         m.ScheduleState,
                         SysRealName = m.JcuSystem.SystemInfo.RealName,
-                        m.ExaminationTime
+                        m.ExaminationTime,
+                        m.SubscribeTime
                     });
             if (user.SysUser.UserName == "admin" || user.SysUser.UserName == "Admin")
             {
@@ -68,7 +69,8 @@ namespace Bode.Web.Areas.Admin.Controllers
                         m.UserInfo.SysUser.NickName,
                         m.ScheduleState,
                         SysRealName = m.JcuSystem.SystemInfo.RealName,
-                        m.ExaminationTime
+                        m.ExaminationTime,
+                        m.SubscribeTime
                     });
             return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
         }
@@ -81,12 +83,42 @@ namespace Bode.Web.Areas.Admin.Controllers
             OperationResult result = await studentContract.SaveStudentInfos(dtos: dtos);
             return Json(result.ToAjaxResult());
         }
+
+        [Description("获取申请试练数据")]
+        [AjaxOnly]
+        public ActionResult GetEntryPracticeData()
+        {
+            int total;
+            GridRequest request = new GridRequest(Request);
+            var datas = GetQueryData<PracticeEntry, int>(studentContract.PracticeEntrys, out total,
+                    request).Select(m => new
+                    {
+                        m.Id,
+                        //m.UserInfo.SysUser.NickName,
+                        m.PhoneNo,
+                        m.SubscribeTime,
+                        m.Name,
+                        m.CreatedTime
+                    });
+            return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
+        }
+
+        [AjaxOnly]
+        [HttpPost]
+        [Description("删除试练")]
+        public async Task<ActionResult> DeleteEntryPracticeData(int[] ids)
+        {
+            ids.CheckNotNull("ids");
+            OperationResult result = await studentContract.DeletePracticeEntrys(ids);
+            return Json(result.ToAjaxResult());
+        }
+
         [Description("学员列表")]
         public ActionResult StudentList()
         {
             var user = UserContract.UserInfos.SingleOrDefault(p => p.SysUser.UserName == User.Identity.Name);
             ViewBag.UserId = user.Id;
-            ViewBag.ScheduleState = typeof(Schedule).ToDictionary().Where(x => x.Key != (int)Schedule.未试练).Select(p => new
+            ViewBag.ScheduleState = typeof(Schedule).ToDictionary().Select(p => new
             {
                 val = p.Key,
                 text = p.Value
@@ -94,11 +126,11 @@ namespace Bode.Web.Areas.Admin.Controllers
             return View();
         }
 
-        [Description("申请试练列表")]
-        public ActionResult EntryPracticeList()
-        {
-            return View();
-        }
+        //[Description("申请试练列表")]
+        //public ActionResult EntryPracticeList()
+        //{
+        //    return View();
+        //}
 
 
         [HttpPost]

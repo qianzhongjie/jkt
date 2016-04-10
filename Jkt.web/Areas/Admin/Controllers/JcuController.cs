@@ -26,7 +26,7 @@ namespace Bode.Web.Areas.Admin.Controllers
         public ActionResult GetJcuData(int cityId)
         {
             int total;
-            var student = studentContract.StudentInfos.Where(x => x.ScheduleState > Schedule.未试练);
+            var student = studentContract.StudentInfos.Where(x => x.ScheduleState > Schedule.申请试练);
             GridRequest request = new GridRequest(Request);
             var datas = GetQueryData<JCU, int>(studentContract.JCUs.Where(x => x.City.Id == cityId), out total,
                     request).Select(m => new

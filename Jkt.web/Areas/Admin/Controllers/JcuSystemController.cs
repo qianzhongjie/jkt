@@ -30,7 +30,7 @@ namespace Bode.Web.Areas.Admin.Controllers
         public ActionResult GetJcuSystemData(int jcusId)
         {
             int total;
-            var student = studentContract.StudentInfos.Where(x => x.ScheduleState > Schedule.未试练);
+            var student = studentContract.StudentInfos.Where(x => x.ScheduleState > Schedule.申请试练);
             try
             {
                 GridRequest request = new GridRequest(Request);

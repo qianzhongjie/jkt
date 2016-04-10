@@ -81,6 +81,48 @@ namespace Bode.Services.Core.Contracts
 
                 #endregion
 
+                                #region PracticeEntry信息业务
+
+                IQueryable<PracticeEntry> PracticeEntrys { get; }
+
+                /// <summary>
+                /// 保存PracticeEntry信息(新增/更新)
+                /// </summary>
+                /// <param name="updateForeignKey">更新时是否更新外键信息</param>
+                /// <param name="dtos">要保存的PracticeEntryDto信息</param>
+                /// <returns>业务操作集合</returns>
+                Task<OperationResult> SavePracticeEntrys(bool updateForeignKey=false,params PracticeEntryDto[] dtos);
+
+                /// <summary>
+                /// 删除PracticeEntry信息
+                /// </summary>
+                /// <param name="ids">要删除的Id编号</param>
+                /// <returns>业务操作结果</returns>
+                Task<OperationResult> DeletePracticeEntrys(params int[] ids);
+
+                #endregion
+
+                                #region SiteFactory信息业务
+
+                IQueryable<SiteFactory> SiteFactorys { get; }
+
+                /// <summary>
+                /// 保存SiteFactory信息(新增/更新)
+                /// </summary>
+                /// <param name="updateForeignKey">更新时是否更新外键信息</param>
+                /// <param name="dtos">要保存的SiteFactoryDto信息</param>
+                /// <returns>业务操作集合</returns>
+                Task<OperationResult> SaveSiteFactorys(bool updateForeignKey=false,params SiteFactoryDto[] dtos);
+
+                /// <summary>
+                /// 删除SiteFactory信息
+                /// </summary>
+                /// <param name="ids">要删除的Id编号</param>
+                /// <returns>业务操作结果</returns>
+                Task<OperationResult> DeleteSiteFactorys(params int[] ids);
+
+                #endregion
+
                                 #region StudentInfo信息业务
 
                 IQueryable<StudentInfo> StudentInfos { get; }

@@ -23,6 +23,8 @@ namespace Bode.Services.Core.Dtos
                                         Mapper.CreateMap<CityDto, City>();
                                         Mapper.CreateMap<JCUDto, JCU>();
                                         Mapper.CreateMap<JcuSystemDto, JcuSystem>();
+                                        Mapper.CreateMap<PracticeEntryDto, PracticeEntry>();
+                                        Mapper.CreateMap<SiteFactoryDto, SiteFactory>();
                                         Mapper.CreateMap<StudentInfoDto, StudentInfo>();
                     
             MapperRegisterCustom();

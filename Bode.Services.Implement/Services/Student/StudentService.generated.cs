@@ -211,6 +211,136 @@ namespace Bode.Services.Implement.Services
 
                 #endregion
 
+                                #region PracticeEntry信息业务
+
+                public IRepository<PracticeEntry, int> PracticeEntryRepo { protected get; set; }
+
+                public IQueryable<PracticeEntry> PracticeEntrys
+                {
+                    get { return PracticeEntryRepo.Entities.Where(p => !p.IsDeleted); }
+                }
+
+                /// <summary>
+                /// 保存PracticeEntry信息(新增/更新)
+                /// </summary>
+                /// <param name="updateForeignKey">更新时是否更新外键信息</param>
+                /// <param name="dtos">要保存的PracticeEntryDto信息</param>
+                /// <returns>业务操作集合</returns>
+                public async Task<OperationResult> SavePracticeEntrys(bool updateForeignKey=false,params PracticeEntryDto[] dtos)
+                {
+                    try
+                    {
+                        dtos.CheckNotNull("dtos");
+                        var addDtos = dtos.Where(p => p.Id == 0).ToArray();
+                        var updateDtos = dtos.Where(p => p.Id != 0).ToArray();
+
+                        PracticeEntryRepo.UnitOfWork.TransactionEnabled = true;
+
+                        Action<PracticeEntryDto> checkAction=null;
+                        Func<PracticeEntryDto, PracticeEntry, PracticeEntry> updateFunc=(dto, entity) => 
+                        {
+                            if(dto.Id==0||updateForeignKey)
+                            {
+                                                                        entity.UserInfo = UserInfoRepo.GetByKey(dto.UserInfoId);
+                                                                    }
+                            return entity; 
+                        };
+                        if (addDtos.Length > 0)
+                        {
+                            PracticeEntryRepo.Insert(addDtos,checkAction,updateFunc);
+                        }
+                        if (updateDtos.Length > 0)
+                        {
+                            PracticeEntryRepo.Update(updateDtos,checkAction,updateFunc);
+                        }
+                        await PracticeEntryRepo.UnitOfWork.SaveChangesAsync();
+                        return new OperationResult(OperationResultType.Success, "保存成功");
+                    }
+                    catch(Exception e)
+                    {
+                        return new OperationResult(OperationResultType.Error, e.Message);
+                    }
+                }
+
+                /// <summary>
+                /// 删除PracticeEntry信息
+                /// </summary>
+                /// <param name="ids">要删除的Id编号</param>
+                /// <returns>业务操作结果</returns>
+                public async Task<OperationResult> DeletePracticeEntrys(params int[] ids)
+                {
+                    ids.CheckNotNull("ids");
+                    await PracticeEntryRepo.RecycleAsync(p=>ids.Contains(p.Id));
+                    return new OperationResult(OperationResultType.Success, "删除成功");
+                }
+
+                #endregion
+
+                                #region SiteFactory信息业务
+
+                public IRepository<SiteFactory, int> SiteFactoryRepo { protected get; set; }
+
+                public IQueryable<SiteFactory> SiteFactorys
+                {
+                    get { return SiteFactoryRepo.Entities.Where(p => !p.IsDeleted); }
+                }
+
+                /// <summary>
+                /// 保存SiteFactory信息(新增/更新)
+                /// </summary>
+                /// <param name="updateForeignKey">更新时是否更新外键信息</param>
+                /// <param name="dtos">要保存的SiteFactoryDto信息</param>
+                /// <returns>业务操作集合</returns>
+                public async Task<OperationResult> SaveSiteFactorys(bool updateForeignKey=false,params SiteFactoryDto[] dtos)
+                {
+                    try
+                    {
+                        dtos.CheckNotNull("dtos");
+                        var addDtos = dtos.Where(p => p.Id == 0).ToArray();
+                        var updateDtos = dtos.Where(p => p.Id != 0).ToArray();
+
+                        SiteFactoryRepo.UnitOfWork.TransactionEnabled = true;
+
+                        Action<SiteFactoryDto> checkAction=null;
+                        Func<SiteFactoryDto, SiteFactory, SiteFactory> updateFunc=(dto, entity) => 
+                        {
+                            if(dto.Id==0||updateForeignKey)
+                            {
+                                                                        entity.JCU = JCURepo.GetByKey(dto.JCUId);
+                                                                    }
+                            return entity; 
+                        };
+                        if (addDtos.Length > 0)
+                        {
+                            SiteFactoryRepo.Insert(addDtos,checkAction,updateFunc);
+                        }
+                        if (updateDtos.Length > 0)
+                        {
+                            SiteFactoryRepo.Update(updateDtos,checkAction,updateFunc);
+                        }
+                        await SiteFactoryRepo.UnitOfWork.SaveChangesAsync();
+                        return new OperationResult(OperationResultType.Success, "保存成功");
+                    }
+                    catch(Exception e)
+                    {
+                        return new OperationResult(OperationResultType.Error, e.Message);
+                    }
+                }
+
+                /// <summary>
+                /// 删除SiteFactory信息
+                /// </summary>
+                /// <param name="ids">要删除的Id编号</param>
+                /// <returns>业务操作结果</returns>
+                public async Task<OperationResult> DeleteSiteFactorys(params int[] ids)
+                {
+                    ids.CheckNotNull("ids");
+                    await SiteFactoryRepo.RecycleAsync(p=>ids.Contains(p.Id));
+                    return new OperationResult(OperationResultType.Success, "删除成功");
+                }
+
+                #endregion
+
                                 #region StudentInfo信息业务
 
                 public IRepository<StudentInfo, int> StudentInfoRepo { protected get; set; }

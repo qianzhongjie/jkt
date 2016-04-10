@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "申请试练列表";
+    ViewBag.ToolbarItem = "delete";
+    ViewBag.GridDataUrl = Url.Action("GetEntryPracticeData");
+    ViewBag.DeleteUrl = Url.Action("DeleteEntryPracticeData");
+    Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
+}
+@section customScript
+{
+    <script type="text/javascript">
+        columns = [
+            { data: "Id", title: "编号" },
+            { data: "Name", title: "姓名", type: "text" },
+            { data: "PhoneNo", title: "联系方式", type: "text", search: true },
+            {
+                data: "SubscribeTime",
+                title: "预约试练时间",
+                type: "datepicker",
+                search: true,
+                format: function (d) {
+                    return $.osharp.tools.formatDate(d);
+                },
+                isformatval: true
+            },
+        {
+            data: "CreatedTime",
+            title: "提交时间",
+            type: "datepicker",
+            search: true,
+            format: function (d) {
+                return $.osharp.tools.formatDate(d);
+            },
+            isformatval: true
+        },
+                    {
+                        data: "Id",
+                        title: "操作选项",
+                        type: "opt",
+                        format: function (id) {
+                            return '<a href="javascript:setRole(' + id + ')">设置为学员</a>';
+                        }
+                    }
+        ];
+    </script>
+}
+
+
+
+
+
