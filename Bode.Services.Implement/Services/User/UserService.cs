@@ -49,5 +49,25 @@ namespace Bode.Services.Implement.Services
             });
             return await Task.FromResult(result);
         }
+
+        /// <summary>
+        /// 修改个人资料
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public OperationResult SaveUserDetail(UserInfoEditDto dto)
+        {
+            UserInfoRepo.UnitOfWork.TransactionEnabled = true;
+            var userinfo = UserInfoRepo.GetByKey(dto.UserInfoId);
+            userinfo.SysUser.NickName = dto.NickName;
+            userinfo.Qq = dto.Qq;
+            userinfo.RealName = dto.RealName;
+            userinfo.HeadPic = dto.HeadPic;
+            userinfo.Sex = dto.Sex;
+            userinfo.SysUser.PhoneNumber = dto.PhoneNumber;
+            UserInfoRepo.Update(userinfo);
+            UserInfoRepo.UnitOfWork.SaveChanges();
+            return new OperationResult(OperationResultType.Success, "修改成功");
+        }
     }
 }

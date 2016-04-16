@@ -130,5 +130,7 @@ namespace Bode.Services.Core.Contracts
         /// <param name="model"></param>
         /// <returns></returns>
         int UpdateUserInfo(SysUser model);
+
+        OperationResult SaveUserDetail(UserInfoEditDto dto);
     }
 }

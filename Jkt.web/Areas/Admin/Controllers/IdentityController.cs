@@ -17,7 +17,6 @@ using OSharp.Web.Mvc.Security;
 using OSharp.Web.Mvc.UI;
 using OSharp.Web.Mvc;
 using OSharp.Core.Logging;
-using System.Data.Entity;
 using Bode.Services.Core.Dtos.User;
 using Bode.Services.Core.Models.User;
 
@@ -502,6 +501,18 @@ namespace Bode.Web.Areas.Admin.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
+
+        [Description("保存资料")]
+        [HttpPost]
+        [Authorize]
+        public ActionResult SaveUserInfo(UserInfoEditDto dto)
+        {
+            var userInfo = IdentityContract.Users.SingleOrDefault(p => p.UserName == User.Identity.Name);
+            if (userInfo != null) dto.UserInfoId = userInfo.Id;
+            var result = UserContract.SaveUserDetail(dto);
+            return Json(result.ToAjaxResult());
+        }
+
         #endregion
         #endregion
 
@@ -557,6 +568,15 @@ namespace Bode.Web.Areas.Admin.Controllers
         [Description("修改密码")]
         public ActionResult Epassword()
         {
+            return View();
+        }
+        [Authorize]
+        [Description("修改资料")]
+        public ActionResult InfoEdit()
+        {
+            var user = IdentityContract.Users.SingleOrDefault(p => p.UserName == User.Identity.Name);
+            if (user == null) return RedirectToAction("Login", "Home");
+            ViewBag.UserInfo = user;
             return View();
         }
 
