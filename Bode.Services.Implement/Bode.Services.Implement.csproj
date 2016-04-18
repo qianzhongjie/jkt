@@ -101,6 +101,7 @@
     <Compile Include="ModelConfigs\Student\JcuSystemConfiguration.cs" />
     <Compile Include="ModelConfigs\Student\PracticeEntryConfiguration.cs" />
     <Compile Include="ModelConfigs\Student\SiteFactoryConfiguration.cs" />
+    <Compile Include="ModelConfigs\Student\SitePicConfiguration.cs" />
     <Compile Include="ModelConfigs\Student\StudentInfoConfiguration.cs" />
     <Compile Include="ModelConfigs\User\FeedBackConfiguration.cs" />
     <Compile Include="ModelConfigs\User\ValidateCodeConfiguration.cs" />

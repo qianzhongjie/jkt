@@ -123,6 +123,27 @@ namespace Bode.Services.Core.Contracts
 
                 #endregion
 
+                                #region SitePic信息业务
+
+                IQueryable<SitePic> SitePics { get; }
+
+                /// <summary>
+                /// 保存SitePic信息(新增/更新)
+                /// </summary>
+                /// <param name="updateForeignKey">更新时是否更新外键信息</param>
+                /// <param name="dtos">要保存的SitePicDto信息</param>
+                /// <returns>业务操作集合</returns>
+                Task<OperationResult> SaveSitePics(bool updateForeignKey=false,params SitePicDto[] dtos);
+
+                /// <summary>
+                /// 删除SitePic信息
+                /// </summary>
+                /// <param name="ids">要删除的Id编号</param>
+                /// <returns>业务操作结果</returns>
+                Task<OperationResult> DeleteSitePics(params int[] ids);
+
+                #endregion
+
                                 #region StudentInfo信息业务
 
                 IQueryable<StudentInfo> StudentInfos { get; }

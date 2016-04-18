@@ -119,6 +119,7 @@
     <Compile Include="Dtos\Student\JcuSystemDto.generated.cs" />
     <Compile Include="Dtos\Student\PracticeEntryDto.generated.cs" />
     <Compile Include="Dtos\Student\SiteFactoryDto.generated.cs" />
+    <Compile Include="Dtos\Student\SitePicDto.generated.cs" />
     <Compile Include="Dtos\Student\StudentInfoDto.generated.cs" />
     <Compile Include="Dtos\User\FeedBackDto.generated.cs">
       <SubType>Code</SubType>
@@ -176,6 +177,7 @@
     <Compile Include="Models\Student\JcuSystem.cs" />
     <Compile Include="Models\Student\PracticeEntry.cs" />
     <Compile Include="Models\Student\SiteFactory.cs" />
+    <Compile Include="Models\Student\SitePic.cs" />
     <Compile Include="Models\Student\StudentInfo.cs" />
     <Compile Include="Models\User\FeedBack.cs">
       <SubType>Code</SubType>
@@ -250,6 +252,7 @@
 ..\Dtos\Student\JcuSystemDto.generated.cs
 ..\Dtos\Student\PracticeEntryDto.generated.cs
 ..\Dtos\Student\SiteFactoryDto.generated.cs
+..\Dtos\Student\SitePicDto.generated.cs
 ..\Dtos\Student\StudentInfoDto.generated.cs
 ..\Dtos\User\FeedBackDto.generated.cs
 ..\Dtos\User\UserInfoDto.generated.cs

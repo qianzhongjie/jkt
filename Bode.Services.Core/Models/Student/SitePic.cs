@@ -16,5 +16,7 @@ namespace Bode.Services.Core.Models.Student
         [Description("地址")]
         public string Path { get; set; }
 
+        [Description("关联场地")]
+        public virtual SiteFactory SiteFactory { get; set; }
     }
 }

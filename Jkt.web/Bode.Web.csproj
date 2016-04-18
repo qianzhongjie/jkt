@@ -1412,6 +1412,7 @@
     <Compile Include="Areas\Admin\Controllers\IdentityController.cs" />
     <Compile Include="Areas\Admin\Controllers\JcuController.cs" />
     <Compile Include="Areas\Admin\Controllers\JcuSystemController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SiteFactoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\StudentController.cs" />
     <Compile Include="Areas\Admin\ViewModels\BannerSumViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\BannerViewModel.cs" />
@@ -1495,12 +1496,13 @@
     <Content Include="Content\js\ueditor\third-party\video-js\font\vjs.woff" />
     <Content Include="Areas\Admin\Views\Identity\Epassword.cshtml" />
     <Content Include="Areas\Admin\Views\City\CityList.cshtml" />
-    <Content Include="Areas\Admin\Views\JcuSystem\JcuList.cshtml" />
+    <Content Include="Areas\Admin\Views\Jcu\JcuList.cshtml" />
     <Content Include="Areas\Admin\Views\JcuSystem\JcuSystemList.cshtml" />
     <Content Include="Areas\Admin\Views\Student\StudentList.cshtml" />
     <Content Include="Areas\Admin\Views\Identity\FeedBackList.cshtml" />
     <Content Include="Areas\Admin\Views\Student\EntryPracticeList.cshtml" />
     <Content Include="Areas\Admin\Views\Identity\InfoEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\SiteFactory\SiteFatoryList.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1510,7 +1512,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Jcu\" />
     <Folder Include="Areas\Admin\Views\Puc\" />
     <Folder Include="Content\js\angular\i18n\ngLocale\" />
     <Folder Include="Content\js\ueditor\net\Bin\" />

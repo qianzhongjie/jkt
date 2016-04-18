@@ -21,7 +21,7 @@ namespace Bode.Web.Areas.Admin.Controllers
     [Description("学员管理")]
     public class StudentController : AdminBaseController
     {
-        public IStudentContract studentContract { get; set; }
+        public IStudentContract StudentContract { get; set; }
         public IUserContract UserContract { get; set; }
         public IIdentityContract IdentityContract { get; set; }
         // GET: Admin/Student
@@ -37,7 +37,7 @@ namespace Bode.Web.Areas.Admin.Controllers
             var user = UserContract.UserInfos.SingleOrDefault(p => p.Id == userId);
             int total;
             GridRequest request = new GridRequest(Request);
-            var datas = GetQueryData<StudentInfo, int>(studentContract.StudentInfos.Where(x => x.Jcu.Id == jcusId), out total,
+            var datas = GetQueryData<StudentInfo, int>(StudentContract.StudentInfos.Where(x => x.Jcu.Id == jcusId), out total,
                     request).Select(m => new
                     {
                         m.CreatedTime,
@@ -57,7 +57,7 @@ namespace Bode.Web.Areas.Admin.Controllers
 
                 return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
             }
-            datas = GetQueryData<StudentInfo, int>(studentContract.StudentInfos.Where(x => x.Jcu.Id == jcusId && x.JcuSystem.Id == userId), out total,
+            datas = GetQueryData<StudentInfo, int>(StudentContract.StudentInfos.Where(x => x.Jcu.Id == jcusId && x.JcuSystem.Id == userId), out total,
                     request).Select(m => new
                     {
                         m.CreatedTime,
@@ -80,7 +80,7 @@ namespace Bode.Web.Areas.Admin.Controllers
         public async Task<ActionResult> SaveStudentData(StudentInfoDto[] dtos)
         {
             dtos.CheckNotNull("dtos");
-            OperationResult result = await studentContract.SaveStudentInfos(dtos: dtos);
+            OperationResult result = await StudentContract.SaveStudentInfos(dtos: dtos);
             return Json(result.ToAjaxResult());
         }
 
@@ -90,7 +90,7 @@ namespace Bode.Web.Areas.Admin.Controllers
         {
             int total;
             GridRequest request = new GridRequest(Request);
-            var datas = GetQueryData<PracticeEntry, int>(studentContract.PracticeEntrys, out total,
+            var datas = GetQueryData<PracticeEntry, int>(StudentContract.PracticeEntrys, out total,
                     request).Select(m => new
                     {
                         m.Id,
@@ -109,7 +109,7 @@ namespace Bode.Web.Areas.Admin.Controllers
         public async Task<ActionResult> DeleteEntryPracticeData(int[] ids)
         {
             ids.CheckNotNull("ids");
-            OperationResult result = await studentContract.DeletePracticeEntrys(ids);
+            OperationResult result = await StudentContract.DeletePracticeEntrys(ids);
             return Json(result.ToAjaxResult());
         }
 
@@ -138,7 +138,7 @@ namespace Bode.Web.Areas.Admin.Controllers
         public ActionResult GetJcuSystemTree(int userId)
         {
             var user = UserContract.UserInfos.SingleOrDefault(p => p.Id == userId);
-            var ccc = studentContract.JcuSystems.Include(x => x.StudentInfo);
+            var ccc = StudentContract.JcuSystems.Include(x => x.StudentInfo);
             var data = ccc.Where(x => x.SystemInfo.Id == userId).Select(p => new
             {
                 value = p.Jcus.City.Id,
@@ -153,13 +153,13 @@ namespace Bode.Web.Areas.Admin.Controllers
             }).ToList();
             if (user.SysUser.UserName == "admin" || user.SysUser.UserName == "Admin")
             {
-                data = studentContract.Citys.Include(x => x.Jcu).Select(p => new
+                data = StudentContract.Citys.Include(x => x.Jcu).Select(p => new
                 {
                     value = p.Id,
                     text = p.Name,
                     parentId = 0
                 }).ToList();
-                datas = studentContract.JCUs.Include(x => x.StudenInfos).Include(x => x.SysUser).Select(x => new
+                datas = StudentContract.JCUs.Include(x => x.StudenInfos).Include(x => x.SysUser).Select(x => new
                 {
                     value = x.Id,
                     text = x.Name,

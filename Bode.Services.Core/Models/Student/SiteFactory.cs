@@ -34,6 +34,6 @@ namespace Bode.Services.Core.Models.Student
         [Description("详细介绍")]
         public string Detail { get; set; }
 
-        //public virtual ICollection<SitePic> Pics { get; set; }
+        public virtual ICollection<SitePic> Pics { get; set; }
     }
 }

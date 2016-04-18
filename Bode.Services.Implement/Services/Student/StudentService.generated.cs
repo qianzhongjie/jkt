@@ -341,6 +341,71 @@ namespace Bode.Services.Implement.Services
 
                 #endregion
 
+                                #region SitePic信息业务
+
+                public IRepository<SitePic, int> SitePicRepo { protected get; set; }
+
+                public IQueryable<SitePic> SitePics
+                {
+                    get { return SitePicRepo.Entities.Where(p => !p.IsDeleted); }
+                }
+
+                /// <summary>
+                /// 保存SitePic信息(新增/更新)
+                /// </summary>
+                /// <param name="updateForeignKey">更新时是否更新外键信息</param>
+                /// <param name="dtos">要保存的SitePicDto信息</param>
+                /// <returns>业务操作集合</returns>
+                public async Task<OperationResult> SaveSitePics(bool updateForeignKey=false,params SitePicDto[] dtos)
+                {
+                    try
+                    {
+                        dtos.CheckNotNull("dtos");
+                        var addDtos = dtos.Where(p => p.Id == 0).ToArray();
+                        var updateDtos = dtos.Where(p => p.Id != 0).ToArray();
+
+                        SitePicRepo.UnitOfWork.TransactionEnabled = true;
+
+                        Action<SitePicDto> checkAction=null;
+                        Func<SitePicDto, SitePic, SitePic> updateFunc=(dto, entity) => 
+                        {
+                            if(dto.Id==0||updateForeignKey)
+                            {
+                                                                        entity.SiteFactory = SiteFactoryRepo.GetByKey(dto.SiteFactoryId);
+                                                                    }
+                            return entity; 
+                        };
+                        if (addDtos.Length > 0)
+                        {
+                            SitePicRepo.Insert(addDtos,checkAction,updateFunc);
+                        }
+                        if (updateDtos.Length > 0)
+                        {
+                            SitePicRepo.Update(updateDtos,checkAction,updateFunc);
+                        }
+                        await SitePicRepo.UnitOfWork.SaveChangesAsync();
+                        return new OperationResult(OperationResultType.Success, "保存成功");
+                    }
+                    catch(Exception e)
+                    {
+                        return new OperationResult(OperationResultType.Error, e.Message);
+                    }
+                }
+
+                /// <summary>
+                /// 删除SitePic信息
+                /// </summary>
+                /// <param name="ids">要删除的Id编号</param>
+                /// <returns>业务操作结果</returns>
+                public async Task<OperationResult> DeleteSitePics(params int[] ids)
+                {
+                    ids.CheckNotNull("ids");
+                    await SitePicRepo.RecycleAsync(p=>ids.Contains(p.Id));
+                    return new OperationResult(OperationResultType.Success, "删除成功");
+                }
+
+                #endregion
+
                                 #region StudentInfo信息业务
 
                 public IRepository<StudentInfo, int> StudentInfoRepo { protected get; set; }

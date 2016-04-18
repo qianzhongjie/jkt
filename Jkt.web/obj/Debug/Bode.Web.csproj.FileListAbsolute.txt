@@ -244,7 +244,6 @@ D:\Work\jkt\Jkt.web\bin\System.Web.WebPages.Deployment.xml
 D:\Work\jkt\Jkt.web\bin\System.Web.WebPages.Razor.xml
 D:\Work\jkt\Jkt.web\bin\AutoMapper.xml
 D:\Work\jkt\Jkt.web\bin\en-us\Bode.Services.Implement.resources.dll
-D:\Work\jkt\Jkt.web\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
 D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
 D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.Helpers.resources.dll
 D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.Http.resources.dll
