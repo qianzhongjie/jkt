@@ -74,6 +74,7 @@
     <Compile Include="Contracts\ISecurityContract.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Contracts\IStudentContract.cs" />
     <Compile Include="Contracts\IStudentContract.generated.cs" />
     <Compile Include="Contracts\IUserContract.cs">
       <SubType>Code</SubType>

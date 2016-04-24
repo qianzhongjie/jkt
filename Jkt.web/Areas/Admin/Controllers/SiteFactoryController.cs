@@ -46,13 +46,12 @@ namespace Bode.Web.Areas.Admin.Controllers
             return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
         }
 
-        [AjaxOnly]
         [HttpPost]
         [Description("保存场地数据")]
-        public async Task<ActionResult> SaveSiteFactoryData(SiteFactoryDto[] dtos)
+        public async Task<ActionResult> SaveSiteFactoryData(SiteFactoryDto dtos, SitePic[] pic)
         {
             dtos.CheckNotNull("dtos");
-            OperationResult result = await StudentContract.SaveSiteFactorys(dtos: dtos);
+            OperationResult result = await StudentContract.AddFactory(dtos, pic);
             return Json(result.ToAjaxResult());
         }
 
@@ -66,13 +65,27 @@ namespace Bode.Web.Areas.Admin.Controllers
             return Json(result.ToAjaxResult());
         }
 
-        [Description("产地列表")]
+        [Description("场地列表")]
         // GET: Admin/SiteFactory
         public ActionResult SiteFatoryList()
         {
             var user = UserContract.UserInfos.SingleOrDefault(p => p.SysUser.UserName == User.Identity.Name);
             ViewBag.UserId = user.Id;
             ViewBag.UserName = user.SysUser.UserName;
+            return View();
+        }
+
+        [Description("添加场地")]
+        public ActionResult EditAddSiteFatory(int stylistId)
+        {
+            ViewBag.Id = stylistId;
+            return View();
+        }
+
+        [Description("编辑场地")]
+        public ActionResult EditSiteFatory(int id)
+        {
+            ViewBag.Data = StudentContract.SiteFactorys.Single(x => x.Id == id);
             return View();
         }
     }

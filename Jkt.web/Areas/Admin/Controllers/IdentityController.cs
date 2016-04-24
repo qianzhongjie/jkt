@@ -574,7 +574,7 @@ namespace Bode.Web.Areas.Admin.Controllers
         [Description("修改资料")]
         public ActionResult InfoEdit()
         {
-            var user = IdentityContract.Users.SingleOrDefault(p => p.UserName == User.Identity.Name);
+            var user = UserContract.UserInfos.SingleOrDefault(p => p.SysUser.UserName == User.Identity.Name);
             if (user == null) return RedirectToAction("Login", "Home");
             ViewBag.UserInfo = user;
             return View();

@@ -1503,6 +1503,8 @@
     <Content Include="Areas\Admin\Views\Student\EntryPracticeList.cshtml" />
     <Content Include="Areas\Admin\Views\Identity\InfoEdit.cshtml" />
     <Content Include="Areas\Admin\Views\SiteFactory\SiteFatoryList.cshtml" />
+    <Content Include="Areas\Admin\Views\SiteFactory\EditAddSiteFatory.cshtml" />
+    <Content Include="Areas\Admin\Views\SiteFactory\EditSiteFatory.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

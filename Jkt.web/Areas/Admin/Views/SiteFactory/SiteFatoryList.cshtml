@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "SiteFatoryList";
+    ViewBag.Title = "场地列表";
     Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
     ViewBag.GridDataUrl = Url.Action("GetSiteFactoryData");
     //ViewBag.SaveUrl = Url.Action("SaveSiteFactoryData");
@@ -11,7 +11,7 @@
     }
     else
     {
-        ViewBag.ToolbarItem = "edti";
+        ViewBag.ToolbarItem = "edit";
     }
 }
 
@@ -38,12 +38,20 @@
         ];
         endfunction = function () {
             $("#btAdd").unbind();
-            $("#btAdd").click(function () {
+            $("#btEdit").unbind();
+            $("#btEdit").click(function () {
                 var selectRow = dataTable.getCurrent();
                 if (selectRow.length > 0) {
                     var stylistId = dataTable.getRowData(selectRow)["Id"];
-                    location.href = "@Url.Action("EditStylist")" + "?stylistId=" + stylistId;
+                    location.href = "@Url.Action("EditSiteFatory")" + "?id=" + stylistId;
                 }
+            });
+            $("#btAdd").click(function () {
+                var selectRow = dataTable.getCurrent();
+                if (jcuId > 0) {
+                    location.href = "@Url.Action("EditAddSiteFatory")" + "?stylistId=" + jcuId;
+                }
+
             });
 
         }
