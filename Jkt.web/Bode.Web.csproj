@@ -1422,6 +1422,8 @@
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AccountController.cs" />
     <Compile Include="Areas\Api\Controllers\BasicInfoController.cs" />
+    <Compile Include="Areas\Wx\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Wx\WxAreaRegistration.cs" />
     <Compile Include="Content\js\ueditor\net\App_Code\Config.cs" />
     <Compile Include="Content\js\ueditor\net\App_Code\ConfigHandler.cs" />
     <Compile Include="Content\js\ueditor\net\App_Code\CrawlerHandler.cs" />
@@ -1505,6 +1507,17 @@
     <Content Include="Areas\Admin\Views\SiteFactory\SiteFatoryList.cshtml" />
     <Content Include="Areas\Admin\Views\SiteFactory\EditAddSiteFatory.cshtml" />
     <Content Include="Areas\Admin\Views\SiteFactory\EditSiteFatory.cshtml" />
+    <Content Include="Areas\Wx\Views\web.config" />
+    <Content Include="Areas\Wx\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Wx\Views\Home\GoDate.cshtml" />
+    <Content Include="Areas\Wx\Views\Home\Online.cshtml" />
+    <Content Include="Areas\Wx\Views\Home\Progress.cshtml" />
+    <Content Include="Areas\Wx\Views\Home\Near.cshtml" />
+    <Content Include="Areas\Wx\Views\Home\Complaint.cshtml" />
+    <Content Include="Areas\Wx\Views\Home\SuccessDate.cshtml" />
+    <Content Include="Areas\Wx\Views\Home\Detail.cshtml" />
+    <Content Include="Areas\Wx\Views\Home\SuccessSubmit.cshtml" />
+    <Content Include="Areas\Wx\Views\Home\College.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1515,6 +1528,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Puc\" />
+    <Folder Include="Areas\Wx\Models\" />
+    <Folder Include="Areas\Wx\Views\Shared\" />
     <Folder Include="Content\js\angular\i18n\ngLocale\" />
     <Folder Include="Content\js\ueditor\net\Bin\" />
     <Folder Include="Views\Home\" />
