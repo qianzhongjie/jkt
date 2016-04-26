@@ -12,6 +12,9 @@ namespace Bode.Services.Core.Dtos.User
         public string Password { get; set; }
         public string NickName { get; set; }
         public string HeadPic { get; set; }
+        public string Province { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
         public string RegistKey { get; set; }
         public string ChannelCode { get; set; }
         public Sex Sex { get; set; }

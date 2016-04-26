@@ -13,8 +13,8 @@ namespace WX
     {
         private IApiClient m_client = new DefaultApiClient();
         private AppIdentication m_appIdent = new AppIdentication(
-            ConfigurationManager.AppSettings["wx6eda212edca802e5"],
-            ConfigurationManager.AppSettings["7877be06b5b90ec7fb973d4a44bb22bc"]);
+             ConfigurationManager.AppSettings["wxappid"],
+            ConfigurationManager.AppSettings["wxappsecret"]);
         public void GetAccessToken()
         {
             var request = new SnsOAuthAccessTokenRequest

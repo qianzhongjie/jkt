@@ -4,16 +4,20 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Bode.Services.Core.Contracts;
 
 namespace Bode.Web.Areas.Wx.Controllers
 {
     [Description("微信dd驾考")]
-    public class HomeController : Controller
+    public class HomeController : WxController
     {
+        public IStudentContract StudentContract { get; set; }
         // GET: Wx/Home
         [Description("主页")]
         public ActionResult Index()
         {
+            ViewBag.NickName = UserInfo.NickName;
+            ViewBag.HeadPic = UserInfo.HeadPic;
             return View();
         }
         [Description("预约试学")]

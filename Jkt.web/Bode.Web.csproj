@@ -77,9 +77,9 @@
       <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="OSharp.Autofac.Mvc">
       <HintPath>..\Bode.Frame.Bin\OSharp.Autofac.Mvc.dll</HintPath>
@@ -178,6 +178,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\404\404.htm" />
     <Content Include="Content\css\4095-rtl.min.css" />
     <Content Include="Content\css\animate.min.css" />
     <Content Include="Content\css\beyond-rtl.min.css" />
@@ -1423,6 +1424,8 @@
     <Compile Include="Areas\Api\Controllers\AccountController.cs" />
     <Compile Include="Areas\Api\Controllers\BasicInfoController.cs" />
     <Compile Include="Areas\Wx\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Wx\Controllers\ResultController.cs" />
+    <Compile Include="Areas\Wx\Controllers\WxController.cs" />
     <Compile Include="Areas\Wx\WxAreaRegistration.cs" />
     <Compile Include="Content\js\ueditor\net\App_Code\Config.cs" />
     <Compile Include="Content\js\ueditor\net\App_Code\ConfigHandler.cs" />
@@ -1529,7 +1532,10 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Puc\" />
     <Folder Include="Areas\Wx\Models\" />
+    <Folder Include="Areas\Wx\Views\Function\" />
+    <Folder Include="Areas\Wx\Views\Result\" />
     <Folder Include="Areas\Wx\Views\Shared\" />
+    <Folder Include="Areas\Wx\Views\Wx\" />
     <Folder Include="Content\js\angular\i18n\ngLocale\" />
     <Folder Include="Content\js\ueditor\net\Bin\" />
     <Folder Include="Views\Home\" />

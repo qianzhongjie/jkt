@@ -187,6 +187,7 @@ G:\GitHub\jkt\Jkt.web\obj\Debug\Bode.Web.csprojResolveAssemblyReference.cache
 G:\GitHub\jkt\Jkt.web\obj\Debug\Bode.Web.dll
 G:\GitHub\jkt\Jkt.web\obj\Debug\Bode.Web.pdb
 G:\GitHub\jkt\Jkt.web\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
+D:\Work\jkt\Jkt.web\obj\Debug\Bode.Web.csprojResolveAssemblyReference.cache
 D:\Work\jkt\Jkt.web\bin\Bode.Web.dll.config
 D:\Work\jkt\Jkt.web\bin\Bode.Web.dll
 D:\Work\jkt\Jkt.web\bin\Bode.Web.pdb
@@ -199,7 +200,9 @@ D:\Work\jkt\Jkt.web\bin\Bode.Services.Core.dll
 D:\Work\jkt\Jkt.web\bin\Bode.Services.Implement.dll
 D:\Work\jkt\Jkt.web\bin\Bode.Sms.Md.dll
 D:\Work\jkt\Jkt.web\bin\ICSharpCode.SharpZipLib.dll
+D:\Work\jkt\Jkt.web\bin\JCSoft.WX.Framework.dll
 D:\Work\jkt\Jkt.web\bin\log4net.dll
+D:\Work\jkt\Jkt.web\bin\Newtonsoft.Json.dll
 D:\Work\jkt\Jkt.web\bin\OSharp.Autofac.Mvc.dll
 D:\Work\jkt\Jkt.web\bin\OSharp.Autofac.SignalR.dll
 D:\Work\jkt\Jkt.web\bin\OSharp.Autofac.WebApi.dll
@@ -225,10 +228,12 @@ D:\Work\jkt\Jkt.web\bin\AutoMapper.dll
 D:\Work\jkt\Jkt.web\bin\Bode.Common.pdb
 D:\Work\jkt\Jkt.web\bin\Bode.Services.Core.pdb
 D:\Work\jkt\Jkt.web\bin\Bode.Services.Implement.pdb
+D:\Work\jkt\Jkt.web\bin\JCSoft.WX.Framework.pdb
 D:\Work\jkt\Jkt.web\bin\Autofac.xml
 D:\Work\jkt\Jkt.web\bin\Autofac.Integration.Mvc.xml
 D:\Work\jkt\Jkt.web\bin\Autofac.Integration.WebApi.xml
 D:\Work\jkt\Jkt.web\bin\log4net.xml
+D:\Work\jkt\Jkt.web\bin\Newtonsoft.Json.xml
 D:\Work\jkt\Jkt.web\bin\OSharp.Core.xml
 D:\Work\jkt\Jkt.web\bin\OSharp.Data.Entity.xml
 D:\Work\jkt\Jkt.web\bin\OSharp.Utility.xml
@@ -244,6 +249,7 @@ D:\Work\jkt\Jkt.web\bin\System.Web.WebPages.Deployment.xml
 D:\Work\jkt\Jkt.web\bin\System.Web.WebPages.Razor.xml
 D:\Work\jkt\Jkt.web\bin\AutoMapper.xml
 D:\Work\jkt\Jkt.web\bin\en-us\Bode.Services.Implement.resources.dll
+D:\Work\jkt\Jkt.web\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
 D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
 D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.Helpers.resources.dll
 D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.Http.resources.dll
@@ -253,6 +259,5 @@ D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.Razor.resources.dll
 D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.WebPages.resources.dll
 D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
-D:\Work\jkt\Jkt.web\obj\Debug\Bode.Web.csprojResolveAssemblyReference.cache
 D:\Work\jkt\Jkt.web\obj\Debug\Bode.Web.dll
 D:\Work\jkt\Jkt.web\obj\Debug\Bode.Web.pdb

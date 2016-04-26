@@ -57,6 +57,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Data\Base64ToImg.cs" />
     <Compile Include="Data\DataCode.cs" />
+    <Compile Include="Data\LngLat.cs" />
     <Compile Include="Json\JsonTo.cs" />
     <Compile Include="PageView\PageHtml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

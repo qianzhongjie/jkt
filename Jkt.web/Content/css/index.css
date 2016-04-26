@@ -110,15 +110,15 @@ input[type="search"]::-webkit-search-results-decoration {
 	top:2px;
 }
 .listBar .progress {
-	background: url(../../static/img/progress.png);
+	background: url(/Content/static/img/progress.png);
 	background-size: 100% 100%;
 }
 .listBar .near {
-	background: url(../../static/img/near.png);
+	background: url(/Content/static/img/near.png);
 	background-size: 100% 100%;
 }
 .listBar .complaint {
-	background: url(../../static/img/complaint.png);
+	background: url(/Content/static/img/complaint.png);
 	background-size: 100% 100%;
 }
 .listBar a {
@@ -144,7 +144,7 @@ input[type="search"]::-webkit-search-results-decoration {
 	color:#fff;
 } 
 .foot-left .yuyue {
-	background-image: url(../../static/img/yuyue.png);
+	background-image: url(/Content/static/img/yuyue.png);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	width: 30px;
@@ -153,7 +153,7 @@ input[type="search"]::-webkit-search-results-decoration {
 	text-align: center;
 }
 .foot-right .phone {
-	background-image: url(../../static/img/ques.png);
+	background-image: url(/Content/static/img/ques.png);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	width: 30px;
@@ -173,7 +173,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 /* near */
 .near-header {
-	background: url(../../static/img/p1.png);
+	background: url(/Content/static/img/p1.png);
 	background-size: 100% 100%;
 	padding: 100px 50px;
 }
@@ -182,7 +182,7 @@ input[type="search"]::-webkit-search-results-decoration {
 	text-align: center;
 }
 .nearPos .mark {
-	background: url(../../static/img/mark.png);
+	background: url(/Content/static/img/mark.png);
 	background-size: 100% 100%;
 	width: 35px;
 	height: 50px;
@@ -207,7 +207,7 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 .near-list a:after {
 	content: '';
-	background: url(../../static/img/go.png);
+	background: url(/Content/static/img/go.png);
 	background-size:100% 100%; 
 	display: inline-block;
 	position: absolute;

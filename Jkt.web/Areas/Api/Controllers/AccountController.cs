@@ -58,7 +58,7 @@ namespace Bode.Web.Areas.Api.Controllers
 
         //[Description("登录验证openid")]
         //[HttpPost]
-        //public async Task<IHttpActionResult> LoginToken(string openId)
+        //public async Task<IHttpActionResult> LoginToken(string OpenId)
         //{
         //    var result=await 
         //}

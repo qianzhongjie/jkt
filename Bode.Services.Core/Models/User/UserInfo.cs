@@ -26,6 +26,15 @@ namespace Bode.Services.Core.Models.User
         [Description("性别")]
         public Sex Sex { get; set; }
 
+        [Description("省")]
+        public string Province { get; set; }
+
+        [Description("城市")]
+        public string City { get; set; }
+
+        [Description("国家")]
+        public string Country { get; set; }
+
         [Description("注册渠道码")]
         public string ChannelCode { get; set; }
 
@@ -38,7 +47,7 @@ namespace Bode.Services.Core.Models.User
         [Description("qq")]
         public string Qq { get; set; }
 
-       // [Description("上任时间")]
+        // [Description("上任时间")]
         public DateTime? UpTime { get; set; }
 
         //[Description("预约试练时间")]

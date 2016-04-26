@@ -32,13 +32,13 @@ namespace Bode.Services.Implement.Services
         public async Task<OperationResult> TokenLogin(string openId)
         {
             var user = UserInfoRepo.GetByPredicate(x => x.Token == openId).Single();
-            if(user==null)
+            if (user == null)
             {
-               // 跳转注册
+                // 跳转注册
             }
-            if(user.SysUser.UserType==UserType.系统用户)
+            if (user.SysUser.UserType == UserType.系统用户)
             {
-                return new OperationResult(OperationResultType.ValidError,"系统用户无法登录");
+                return new OperationResult(OperationResultType.ValidError, "系统用户无法登录");
             }
             return new OperationResult();
 
@@ -222,10 +222,10 @@ namespace Bode.Services.Implement.Services
             validateCode.CheckNotNullOrEmpty("validateCode");
             //验证码
             var severCode = GetValidateCode(dto.UserName, CodeType.用户注册);
-            if (severCode == null || severCode.Code != validateCode)
-            {
-                return new OperationResult(OperationResultType.ValidError, "验证码错误", 0);
-            }
+            //if (severCode == null || severCode.Code != validateCode)
+            //{
+            //    return new OperationResult(OperationResultType.ValidError, "验证码错误", 0);
+            //}
             if (SysUserRepo.CheckExists(p => p.UserName == dto.UserName))
             {
                 return new OperationResult(OperationResultType.ValidError, "账号已被使用", 0);
@@ -261,14 +261,56 @@ namespace Bode.Services.Implement.Services
                 await UserInfoRepo.InsertAsync(userInfo);
 
                 await UserInfoRepo.UnitOfWork.SaveChangesAsync();
-                var sysUser = await UserManager.FindByNameAsync(sUser.UserName);
-                return new OperationResult(OperationResultType.Success, "注册成功", sysUser);
+                // var sysUser = await UserManager.FindByNameAsync(sUser.UserName);
+                return new OperationResult(OperationResultType.Success, "注册成功", userInfo.Id);
             }
             catch
             {
                 return new OperationResult(OperationResultType.NoChanged, "注册失败", 0);
             }
         }
+
+        //public async Task<OperationResult> Register(string openId)
+        //{
+        //    try
+        //    {
+        //        UserInfoRepo.UnitOfWork.TransactionEnabled = true;
+        //        //验证密码格式
+        //        IdentityResult result = await UserManager.PasswordValidator.ValidateAsync(dto.Password);
+        //        if (!result.Succeeded) return result.ToOperationResult();
+
+        //        SysUser sUser = new SysUser()
+        //        {
+        //            UserName = dto.UserName,
+        //            NickName = dto.NickName,
+        //            PasswordHash = UserManager.PasswordHasher.HashPassword(dto.Password),//密码加密
+        //            UserType = UserType.App用户
+        //        };
+        //        if (severCode.ValidateType == ValidateType.手机)
+        //        {
+        //            sUser.PhoneNumber = dto.UserName;
+        //            sUser.PhoneNumberConfirmed = true;
+        //        }
+        //        else
+        //        {
+        //            sUser.Email = dto.UserName;
+        //            sUser.EmailConfirmed = true;
+        //        }
+        //        await UserManager.CreateAsync(sUser);
+
+        //        var userInfo = Mapper.Map<UserInfo>(dto);
+        //        userInfo.SysUser = sUser;
+        //        await UserInfoRepo.InsertAsync(userInfo);
+
+        //        await UserInfoRepo.UnitOfWork.SaveChangesAsync();
+        //        var sysUser = await UserManager.FindByNameAsync(sUser.UserName);
+        //        return new OperationResult(OperationResultType.Success, "注册成功", sysUser);
+        //    }
+        //    catch
+        //    {
+        //        return new OperationResult(OperationResultType.NoChanged, "注册失败", 0);
+        //    }
+        //}
 
         /// <summary>
         /// 用户登录

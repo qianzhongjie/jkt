@@ -25,8 +25,8 @@ namespace WX.Framework
 
         private static ApiAccessTokenManager m_instance;
         private static object m_lock = new object();
-        private static string s_configAppId = "wx6eda212edca802e5";
-        private static string s_configAppSecret = "7877be06b5b90ec7fb973d4a44bb22bc";
+        private static string s_configAppId = ConfigurationManager.AppSettings["wxappid"];
+        private static string s_configAppSecret = ConfigurationManager.AppSettings["wxappsecret"];
         public static ApiAccessTokenManager Instance
         {
             get
