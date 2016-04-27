@@ -24,9 +24,8 @@ using WX.OAuth;
 namespace Bode.Web.Areas.Wx.Controllers
 {
     [Description("基类控制机")]
-    public class WxController : Controller
+    public class WxController : FristController
     {
-        public string Code { get; set; }
         public string Token { get; set; }
         public string OpenId { get; set; }
         public string NickName { get; set; }
@@ -39,7 +38,7 @@ namespace Bode.Web.Areas.Wx.Controllers
         public IUserContract UserContract { get; set; }
         public WxController()
         {
-            GetCode();
+            //GetCode();
             if (!string.IsNullOrWhiteSpace(Code))
             {
                 //获取token
@@ -76,7 +75,7 @@ namespace Bode.Web.Areas.Wx.Controllers
         public void GetCode()
         {
             var manager = new OAuthHelper(ConfigurationManager.AppSettings["wxappid"]);
-            var url = manager.BuildOAuthUrl(Host + "/Wx/Result/AuthNotifyUrl",
+            var url = manager.BuildOAuthUrl(Host + "Wx/Result/AuthNotifyUrl",
                  OAuthScope.Base, "getAuth");
 
             //发起请求
@@ -157,15 +156,15 @@ namespace Bode.Web.Areas.Wx.Controllers
             }
         }
         //处理异常 跳转404页面
-        protected override void OnException(ExceptionContext filterContext)
-        {
-            //if (!filterContext.ExceptionHandled && filterContext.Exception is ArgumentOutOfRangeException)
-            if (!filterContext.ExceptionHandled)
-            {
-                filterContext.Result = new RedirectResult("~/Content/404/404.htm");
-                filterContext.ExceptionHandled = true;
-            }
-            base.OnException(filterContext);
-        }
+        //protected override void OnException(ExceptionContext filterContext)
+        //{
+        //    //if (!filterContext.ExceptionHandled && filterContext.Exception is ArgumentOutOfRangeException)
+        //    if (!filterContext.ExceptionHandled)
+        //    {
+        //        filterContext.Result = new RedirectResult("~/Content/404/404.htm");
+        //        filterContext.ExceptionHandled = true;
+        //    }
+        //    base.OnException(filterContext);
+        //}
     }
 }

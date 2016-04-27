@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>滴滴驾考</title>
+    <link rel="stylesheet" type="text/css" href="/Content/css/amazeui.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/index.css">
+    <style type="text/css">
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            color: #ccc;
+        }
+
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #ccc;
+        }
+
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #ccc;
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: #ccc;
+        }
+    </style>
+</head>
+<body id="complaint">
+    <div class="complaint">
+        <textarea placeholder="对我们有任何不爽,请告诉我们~" rows="8" autofocus></textarea>
+    </div>
+
+    <div class="submit">
+        <a href="@Url.Action("SuccessSubmit")">确认提交</a>
+    </div>
+
+</body>
+</html>

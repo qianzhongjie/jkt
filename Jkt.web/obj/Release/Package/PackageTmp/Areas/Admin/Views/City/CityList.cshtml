@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "城市列表";
+    Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
+    ViewBag.GridDataUrl = Url.Action("GetCityData");
+    ViewBag.SaveUrl = Url.Action("SaveCityData");
+    ViewBag.DeleteUrl = Url.Action("DeleteCity");
+}
+@section customScript
+{
+<script type="text/javascript">
+    columns = [
+           { data: "Id", title: "编号" },
+           { data: "Name", title: "城市", type: "text", search: true, editor: {} },
+           //{ data: "ProName", title: "省", type: "text", search: true, editor: {} },
+         {
+             data: "CreatedTime",
+             title: "创建时间",
+             type: "datepicker",
+             search: true,
+             format: function (d) {
+                 return $.osharp.tools.formatDate(d);
+             },
+             isformatval: true
+         }
+    ];
+</script>
+    }

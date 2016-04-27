@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewBag.Title = "校区经理列表";
+    Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
+    ViewBag.GridDataUrl = Url.Action("GetJcuSystemData");
+    ViewBag.DeleteUrl = Url.Action("DeleteJcuSystem");
+    //ViewBag.SaveUrl = Url.Action("SaveJcuSystemData");
+    ViewBag.ToolbarItem = "add,cancel,delete";
+}
+@section customScript
+{
+    <script src="~/Content/js/osharp/osharp.treeview.js"></script>
+    <script type="text/javascript">
+        var jcuId = 0;
+        columns = [
+        //{ data: "Id", title: "编号" },
+        { data: "JcusId", title: "校区Id", type: "hide" },
+        { data: "SystemInfoId", title: "校区经理用户Id", type: "hide" },
+        { data: "Id", title: "用户Id", type: "hide" },
+        { data: "HeadPic", title: "头像", type: "img"},
+        { data: "UserName", title: "帐号", type: "text" },
+          { data: "RealName", title: "姓名", type: "text" },
+
+          { data: "NickName", title: "昵称", type: "text" },
+               { data: "PhoneNumber", title: "电话号码", type: "number" },
+                 { data: "Qq", title: "QQ", type: "text" },
+        { data: "Name", title: "所属校区", type: "text" }, { data: "Sum", title: "学员数量", type: "text" },
+      {
+          data: "CreatedTime",
+          title: "上任时间",
+          type: "datepicker",
+          search: true,
+          format: function (d) {
+              return $.osharp.tools.formatDate(d);
+          },
+          isformatval: true
+      }
+        ];
+        //$(function () {
+        //    dataTable.beforeEdit = function (index, row) {
+        //        row.Id = row.SystemInfoId;
+        //    }
+        //})
+        startfunction = function () {
+
+            $("#btAdd").unbind();
+            $("#btAdd").click(function () {
+
+
+                //弹出框
+                bootbox.dialog({
+                    message: $("#goodsInventory").html(),
+                    title: "设置功能",
+                    className: "modal-blue",
+                    buttons: {
+                        success: {
+                            label: "保存",
+                            className: "btn-blue",
+                            callback: function () {
+                                var dtos = [];
+                                dtos.push({
+                                    SystemInfoId: $(".modal-content").find('select').val(),
+                                    JcusId: jcuId
+                                });
+                                $.post("@Url.Action("AddJcuSystem")", { dtos: dtos }, function (data) {
+                                    if (data.Type === "Error") {
+                                        Notify(data.Content, 'bottom-right', '5000', 'danger', 'fa-bolt', true);
+                                    } else {
+                                        Notify(data.Content, 'bottom-right', '5000', 'info', 'fa-envelope', true);
+                                    }
+                                    dataTable.reload();
+                                });
+                            }
+                        },
+                        "取消": {
+                            className: "btn-danger",
+                            callback: function () { }
+                        }
+                    }
+                });
+            });
+
+            var tabArea = $(".page-body>.row>div");
+            tabArea.attr("class", "col-xs-8 col-md-9 col-lg-10");
+            tabArea.before($("#tree"));
+            $("#tree .widget-body").height(document.body.scrollHeight - 140);
+
+
+
+            // UITree.init();
+            @* var tree = new $.osharp.Treeview("#treeContent", {
+                ajax: "@Url.Action("GetJcuSystemTree")",
+                itemSelect: function (item) {
+                    dataTable.conf.ajax = "@ViewBag.GridDataUrl?jcusId=" + item.value;
+
+                    dataTable.beforeEdit = function (index, row) {
+                        row.jcusId = item.value;
+                        jcuId = item.value;
+                    }
+                    dataTable.reload();
+                }
+            });*@
+            $.post("@Url.Action("GetJcuSystemTree")", {}, function (data) {
+                var html = '';
+                var dataP = data.data;
+                var dataC = data.datas;
+                for (var i = 0; i < dataP.length; i++) {
+                    html += '<div class="tree-folder" style="display: block;"><div data-value="' + dataP[i].text + '" class="tree-folder-header" onclick="parent(this)"><i class="fa blueberry fa-folder-open"></i><div class="tree-folder-name">' + dataP[i].text + '<div class="tree-actions"></div></div></div><div class="tree-folder-content" style="display: block;">';
+                    for (var k = 0; k < dataC.length; k++) {
+                        if (dataC[k].parentId === dataP[i].value) {
+                            html += '<div data-value="' + dataC[k].Id + '" class="tree-item"style="display: block;" onclick="contents(this,' + dataP[i].value + ')" data-text="' + dataC[k].text + '" data-parentId="' + dataP[i].value + '"> <div class="tree-item-name">' + dataC[k].text + '</div><div class="tree-actions"></div></div>';
+                        }
+                    }
+                    html += '</div><div class="tree-loader" style="display: none;"><div class="tree-loading"><i class="fa fa-rotate-right fa-spin blueberry"></i></div> </div> </div>';
+                    $(html).appendTo($('#treeContent'));
+                    html = '';
+                }
+            });
+            var htmls = "";
+            $.post("@Url.Action("GetSystemUser")", {}, function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    htmls += '<option value="' + data[i].Id + '">' + data[i].UserName + '<option>';
+                }
+                $("#Account").html(htmls);
+            });
+        }
+        function contents(obj, pId) {
+            jcuId = pId;
+            $('.bg-palegreen').removeClass('bg-palegreen');
+            $(obj).addClass('bg-palegreen');
+            dataTable.conf.ajax = "@ViewBag.GridDataUrl" + "?jcusId=" + pId;
+            dataTable.reload();
+
+        }
+        function parent(obj) {
+            $('.tree-folder-content').css('display', "none");
+            if ($(obj).next('div').css('display') === "block") {
+                $(obj).next('div').css('display', "none");
+            } else {
+                $(obj).next('div').css('display', "block");
+            }
+        }
+    </script>
+}
+@section headHtml{
+    <div id="tree" class="col-xs-4 col-md-3 col-lg-2">
+        <div class="widget flat radius-bordered">
+            <div class="widget-header bg-info">
+                <span class="widget-caption">城市/校区</span>
+            </div>
+            <div class="widget-body" style="overflow-y: auto;">
+                <div id="treeContent" class="tree tree-solid-line">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="goodsInventory" style="display: none;">
+        <form class="form-horizontal form-bordered" role="form">
+            <div class="form-group">
+
+                <label for="Account" class="col-sm-3 control-label no-padding-right">关联用户：</label>
+                <div class="col-sm-6">
+                    <select class="form-control" id="Account"></select>
+                </div>
+            </div>
+        </form>
+    </div>
+}

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>滴滴驾考</title>
+    <link rel="stylesheet" type="text/css" href="/Content/css/amazeui.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/sprites.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/index.css">
+    <style type="text/css">
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            color: #fff;
+        }
+
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: #fff;
+        }
+
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: #fff;
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: #fff;
+        }
+    </style>
+</head>
+<body id="college">
+    <div class="college-search">
+        <form action="" method="" class="search-form">
+            <label for="search">
+                <i class="am-icon-search search-icon"></i>
+                <input type="search" placeholder="输入大学进行查找" id="search" class="search-input" size="100%"></input>
+                <span class="search-cancel">取消</span>
+            </label>
+        </form>
+
+    </div>
+
+    <div class="near-header">
+        <div class="nearPos">
+            <i class="mark" style="display: block;"></i>
+            <span>当前坐标：成都大学</span>
+        </div>
+    </div>
+
+    <ul class="near-list am-list m-widget-list" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+        <li>
+            <a href="@Url.Action("Detail")">马家河训练场</a>
+        </li>
+        <li>
+            <a href="details.html">云南</a>
+        </li>
+        <li>
+            <a href="details.html">西藏</a>
+        </li>
+
+    </ul>
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="/Content/js/jquery.min.js"></script>
+    <!--<![endif]-->
+    <!--[if lte IE 8 ]>
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+    <script src="src/js/amazeui.ie8polyfill.min.js"></script>
+    <![endif]-->
+    <script src="/Content/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="/Content/js/app.js"></script>
+    <script type="text/javascript" src="/Content/js/handlebars.min.js"></script>
+</body>
+</html>

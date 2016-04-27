@@ -294,7 +294,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Bode.Common\Bode.Common.csproj">
+      <Project>{d6b5b374-333e-49cb-8d3a-b923c0f4c83f}</Project>
+      <Name>Bode.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /r /y $(TargetPath) $(ProjectDir)..\Bin\</PostBuildEvent>

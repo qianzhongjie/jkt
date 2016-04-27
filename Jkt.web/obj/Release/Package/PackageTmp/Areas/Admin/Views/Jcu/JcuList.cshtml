@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "校区列表";
+    Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
+    ViewBag.GridDataUrl = Url.Action("GetJcuData");
+    ViewBag.SaveUrl = Url.Action("SaveJcuData");
+    ViewBag.DeleteUrl = Url.Action("DeleteJcu");
+}
+@section customScript
+{
+    <script src="~/Content/js/osharp/osharp.treeview.js"></script>
+    <script type="text/javascript">
+        columns = [
+               { data: "Id", title: "编号" },
+                { data: "CityId", title: "编号", type: "hide" },
+               { data: "Name", title: "名称", type: "text", search: true, editor: {} },
+                   { data: "Address", title: "详细地址", type: "text", search: true, editor: {} },
+               { data: "CityName", title: "所属城市", type: "text", search: true },
+               { data: "Sum", title: "学员数量", type: "number", search: true, },
+             {
+                 data: "CreatedTime",
+                 title: "创建时间",
+                 type: "datepicker",
+                 search: true,
+                 format: function (d) {
+                     return $.osharp.tools.formatDate(d);
+                 },
+                 isformatval: true
+             }
+        ];
+        startfunction = function () {
+            var tabArea = $(".page-body>.row>div");
+            tabArea.attr("class", "col-xs-8 col-md-9 col-lg-10");
+            tabArea.before($("#tree"));
+            $("#tree .widget-body").height(document.body.scrollHeight - 140);
+
+            // UITree.init();
+            var tree = new $.osharp.Treeview("#treeContent", {
+                ajax: "@Url.Action("GetCityTree")",
+                itemSelect: function (item) {
+                    dataTable.conf.ajax = "@ViewBag.GridDataUrl?cityId=" + item.value;
+
+                    dataTable.beforeEdit = function (index, row) {
+                        row.CityId = item.value;
+                    }
+                    dataTable.reload();
+                }
+            });
+        }
+    </script>
+}
+@section headHtml{
+    <div id="tree" class="col-xs-4 col-md-3 col-lg-2">
+        <div class="widget flat radius-bordered">
+            <div class="widget-header bg-info">
+                <span class="widget-caption">城市</span>
+            </div>
+            <div class="widget-body" style="overflow-y: auto;">
+                <div id="treeContent" class="tree tree-solid-line">
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

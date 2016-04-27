@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>滴滴驾考</title>
+    <link rel="stylesheet" type="text/css" href="/Content/css/amazeui.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/sprites.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/index.css">
+</head>
+<body id="goDate">
+    <div class="goDate">
+        <div class="goDate-title">
+            <p>预约试学</p>
+        </div>
+        <form action="" method="post" class="goDate-input am-form">
+            <label for="name" class="am-form-group">
+                <span>姓名:</span>
+                <input type="text" id="name" class="name" size="90%"></input>
+            </label>
+            <label for="phone" class="am-form-group">
+                <span>电话:</span>
+                <input type="text" id="phone" class="phone" size="90%"></input>
+            </label>
+            <label for="time" class="am-form-group">
+                <span>时间:</span>
+                <div class="time am-input-group am-datepicker-date" data-am-datepicker="{format: 'yyyy-mm-dd'}">
+                    <input type="text" class="am-form-field" placeholder="请选择日期" readonly>
+                    <span class="time am-input-group-btn am-datepicker-add-on">
+                        <button class="am-btn am-btn-default" type="button"><span class="am-icon-calendar"></span> </button>
+                    </span>
+                </div>
+            </label>
+        </form>
+    </div>
+
+    <div class="submit">
+        <a href="@Url.Action("SuccessDate")">确认提交</a>
+    </div>
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="/Content/js/jquery.min.js"></script>
+    <!--<![endif]-->
+    <!--[if lte IE 8 ]>
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+    <script src="src/js/amazeui.ie8polyfill.min.js"></script>
+    <![endif]-->
+    <script src="/Content/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="/Content/js/app.js"></script>
+    <script type="text/javascript" src="/Content/js/handlebars.min.js"></script>
+</body>
+</html>

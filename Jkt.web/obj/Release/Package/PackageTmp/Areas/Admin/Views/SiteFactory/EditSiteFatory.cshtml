@@ -1,0 +1,204 @@
+﻿
+@{
+    ViewBag.Title = "编辑场地";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var info = (Bode.Services.Core.Models.Student.SiteFactory)ViewBag.Data;
+}
+<head>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=RMPTma1blVcK5DVPhB37saNL"></script>
+</head>
+<div class="page-container">
+    <div class="page-body">
+        <div class="col-md-8,col-sm-12">
+            <div class="widget flat radius-bordered">
+                <div class="widget-header bg-info">
+                    <span class="widget-caption">@ViewBag.Title</span>
+                </div>
+                <div class="widget-body">
+                    <div id="horizontal-form">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="Name" class="col-sm-2 control-label">
+                                    名称
+                                </label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" id="Name" placeholder="" value="@info.Name" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Address" class="col-sm-2 control-label">
+                                    详细地址
+                                </label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" id="Address" placeholder="" value="@info.Address" />
+                                    <div id="container" class="hidden">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="HaedPic" class="col-sm-2 control-label">
+                                    封面图
+                                </label>
+                                <div class="col-sm-3">
+                                    <input type="file" id="upLogo" data-text="上传封面">
+                                    <img style="width: 120px; height: 120px" src="@info.Cover" id="HaedPic">
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                                    <label for="Information" class="col-sm-2 control-label">
+                                        图片
+                                    </label>
+
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="UpPic" />
+                                        <div id="imgs"></div>
+                                    </div>
+                                </div>*@
+                            <div class="form-group">
+                                <label for="Information" class="col-sm-2 control-label">
+                                    介绍
+                                </label>
+                                <div class="col-sm-5">
+                                    <textarea class="form-control" rows="30" name="content" id="Information">@info.Detail</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="button" class="btn btn-info" id="btAdd" onclick="SaveData()" style="float: right; right: 43%;" value="保 存" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-4 col-md-6 col-xs-12 hidden">
+    <div class="well no-padding-bottom">
+        <div class="row">
+            <div class="col-xs-6">
+                <img width="150" height="120" src="" />
+            </div>
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <div class="pull-right" style="margin-right: 10px;">
+                                <button class="btn btn-darkorange btn-sm" onclick="deletePic(this)">删除</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/js/jquery-2.0.3.min.js"></script>
+<script src="~/Content/js/toastr/toastr.js"></script>
+<script src="~/Content/js/bootbox/bootbox.js"></script>
+<script src="~/Content/js/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+<link href="~/Content/js/uploadify/uploadify.css" rel="stylesheet" />
+<script type="text/javascript">
+    var map = new BMap.Map("container");
+    var localSearch = new BMap.LocalSearch(map);
+    var lng = '';
+    var lat = '';
+    localSearch.setSearchCompleteCallback(function (searchResult) {
+        var poi = searchResult.getPoi(0);
+        lng = poi.point.lng;
+        lat = poi.point.lat; //获取经度和纬度，将结果显示在文本框中
+        //map.centerAndZoom(poi.point, 13);
+        //alert(lng + "," + lat);
+
+        var pic = [];
+        var dto = {
+            Id: '@info.Id',
+            JCUId: '@info.JCU.Id',
+            Name: $('#Name').val(),
+            Cover: $('#HaedPic').attr('src'),
+            Address: $("#Address").val(),
+            Lng: lng,
+            Lat: lat,
+            Detail: $("#Information").val()
+        };
+        //$('#imgs').find('img').each(function () {
+        //    pic.push({
+        //        Path: $(this).attr('src')
+        //    });
+        //});
+
+        $.post("@Url.Action("SaveSiteFactoryData")", { dtos: dto, pic: pic }, function (data) {
+            if (data.Type === 'Error') {
+                Notify(data.Content, 'bottom-right', '5000', 'danger', 'fa-bolt', true);
+                return;
+            }
+            Notify(data.Content, 'bottom-right', '5000', 'info', 'fa-envelope', true);
+        });
+    });
+
+    function SaveData() {
+
+        localSearch.search($("#Address").val());
+
+
+    }
+
+
+    function deletePic(oObj) {
+        $(oObj).closest(".col-lg-4").remove();
+        return false;
+    }
+    $(document).ready(function () {
+        @*$("#UpPic").uploadify({
+            swf: '../../../../Content/js/uploadify/uploadify.swf',
+            uploader: '@string.Format("http://{0}/Api/BasicInfo/UploadPic", Request.Url.Authority)',
+            buttonText: '选择图片',
+            height: 32,
+            width: 75,
+            fileTypeDesc: 'Bannner Files',
+            fileTypeExts: '*.jpg; *.jpeg; *.png; *.bmp;*.mp4;',
+            fileSizeLimit: '20MB',
+            auto: true,
+            multi: true,
+            onFallback: function () {
+                Notify("当前浏览器未安装flash,请安装或更换浏览器。", 'bottom-right', '5000', 'warning', 'fa-warning', true);
+            },
+            onUploadSuccess: function (file, data, response) {
+                var result = eval('(' + data + ')');
+                var filePath = result.ReturnData;
+                var banner = $(".col-lg-4:hidden").clone().removeClass("hidden");
+                banner.appendTo($("#imgs"));
+
+                var extStart = filePath.lastIndexOf(".");
+                var ext = filePath.substring(extStart, filePath.length).toLowerCase();
+                //图片
+                banner.attr("data-type", 1);
+                banner.find("img").attr("src", filePath).show();
+
+            }
+        });*@
+        $("#upLogo").uploadify({
+            swf: '../../../../Content/js/uploadify/uploadify.swf',
+            uploader: '@string.Format("http://{0}/Api/BasicInfo/UploadPic", Request.Url.Authority)',
+            buttonText: '选择图片',
+            height: 32,
+            width: 75,
+            fileTypeDesc: 'Bannner Files',
+            fileTypeExts: '*.jpg; *.jpeg; *.png; *.bmp;*.mp4;',
+            fileSizeLimit: '20MB',
+            auto: true,
+            multi: true,
+            onFallback: function () {
+                Notify("当前浏览器未安装flash,请安装或更换浏览器。", 'bottom-right', '5000', 'warning', 'fa-warning', true);
+            },
+            onUploadSuccess: function (file, data, response) {
+                var result = eval('(' + data + ')');
+                var filePath = result.ReturnData;
+
+                //图片
+                $("#HaedPic").attr("src", filePath);
+
+            }
+        });
+    });
+</script>

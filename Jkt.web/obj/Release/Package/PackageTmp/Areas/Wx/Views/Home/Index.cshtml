@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>滴滴驾考</title>
+    <link rel="stylesheet" type="text/css" href="/Content/css/amazeui.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/index.css">
+</head>
+<body id="indexPage">
+
+    <div class="header">
+        <div class="head-menu">
+            <i class="am-header-icon am-icon-bars" data-am-offcanvas="{target: '#sideBar',effect:'push'}"></i>
+        </div>
+        <img src="/Content/static/img/banner.png" class="head-img" />
+    </div>
+    <div class="position">
+        <p class="position-bg am-btn am-btn-primary am-btn-block">
+            <i class="position-mark am-icon-map-marker" style="font-size: 20px"></i>
+            <a class="position-txt" href="@Url.Action("College")">当前定位：成都大学</a>
+        </p>
+    </div>
+    <div class="mark">
+        <img src="/Content/static/img/map.png" style="width: 100%;height:276px" />
+    </div>
+    <div class="footer am-g am-g-fixed">
+        <div class="foot-left am-u-sm-6">
+            <i class="yuyue"></i>
+            <a href="@Url.Action("GoDate")">预约试学</a>
+        </div>
+        <div class="foot-right am-u-sm-6">
+            <i class="phone"></i>
+            <a href="@Url.Action("Online")">在线咨询</a>
+        </div>
+
+    </div>
+    <div id="sideBar" class="am-offcanvas">
+        <div class="am-offcanvas-bar">
+            <div class="bar-user">
+                <i class="user"
+                   style="background: url('@ViewBag.HeadPic');background-size: 100% 100%;
+	background-repeat: no-repeat;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	display: inline-block;"></i>
+                <span>username</span>
+            </div>
+            <ul class="bar-list">
+                <li class="listBar">
+                    <i class="progress"></i>
+                    <a href="@Url.Action("Progress")">学车进度</a>
+                </li>
+                <li class="listBar">
+                    <i class="near"></i>
+                    <a href="@Url.Action("Near")">附近场地</a>
+                </li>
+                <li class="listBar">
+                    <i class="complaint"></i>
+                    <a href="@Url.Action("Complaint")">投诉建议</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="/Content/js/jquery.min.js"></script>
+    <!--<![endif]-->
+    <!--[if lte IE 8 ]>
+    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+    <script src="src/js/amazeui.ie8polyfill.min.js"></script>
+    <![endif]-->
+    <script src="/Content/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="/Content/js/handlebars.min.js"></script>
+</body>
+</html>
+
