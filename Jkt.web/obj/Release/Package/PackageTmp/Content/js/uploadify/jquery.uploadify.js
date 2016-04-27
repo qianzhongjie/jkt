@@ -1,4 +1,4 @@
-/*
+﻿/*
 SWFObject v2.2 <http://code.google.com/p/swfobject/> 
 is released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
 */
@@ -952,7 +952,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 			if (settings.onUploadStart) settings.onUploadStart.call(this, file); 
 		},
 
-		// Triggered when a file upload returns a successful code
+		// Triggered when a file upload returns a successful Code
 		onUploadSuccess : function(file, data, response) {
 			// Load the swfupload settings
 			var settings = this.settings;

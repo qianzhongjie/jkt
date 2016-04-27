@@ -291,7 +291,7 @@ function RGBColor(color_string)
  * @license canvg.js - Javascript SVG parser and renderer on Canvas
  * MIT Licensed 
  * Gabe Lerner (gabelerner@gmail.com)
- * http://code.google.com/p/canvg/
+ * http://Code.google.com/p/canvg/
  *
  * Requires: rgbcolor.js - http://www.phpied.com/rgb-color-parser-in-javascript/
  *
@@ -3090,7 +3090,7 @@ if (CanvasRenderingContext2D) {
 		/**
 		 * Take a color and return it if it's a string, do not make it a gradient even if it is a
 		 * gradient. Currently canvg cannot render gradients (turns out black),
-		 * see: http://code.google.com/p/canvg/issues/detail?id=104
+		 * see: http://Code.google.com/p/canvg/issues/detail?id=104
 		 *
 		 * @param {Object} color The color or config object
 		 */

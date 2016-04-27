@@ -1,4 +1,4 @@
-/**
+﻿/**
  * BootstrapValidator (http://bootstrapvalidator.com)
  *
  * A jQuery plugin to validate form fields. Use with Bootstrap 3
@@ -1649,7 +1649,7 @@
          * @param {jQuery} $field Field element
          * @param {Object} options Can consist of the following keys:
          * - message: The invalid message
-         * - country: The ISO 3166-1 country code
+         * - country: The ISO 3166-1 country Code
          * @returns {Boolean}
          */
         validate: function(validator, $field, options) {
@@ -2207,7 +2207,7 @@
          * @param {jQuery} $field Field element
          * @param {Object} options Consist of key:
          * - message: The invalid message
-         * - country: The ISO 3166 country code
+         * - country: The ISO 3166 country Code
          * Currently it only supports United State (US) country
          * @returns {Boolean}
          */
@@ -2223,7 +2223,7 @@
                 default:
                     // Make sure US phone numbers have 10 digits
                     // May start with 1, +1, or 1-; should discard
-                    // Area code may be delimited with (), & sections may be delimited with . or -
+                    // Area Code may be delimited with (), & sections may be delimited with . or -
                     // Test: http://regexr.com/38mqi
                     value = value.replace(/\D/g, '');
                     return (/^(?:(1\-?)|(\+1 ?))?\(?(\d{3})[\)\-\.]?(\d{3})[\-\.]?(\d{4})$/).test(value) && (value.length == 10);
@@ -2669,7 +2669,7 @@
          * @param {jQuery} $field Field element
          * @param {Object} options Consist of key:
          * - message: The invalid message
-         * - country: The ISO 3166-1 country code
+         * - country: The ISO 3166-1 country Code
          * @returns {Boolean}
          */
         validate: function(validator, $field, options) {
@@ -3509,7 +3509,7 @@
                     return false;
                 }
 
-                // Check personal code
+                // Check personal Code
                 sum    = 0;
                 weight = [10, 5, 8, 4, 2, 1, 6, 3, 7, 9];
                 for (i = 0; i < length - 1; i++) {
@@ -3870,13 +3870,13 @@
         },
 
         /**
-         * Return true if and only if the input value is a valid country zip code
+         * Return true if and only if the input value is a valid country zip Code
          *
          * @param {BootstrapValidator} validator The validator plugin instance
          * @param {jQuery} $field Field element
          * @param {Object} options Consist of key:
          * - message: The invalid message
-         * - country: The ISO 3166 country code
+         * - country: The ISO 3166 country Code
          *
          * Currently it supports the following countries:
          * - US (United State)

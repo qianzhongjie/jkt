@@ -1,4 +1,4 @@
-// ==ClosureCompiler==
+﻿// ==ClosureCompiler==
 // @compilation_level SIMPLE_OPTIMIZATIONS
 
 /**
@@ -1508,8 +1508,8 @@ defaultOptions = {
 	},
 	global: {
 		useUTC: true,
-		canvasToolsURL: 'http://code.highcharts.com/3.0.6/modules/canvas-tools.js',
-		VMLRadialGradientURL: 'http://code.highcharts.com/3.0.6/gfx/vml-radial-gradient.png'
+		canvasToolsURL: 'http://Code.highcharts.com/3.0.6/modules/canvas-tools.js',
+		VMLRadialGradientURL: 'http://Code.highcharts.com/3.0.6/gfx/vml-radial-gradient.png'
 	},
 	chart: {
 		//animation: true,
@@ -4530,7 +4530,7 @@ Renderer = SVGRenderer;
  * START OF INTERNET EXPLORER <= 8 SPECIFIC CODE                              *
  *                                                                            *
  * For applications and websites that don't need IE support, like platform    *
- * targeted mobile apps and web apps, this code can be removed.               *
+ * targeted mobile apps and web apps, this Code can be removed.               *
  *                                                                            *
  *****************************************************************************/
 

@@ -20,3 +20,14 @@ E:\Work\jkt\Bode.Common\bin\Release\zh-Hans\System.Web.Mvc.resources.dll
 E:\Work\jkt\Bode.Common\obj\Release\Bode.Common.csprojResolveAssemblyReference.cache
 E:\Work\jkt\Bode.Common\obj\Release\Bode.Common.dll
 E:\Work\jkt\Bode.Common\obj\Release\Bode.Common.pdb
+D:\Work\jkt\Bode.Common\bin\Release\Bode.Common.dll
+D:\Work\jkt\Bode.Common\bin\Release\Bode.Common.pdb
+D:\Work\jkt\Bode.Common\bin\Release\ICSharpCode.SharpZipLib.dll
+D:\Work\jkt\Bode.Common\bin\Release\Qiniu.4.0.dll
+D:\Work\jkt\Bode.Common\bin\Release\System.Web.Mvc.dll
+D:\Work\jkt\Bode.Common\bin\Release\Newtonsoft.Json.dll
+D:\Work\jkt\Bode.Common\bin\Release\System.Web.Mvc.xml
+D:\Work\jkt\Bode.Common\bin\Release\zh-Hans\System.Web.Mvc.resources.dll
+D:\Work\jkt\Bode.Common\obj\Release\Bode.Common.csprojResolveAssemblyReference.cache
+D:\Work\jkt\Bode.Common\obj\Release\Bode.Common.dll
+D:\Work\jkt\Bode.Common\obj\Release\Bode.Common.pdb

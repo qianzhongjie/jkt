@@ -81,7 +81,7 @@ Highcharts.Chart.prototype.exportChartLocal = function (exportingOptions, chartO
 			};
 			img.src = imageURL;
 		},
-		// Get blob URL from SVG code. Falls back to normal data URI.
+		// Get blob URL from SVG Code. Falls back to normal data URI.
 		svgToDataUrl = function (svg) {
 			try {
 				// Safari requires data URI since it doesn't allow navigation to blob URLs

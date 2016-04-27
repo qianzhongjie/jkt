@@ -123,7 +123,7 @@
 		function call ( functions, scope ) {
 
 			// Allow the passing of an unwrapped function.
-			// Leaves other code a more comprehensible.
+			// Leaves other Code a more comprehensible.
 			if( !$.isArray( functions ) ){
 				functions = [ functions ];
 			}

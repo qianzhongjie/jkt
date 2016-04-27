@@ -32,3 +32,11 @@ E:\Work\jkt\Business\bin\Debug\ICSharpCode.SharpZipLib.dll
 E:\Work\jkt\Business\bin\Debug\Bode.Common.pdb
 E:\Work\jkt\Business\bin\Debug\System.Web.Mvc.xml
 E:\Work\jkt\Business\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+D:\Work\jkt\Business\bin\Debug\Bode.Common.dll
+D:\Work\jkt\Business\bin\Debug\Qiniu.4.0.dll
+D:\Work\jkt\Business\bin\Debug\System.Web.Mvc.dll
+D:\Work\jkt\Business\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Work\jkt\Business\bin\Debug\Bode.Common.pdb
+D:\Work\jkt\Business\bin\Debug\System.Web.Mvc.xml
+D:\Work\jkt\Business\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+D:\Work\jkt\Business\obj\Debug\WXFramework.csprojResolveAssemblyReference.cache

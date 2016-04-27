@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license Map plugin v0.1 for Highcharts
  *
  * (c) 2011-2013 Torstein Hønsi
@@ -420,7 +420,7 @@
 		 * Custom animation for tweening out the colors. Animation reduces blinking when hovering
 		 * over islands and coast lines. We run a custom implementation of animation becuase we
 		 * need to be able to run this independently from other animations like zoom redraw. Also,
-		 * adding color animation to the adapters would introduce almost the same amount of code.
+		 * adding color animation to the adapters would introduce almost the same amount of Code.
 		 */
 		onMouseOut: function () {
 			var point = this,

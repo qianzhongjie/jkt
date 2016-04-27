@@ -31,14 +31,14 @@ namespace Bode.Web.Controllers
             //Type baseType = typeof(EntityBase<>);
             //IEnumerable<Type> modelTypes = assembly.GetTypes().Where(m => baseType.IsGenericAssignableFrom(m) && !m.IsAbstract && m.HasAttribute<GenerateAttribute>());
 
-            ValidateCodeDto validate = new ValidateCodeDto()
-            {
-                CodeKey = "18628303252",
-                Code = "123456",
-                CodeType = CodeType.用户注册
-            };
+            //ValidateCodeDto validate = new ValidateCodeDto()
+            //{
+            //    CodeKey = "18628303252",
+            //    Code = "123456",
+            //    CodeType = CodeType.用户注册
+            //};
 
-            await UserContract.SaveValidateCodes(dtos: validate);
+            //await UserContract.SaveValidateCodes(dtos: validate);
             int threadId1 = Thread.CurrentThread.ManagedThreadId;
 
             var codes = await UserContract.ValidateCodes.ToListAsync().ConfigureAwait(false);

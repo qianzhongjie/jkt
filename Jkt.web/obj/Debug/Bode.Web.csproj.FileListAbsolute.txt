@@ -249,7 +249,6 @@ D:\Work\jkt\Jkt.web\bin\System.Web.WebPages.Deployment.xml
 D:\Work\jkt\Jkt.web\bin\System.Web.WebPages.Razor.xml
 D:\Work\jkt\Jkt.web\bin\AutoMapper.xml
 D:\Work\jkt\Jkt.web\bin\en-us\Bode.Services.Implement.resources.dll
-D:\Work\jkt\Jkt.web\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
 D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
 D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.Helpers.resources.dll
 D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.Http.resources.dll
@@ -334,3 +333,4 @@ E:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
 E:\Work\jkt\Jkt.web\obj\Debug\Bode.Web.csprojResolveAssemblyReference.cache
 E:\Work\jkt\Jkt.web\obj\Debug\Bode.Web.dll
 E:\Work\jkt\Jkt.web\obj\Debug\Bode.Web.pdb
+D:\Work\jkt\Jkt.web\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll

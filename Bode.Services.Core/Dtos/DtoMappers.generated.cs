@@ -6,7 +6,9 @@
 
 
 using AutoMapper;
-        using Bode.Services.Core.Models.User;
+        using Bode.Services.Core.Models.Wx;
+        using Bode.Services.Core.Dtos.Wx;
+                using Bode.Services.Core.Models.User;
         using Bode.Services.Core.Dtos.User;
                 using Bode.Services.Core.Models.Student;
         using Bode.Services.Core.Dtos.Student;
@@ -17,7 +19,8 @@ namespace Bode.Services.Core.Dtos
 	{
         public static void MapperRegister()
         {
-                                Mapper.CreateMap<FeedBackDto, FeedBack>();
+                                Mapper.CreateMap<TokenCodeDto, TokenCode>();
+                                        Mapper.CreateMap<FeedBackDto, FeedBack>();
                                         Mapper.CreateMap<UserInfoDto, UserInfo>();
                                         Mapper.CreateMap<ValidateCodeDto, ValidateCode>();
                                         Mapper.CreateMap<CityDto, City>();

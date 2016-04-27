@@ -687,7 +687,7 @@
 						.add(series.group);
 				}
 				point.group = series[groupKey];
-				// Preliminary code in prepraration for HC5 that uses pointAttribs for all series
+				// Preliminary Code in prepraration for HC5 that uses pointAttribs for all series
 				point.pointAttr = {
 					'': series.pointAttribs(point),
 					'hover': series.pointAttribs(point, 'hover'),

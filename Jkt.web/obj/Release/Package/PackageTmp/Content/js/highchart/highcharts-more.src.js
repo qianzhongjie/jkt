@@ -1244,7 +1244,7 @@ var GaugeSeries = {
 seriesTypes.gauge = extendClass(seriesTypes.line, GaugeSeries);
 
 /* ****************************************************************************
- * Start Box plot series code											      *
+ * Start Box plot series Code											      *
  *****************************************************************************/
 
 // Set default options
@@ -1513,10 +1513,10 @@ seriesTypes.boxplot = extendClass(seriesTypes.column, {
 });
 
 /* ****************************************************************************
- * End Box plot series code												*
+ * End Box plot series Code												*
  *****************************************************************************/
 /* ****************************************************************************
- * Start error bar series code                                                *
+ * Start error bar series Code                                                *
  *****************************************************************************/
 
 // 1 - set default options
@@ -1552,10 +1552,10 @@ seriesTypes.errorbar = extendClass(seriesTypes.boxplot, {
 });
 
 /* ****************************************************************************
- * End error bar series code                                                  *
+ * End error bar series Code                                                  *
  *****************************************************************************/
 /* ****************************************************************************
- * Start Waterfall series code                                                *
+ * Start Waterfall series Code                                                *
  *****************************************************************************/
 
 // 1 - set default options
@@ -1812,7 +1812,7 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 });
 
 /* ****************************************************************************
- * End Waterfall series code                                                  *
+ * End Waterfall series Code                                                  *
  *****************************************************************************/
 /**
  * Set the default options for polygon
@@ -1837,7 +1837,7 @@ seriesTypes.polygon = extendClass(seriesTypes.scatter, {
 	drawLegendSymbol: Highcharts.LegendSymbolMixin.drawRectangle
 });
 /* ****************************************************************************
- * Start Bubble series code											          *
+ * Start Bubble series Code											          *
  *****************************************************************************/
 
 // 1 - set default options
@@ -2175,7 +2175,7 @@ Axis.prototype.beforePadding = function () {
 };
 
 /* ****************************************************************************
- * End Bubble series code                                                     *
+ * End Bubble series Code                                                     *
  *****************************************************************************/
 
 (function () {

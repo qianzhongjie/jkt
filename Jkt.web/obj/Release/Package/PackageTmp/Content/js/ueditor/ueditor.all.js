@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * UEditor
  * version: ueditor
  * build: Tue Aug 25 2015 15:26:07 GMT+0800 (CST)
@@ -12031,7 +12031,7 @@ UE.commands['scrawl'] = {
 UE.plugins['removeformat'] = function(){
     var me = this;
     me.setOpt({
-       'removeFormatTags': 'b,big,code,del,dfn,em,font,i,ins,kbd,q,samp,small,span,strike,strong,sub,sup,tt,u,var',
+       'removeFormatTags': 'b,big,Code,del,dfn,em,font,i,ins,kbd,q,samp,small,span,strike,strong,sub,sup,tt,u,var',
        'removeFormatAttributes':'class,style,lang,width,height,align,hspace,valign'
     });
     me.commands['removeformat'] = {

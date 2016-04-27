@@ -414,7 +414,7 @@ vjs.fixEvent = function(event) {
   // Used to check if !event.stopPropagation instead of isPropagationStopped
   // But native events return true for stopPropagation, but don't have
   // other expected methods like isPropagationStopped. Seems to be a problem
-  // with the Javascript Ninja code. So we're just overriding all events now.
+  // with the Javascript Ninja Code. So we're just overriding all events now.
   if (!event || !event.isPropagationStopped) {
     var old = event || window.event;
 
@@ -557,7 +557,7 @@ vjs.trigger = function(elem, event) {
    * We've since updated to the latest version, but keeping this around
    * for now just in case.
    */
-  // // Added in attion to book. Book code was broke.
+  // // Added in attion to book. Book Code was broke.
   // event = typeof event === 'object' ?
   //   event[vjs.expando] ?
   //     event :
@@ -1002,7 +1002,7 @@ vjs.getAttributeValues = function(tag){
       if (typeof tag[attrName] === 'boolean' || knownBooleans.indexOf(','+attrName+',') !== -1) {
         // the value of an included boolean attribute is typically an empty
         // string ('') which would equal false if we just check for a false value.
-        // we also don't want support bad code like autoplay='false'
+        // we also don't want support bad Code like autoplay='false'
         attrVal = (attrVal !== null) ? true : false;
       }
 
@@ -2026,7 +2026,7 @@ vjs.Component.prototype.dimensions = function(width, height){
 /**
  * Get or set width or height
  *
- * This is the shared code for the width() and height() methods.
+ * This is the shared Code for the width() and height() methods.
  * All for an integer, integer + 'px' or integer + '%';
  *
  * Known issue: Hidden elements officially have a width of 0. We're defaulting
@@ -3896,7 +3896,7 @@ vjs.Player.prototype.userActive = function(bool){
         // this happens in fullscreen when we really need to hide the cursor.
         //
         // When this gets resolved in ALL browsers it can be removed
-        // https://code.google.com/p/chromium/issues/detail?id=103041
+        // https://Code.google.com/p/chromium/issues/detail?id=103041
         this.tech.one('mousemove', function(e){
           e.stopPropagation();
           e.preventDefault();
@@ -5785,7 +5785,7 @@ vjs.Flash.version = function(){
 vjs.Flash.embed = function(swf, placeHolder, flashVars, params, attributes){
   var code = vjs.Flash.getEmbedCode(swf, flashVars, params, attributes),
 
-      // Get element by embedding code and retrieving created element
+      // Get element by embedding Code and retrieving created element
       obj = vjs.createEl('div', { innerHTML: code }).childNodes[0],
 
       par = placeHolder.parentNode

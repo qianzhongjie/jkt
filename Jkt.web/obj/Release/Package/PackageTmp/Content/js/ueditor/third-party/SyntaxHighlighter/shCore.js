@@ -1,4 +1,4 @@
-// XRegExp 1.5.1
+﻿// XRegExp 1.5.1
 // (c) 2007-2012 Steven Levithan
 // MIT License
 // <http://xregexp.com>
@@ -696,7 +696,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
             /** Lines to highlight. */
             'highlight' : false,
 
-            /** Title to be displayed above the code block. */
+            /** Title to be displayed above the Code block. */
             'title' : null,
 
             /** Enables or disables smart tabs. */
@@ -711,10 +711,10 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
             /** Enables or disables toolbar. */
             'toolbar' : true,
 
-            /** Enables quick code copy and paste from double click. */
+            /** Enables quick Code copy and paste from double click. */
             'quick-code' : true,
 
-            /** Forces code view to be collapsed. */
+            /** Forces Code view to be collapsed. */
             'collapse' : false,
 
             /** Enables or disables automatic links. */
@@ -905,7 +905,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
          * 							provided, all elements in the current document
          * 							are returned which qualify.
          *
-         * @return {Array}	Returns list of <code>{ target: DOMElement, params: Object }</code> objects.
+         * @return {Array}	Returns list of <Code>{ target: DOMElement, params: Object }</Code> objects.
          */
         findElements: function(globalParams, element)
         {
@@ -940,7 +940,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
 
         /**
          * Shorthand to highlight all elements on the page that are marked as
-         * SyntaxHighlighter source code.
+         * SyntaxHighlighter source Code.
          *
          * @param {Object} globalParams		Optional parameters which override element's
          * 									parameters. Only used if element is specified.
@@ -1162,7 +1162,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
 
     /**
      * Looks for a parent node which has specified classname.
-     * This is an alias to <code>findElement(container, className, true)</code>.
+     * This is an alias to <Code>findElement(container, className, true)</Code>.
      * @param {Element} target Target element.
      * @param {String} className Class name to look for.
      * @return {Element} Returns found parent element on null.
@@ -1425,7 +1425,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
     };
 
     /**
-     * Wraps each line of the string into <code/> tag with given style applied to it.
+     * Wraps each line of the string into <Code/> tag with given style applied to it.
      *
      * @param {String} str   Input string.
      * @param {String} css   Style name to apply to the string.
@@ -1468,7 +1468,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
                 if (line.length == 0)
                     return spaces;
 
-                return spaces + '<code class="' + css + '">' + line + '</code>';
+                return spaces + '<Code class="' + css + '">' + line + '</Code>';
             });
 
         return str;
@@ -1494,9 +1494,9 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
     /**
      * Replaces tabs with spaces.
      *
-     * @param {String} code		Source code.
+     * @param {String} Code		Source Code.
      * @param {Number} tabSize	Size of the tab.
-     * @return {String}			Returns code with all tabs replaces by spaces.
+     * @return {String}			Returns Code with all tabs replaces by spaces.
      */
     function processTabs(code, tabSize)
     {
@@ -1511,9 +1511,9 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
     /**
      * Replaces tabs with smart spaces.
      *
-     * @param {String} code    Code to fix the tabs in.
+     * @param {String} Code    Code to fix the tabs in.
      * @param {Number} tabSize Number of spaces in a column.
-     * @return {String}        Returns code with all tabs replaces with roper amount of spaces.
+     * @return {String}        Returns Code with all tabs replaces with roper amount of spaces.
      */
     function processSmartTabs(code, tabSize)
     {
@@ -1654,11 +1654,11 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
     };
 
     /**
-     * Executes given regular expression on provided code and returns all
+     * Executes given regular expression on provided Code and returns all
      * matches that are found.
      *
-     * @param {String} code    Code to execute regular expression on.
-     * @param {Object} regex   Regular expression item info from <code>regexList</code> collection.
+     * @param {String} Code    Code to execute regular expression on.
+     * @param {Object} regex   Regular expression item info from <Code>regexList</Code> collection.
      * @return {Array}         Returns a list of Match objects.
      */
     function getMatches(code, regexInfo)
@@ -1688,9 +1688,9 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
     };
 
     /**
-     * Turns all URLs in the code into <a/> tags.
-     * @param {String} code Input code.
-     * @return {String} Returns code with </a> tags.
+     * Turns all URLs in the Code into <a/> tags.
+     * @param {String} Code Input Code.
+     * @return {String} Returns Code with </a> tags.
      */
     function processUrls(code)
     {
@@ -1736,8 +1736,8 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
     /**
      * Strips <![CDATA[]]> from <SCRIPT /> content because it should be used
      * there in most cases for XHTML compliance.
-     * @param {String} original	Input code.
-     * @return {String} Returns code without leading <![CDATA[]]> tags.
+     * @param {String} original	Input Code.
+     * @return {String} Returns Code without leading <![CDATA[]]> tags.
      */
     function stripCData(original)
     {
@@ -1769,7 +1769,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
 
 
     /**
-     * Quick code mouse double click handler.
+     * Quick Code mouse double click handler.
      */
     function quickCodeHandler(e)
     {
@@ -1837,7 +1837,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
     };
 
     /**
-     * Simulates HTML code with a scripting language embedded.
+     * Simulates HTML Code with a scripting language embedded.
      *
      * @param {String} scriptBrushName Brush name of the scripting language.
      */
@@ -1893,7 +1893,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
                 result
                 ;
 
-            // add all matches from the code
+            // add all matches from the Code
             for (var i = 0; i < regexList.length; i++)
             {
                 result = getMatches(code, regexList[i]);
@@ -1930,7 +1930,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
      */
     sh.Highlighter = function()
     {
-        // not putting any code in here because of the prototype inheritance
+        // not putting any Code in here because of the prototype inheritance
     };
 
     sh.Highlighter.prototype = {
@@ -1957,10 +1957,10 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
         },
 
         /**
-         * Applies all regular expression to the code and stores all found
+         * Applies all regular expression to the Code and stores all found
          * matches in the `this.matches` array.
          * @param {Array} regexList		List of regular expressions.
-         * @param {String} code			Source code.
+         * @param {String} Code			Source Code.
          * @return {Array}				Returns list of matches.
          */
         findMatches: function(regexList, code)
@@ -2044,9 +2044,9 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
         },
 
         /**
-         * Generates HTML markup for a single line of code while determining alternating line style.
+         * Generates HTML markup for a single line of Code while determining alternating line style.
          * @param {Integer} lineNumber	Line number.
-         * @param {String} code Line	HTML markup.
+         * @param {String} Code Line	HTML markup.
          * @return {String}				Returns HTML markup.
          */
         getLineHtml: function(lineIndex, lineNumber, code)
@@ -2069,7 +2069,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
 
         /**
          * Generates HTML markup for line number column.
-         * @param {String} code			Complete code HTML markup.
+         * @param {String} Code			Complete Code HTML markup.
          * @param {Array} lineNumbers	Calculated line numbers.
          * @return {String}				Returns HTML markup.
          */
@@ -2100,9 +2100,9 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
 
         /**
          * Splits block of text into individual DIV lines.
-         * @param {String} code			Code to highlight.
+         * @param {String} Code			Code to highlight.
          * @param {Array} lineNumbers	Calculated line numbers.
-         * @return {String}				Returns highlighted code in HTML form.
+         * @return {String}				Returns highlighted Code in HTML form.
          */
         getCodeLinesHtml: function(html, lineNumbers)
         {
@@ -2138,7 +2138,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
                 html += this.getLineHtml(
                     i,
                     lineNumber,
-                    (spaces != null ? '<code class="' + brushName + ' spaces">' + spaces + '</code>' : '') + line
+                    (spaces != null ? '<Code class="' + brushName + ' spaces">' + spaces + '</Code>' : '') + line
                 );
             }
 
@@ -2154,8 +2154,8 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
         },
 
         /**
-         * Finds all matches in the source code.
-         * @param {String} code		Source code to process matches in.
+         * Finds all matches in the source Code.
+         * @param {String} Code		Source Code to process matches in.
          * @param {Array} matches	Discovered regex matches.
          * @return {String} Returns formatted HTML with processed mathes.
          */
@@ -2200,7 +2200,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
 
         /**
          * Generates HTML markup for the whole syntax highlighter.
-         * @param {String} code Source code.
+         * @param {String} Code Source Code.
          * @return {String} Returns HTML markup.
          */
         getHtml: function(code)
@@ -2242,14 +2242,14 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
                 : processTabs(code, tabSize)
             ;
 
-            // unindent code by the common indentation
+            // unindent Code by the common indentation
             if (this.getParam('unindent'))
                 code = unindent(code);
 
             if (gutter)
                 lineNumbers = this.figureOutLineNumbers(code);
 
-            // find matches in the code using brushes regex list
+            // find matches in the Code using brushes regex list
             matches = this.findMatches(this.regexList, code);
             // processes found matches into the html
             html = this.getMatchesHtml(code, matches);
@@ -2271,7 +2271,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
                     + '<tbody>'
                     + '<tr>'
                     + (gutter ? '<td class="gutter">' + this.getLineNumbersHtml(code) + '</td>' : '')
-                    + '<td class="code">'
+                    + '<td class="Code">'
                     + '<div class="container">'
                     + html
                     + '</div>'
@@ -2286,8 +2286,8 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
         },
 
         /**
-         * Highlights the code and returns complete HTML.
-         * @param {String} code     Code to highlight.
+         * Highlights the Code and returns complete HTML.
+         * @param {String} Code     Code to highlight.
          * @return {Element}        Returns container DIV element with all markup.
          */
         getDiv: function(code)
@@ -2306,8 +2306,8 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
             if (this.getParam('toolbar'))
                 attachEvent(findElement(div, '.toolbar'), 'click', sh.toolbar.handler);
 
-            if (this.getParam('quick-code'))
-                attachEvent(findElement(div, '.code'), 'dblclick', quickCodeHandler);
+            if (this.getParam('quick-Code'))
+                attachEvent(findElement(div, '.Code'), 'dblclick', quickCodeHandler);
 
             return div;
         },
@@ -2366,7 +2366,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function()
                 right : { regex: regexGroup.right, css: 'script' },
                 code : new XRegExp(
                     "(?<left>" + regexGroup.left.source + ")" +
-                        "(?<code>.*?)" +
+                        "(?<Code>.*?)" +
                         "(?<right>" + regex.end + ")",
                     "sgi"
                 )
@@ -2773,7 +2773,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
 						'vertical-align visibility voice-family volume white-space widows width widths word-spacing x-height z-index';
 
 		var values =	'above absolute all always aqua armenian attr aural auto avoid baseline behind below bidi-override black blink block blue bold bolder '+
-						'both bottom braille capitalize caption center center-left center-right circle close-quote code collapse compact condensed '+
+						'both bottom braille capitalize caption center center-left center-right circle close-quote Code collapse compact condensed '+
 						'continuous counter counters crop cross crosshair cursive dashed decimal decimal-leading-zero default digits disc dotted double '+
 						'embed embossed e-resize expanded extra-condensed extra-expanded fantasy far-left far-right fast faster fixed format fuchsia '+
 						'gray green groove handheld hebrew help hidden hide high higher icon inline-table inline inset inside invert italic '+
@@ -3430,7 +3430,7 @@ typeof(exports) != 'undefined' ? exports.SyntaxHighlighter = SyntaxHighlighter :
 						'vertical-align visibility voice-family volume white-space widows width widths word-spacing x-height z-index';
 		
 		var values =	'above absolute all always aqua armenian attr aural auto avoid baseline behind below bidi-override black blink block blue bold bolder '+
-						'both bottom braille capitalize caption center center-left center-right circle close-quote code collapse compact condensed '+
+						'both bottom braille capitalize caption center center-left center-right circle close-quote Code collapse compact condensed '+
 						'continuous counter counters crop cross crosshair cursive dashed decimal decimal-leading-zero digits disc dotted double '+
 						'embed embossed e-resize expanded extra-condensed extra-expanded fantasy far-left far-right fast faster fixed format fuchsia '+
 						'gray green groove handheld hebrew help hidden hide high higher icon inline-table inline inset inside invert italic '+

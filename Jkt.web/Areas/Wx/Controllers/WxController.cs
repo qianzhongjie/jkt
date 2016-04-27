@@ -20,15 +20,18 @@ using WX.Model;
 using WX.Model.ApiRequests;
 using WX.Model.ApiResponses;
 using WX.OAuth;
+using OSharp.Utility.Logging;
+using Microsoft.AspNet.Identity;
 
 namespace Bode.Web.Areas.Wx.Controllers
 {
     [Description("基类控制机")]
-    public class WxController : FristController
+    public class WxController : Controller
     {
         public string Token { get; set; }
         public string OpenId { get; set; }
         public string NickName { get; set; }
+
         public string Host = ConfigurationManager.AppSettings["ServerHost"];
         public UserInfoRegistDto UserInfo { get; set; }
         private IApiClient m_client = new DefaultApiClient();
@@ -38,33 +41,14 @@ namespace Bode.Web.Areas.Wx.Controllers
         public IUserContract UserContract { get; set; }
         public WxController()
         {
+            //string userAgent = Request.UserAgent;
+            //if (!userAgent.ToLower().Contains("micromessenger"))
+            //{
+            //    Response.Write("请在微信中访问");
+            //}
             //GetCode();
-            if (!string.IsNullOrWhiteSpace(Code))
-            {
-                //获取token
-                GetToken();
-                if (!string.IsNullOrWhiteSpace(Token) && !string.IsNullOrWhiteSpace(OpenId))
-                {
-                    var userInfo = UserContract.UserInfos.Where(x => x.SysUser.UserName == OpenId);
-                    if (!userInfo.Any())
-                    {
-                        //注册用户
-                        Re();
-                    }
-                    else
-                    {
-                        //跟新userId
-                        var user = userInfo.First();
-                        UserInfo.Id = user.Id;
-                        // UserInfo.UserName = user.SysUser.UserName;
-                        //UserInfo.NickName = user.SysUser.NickName;
-                        UserInfo.RealName = user.RealName;
-                        //UserInfo.HeadPic = user.HeadPic;
-                        UserInfo.Sex = user.Sex;
 
-                    }
-                }
-            }
+   
             //if (UserInfo.Id == 0)
             //{
 
@@ -98,6 +82,14 @@ namespace Bode.Web.Areas.Wx.Controllers
         //获取token和openid
         public void GetToken()
         {
+            HttpCookie cookie = Request.Cookies["token"];
+            if (cookie == null)
+            {
+
+                return;
+            }
+            var Code = cookie.Values["Code"];
+            var loger = LogManager.GetLogger("RequestToken");
             var request = new SnsOAuthAccessTokenRequest
             {
                 AppID = m_appIdent.AppID,
@@ -105,6 +97,7 @@ namespace Bode.Web.Areas.Wx.Controllers
                 Code = Code
             };
             var response = m_client.Execute(request);
+            loger.Error("MSG:{0};Code:{1};response:{2}", response.ErrorMessage, response.ErrorCode, response);
             if (!response.IsError)
             {
                 Token = response.AccessToken;
@@ -130,15 +123,15 @@ namespace Bode.Web.Areas.Wx.Controllers
             {
                 UserInfo = new UserInfoRegistDto
                 {
-                    Password = "dd",
-                    NickName = response.NickName,
-                    UserName = response.OpenId,
-                    Province = response.Province,
-                    City = response.City,
-                    Country = response.Country,
+                    Password = OpenId,
+                    NickName = response.nickName,
+                    UserName = response.openId,
+                    Province = response.province,
+                    City = response.city,
+                    Country = response.country,
                     //RealName = response.NickName,
-                    HeadPic = response.HeadImageUrl,
-                    Sex = response.Sex == "男" ? Sex.男 : Sex.女
+                    HeadPic = response.headImageUrl,
+                    Sex = response.sex == "男" ? Sex.男 : Sex.女
                 };
             }
             else
@@ -149,7 +142,9 @@ namespace Bode.Web.Areas.Wx.Controllers
         //注册用户
         public async void Re()
         {
+            var loger = LogManager.GetLogger("Register");
             var result = await UserContract.ValidateRegister(UserInfo, "");
+            loger.Error("MSG:{0};", result.Successed);
             if (result.Successed)
             {
                 UserInfo.Id = (int)result.Data;

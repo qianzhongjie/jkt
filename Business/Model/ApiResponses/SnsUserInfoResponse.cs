@@ -8,22 +8,22 @@ namespace WX.Model.ApiResponses
 {
     public class SnsUserInfoResponse : ApiResponse
     {
-        public string OpenId { get; set; }
+        public string openId { get; set; }
 
-        public string NickName { get; set; }
+        public string nickName { get; set; }
 
-        public string Sex { get; set; }
+        public string sex { get; set; }
 
-        public string Province { get; set; }
+        public string province { get; set; }
 
-        public string City { get; set; }
+        public string city { get; set; }
 
-        public string Country { get; set; }
+        public string country { get; set; }
 
         [JsonProperty("headimgurl")]
-        public string HeadImageUrl { get; set; }
+        public string headImageUrl { get; set; }
 
         [JsonProperty("privilege")]
-        public IEnumerable<string> Privilege { get; set; }
+        public IEnumerable<string> privilege { get; set; }
     }
 }

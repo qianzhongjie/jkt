@@ -32,10 +32,10 @@ var CodeMirror = (function() {
                 '<div class="CodeMirror-lines"><div style="position: relative">' +
                 '<div style="position: absolute; width: 100%; height: 0; overflow: hidden; visibility: hidden"></div>' +
                 '<pre class="CodeMirror-cursor">&#160;</pre>' + // Absolutely positioned blinky cursor
-                '<div></div>' + // This DIV contains the actual code
+                '<div></div>' + // This DIV contains the actual Code
                 '</div></div></div></div></div>';
         if (place.appendChild) place.appendChild(wrapper); else place(wrapper);
-        // I've never seen more elegant code in my life.
+        // I've never seen more elegant Code in my life.
         var inputDiv = wrapper.firstChild, input = inputDiv.firstChild,
             scroller = wrapper.lastChild, code = scroller.firstChild,
             mover = code.firstChild, gutter = mover.firstChild, gutterText = gutter.firstChild,
@@ -244,7 +244,7 @@ var CodeMirror = (function() {
             getRange: function(from, to) {return getRange(clipPos(from), clipPos(to));},
 
             execCommand: function(cmd) {return commands[cmd](instance);},
-            // Stuff used by commands, probably not much use to outside code.
+            // Stuff used by commands, probably not much use to outside Code.
             moveH: operation(moveH),
             deleteH: operation(deleteH),
             moveV: operation(moveV),

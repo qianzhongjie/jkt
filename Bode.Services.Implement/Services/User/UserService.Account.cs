@@ -270,47 +270,38 @@ namespace Bode.Services.Implement.Services
             }
         }
 
-        //public async Task<OperationResult> Register(string openId)
-        //{
-        //    try
-        //    {
-        //        UserInfoRepo.UnitOfWork.TransactionEnabled = true;
-        //        //验证密码格式
-        //        IdentityResult result = await UserManager.PasswordValidator.ValidateAsync(dto.Password);
-        //        if (!result.Succeeded) return result.ToOperationResult();
+        public OperationResult Register(UserInfoRegistDto dto)
+        {
+            try
+            {
+                UserInfoRepo.UnitOfWork.TransactionEnabled = true;
+                SysUser sUser = new SysUser()
+                {
+                    UserName = dto.UserName,
+                    NickName = dto.NickName,
+                    PasswordHash = dto.Password,//密码加密
+                    UserType = UserType.App用户
+                };
+                SysUserRepo.Insert(sUser);
+                SysUserRepo.UnitOfWork.SaveChanges();
 
-        //        SysUser sUser = new SysUser()
-        //        {
-        //            UserName = dto.UserName,
-        //            NickName = dto.NickName,
-        //            PasswordHash = UserManager.PasswordHasher.HashPassword(dto.Password),//密码加密
-        //            UserType = UserType.App用户
-        //        };
-        //        if (severCode.ValidateType == ValidateType.手机)
-        //        {
-        //            sUser.PhoneNumber = dto.UserName;
-        //            sUser.PhoneNumberConfirmed = true;
-        //        }
-        //        else
-        //        {
-        //            sUser.Email = dto.UserName;
-        //            sUser.EmailConfirmed = true;
-        //        }
-        //        await UserManager.CreateAsync(sUser);
-
-        //        var userInfo = Mapper.Map<UserInfo>(dto);
-        //        userInfo.SysUser = sUser;
-        //        await UserInfoRepo.InsertAsync(userInfo);
-
-        //        await UserInfoRepo.UnitOfWork.SaveChangesAsync();
-        //        var sysUser = await UserManager.FindByNameAsync(sUser.UserName);
-        //        return new OperationResult(OperationResultType.Success, "注册成功", sysUser);
-        //    }
-        //    catch
-        //    {
-        //        return new OperationResult(OperationResultType.NoChanged, "注册失败", 0);
-        //    }
-        //}
+                UserInfoRepo.UnitOfWork.TransactionEnabled = true;
+                var userInfo = new UserInfo();
+                userInfo.SysUser = SysUserRepo.GetByKey(sUser.Id);
+                userInfo.HeadPic = dto.HeadPic;
+                userInfo.Province = dto.Province;
+                userInfo.City = dto.City;
+                userInfo.Country = dto.Country;
+                userInfo.Sex = dto.Sex;
+                UserInfoRepo.Insert(userInfo);
+                UserInfoRepo.UnitOfWork.SaveChanges();
+                return new OperationResult(OperationResultType.Success, "注册成功", userInfo.Id);
+            }
+            catch (Exception e)
+            {
+                return new OperationResult(OperationResultType.NoChanged, e.Message, 0);
+            }
+        }
 
         /// <summary>
         /// 用户登录

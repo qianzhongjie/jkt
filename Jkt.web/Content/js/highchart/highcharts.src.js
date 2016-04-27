@@ -1269,8 +1269,8 @@ defaultOptions = {
 	global: {
 		useUTC: true,
 		//timezoneOffset: 0,
-		canvasToolsURL: 'http://code.highcharts.com/4.1.9/modules/canvas-tools.js',
-		VMLRadialGradientURL: 'http://code.highcharts.com/4.1.9/gfx/vml-radial-gradient.png'
+		canvasToolsURL: 'http://Code.highcharts.com/4.1.9/modules/canvas-tools.js',
+		VMLRadialGradientURL: 'http://Code.highcharts.com/4.1.9/gfx/vml-radial-gradient.png'
 	},
 	chart: {
 		//animation: true,
@@ -4736,7 +4736,7 @@ extend(SVGRenderer.prototype, {
  * START OF INTERNET EXPLORER <= 8 SPECIFIC CODE                              *
  *                                                                            *
  * For applications and websites that don't need IE support, like platform    *
- * targeted mobile apps and web apps, this code can be removed.               *
+ * targeted mobile apps and web apps, this Code can be removed.               *
  *                                                                            *
  *****************************************************************************/
 
@@ -13275,7 +13275,7 @@ Series.prototype = {
 		
 		this.pointInterval = pointInterval = pick(this.pointInterval, options.pointInterval, 1);
 		
-		// Added code for pointInterval strings
+		// Added Code for pointInterval strings
 		if (pointIntervalUnit === 'month' || pointIntervalUnit === 'year') {
 			date = new Date(xIncrement);
 			date = (pointIntervalUnit === 'month') ?

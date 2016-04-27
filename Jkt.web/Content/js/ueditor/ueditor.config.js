@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ueditor完整配置项
  * 可以在这里配置整个编辑器的特性
  */
@@ -265,7 +265,7 @@
         //removeFormat
         //清除格式时可以删除的标签和属性
         //removeForamtTags标签
-        //,removeFormatTags:'b,big,code,del,dfn,em,font,i,ins,kbd,q,samp,small,span,strike,strong,sub,sup,tt,u,var'
+        //,removeFormatTags:'b,big,Code,del,dfn,em,font,i,ins,kbd,q,samp,small,span,strike,strong,sub,sup,tt,u,var'
         //removeFormatAttributes属性
         //,removeFormatAttributes:'class,style,lang,width,height,align,hspace,valign'
 

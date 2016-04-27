@@ -106,6 +106,7 @@
     <Compile Include="ModelConfigs\User\FeedBackConfiguration.cs" />
     <Compile Include="ModelConfigs\User\ValidateCodeConfiguration.cs" />
     <Compile Include="ModelConfigs\User\UserInfoConfiguration.cs" />
+    <Compile Include="ModelConfigs\Wx\TokenCodeCofiguration.cs" />
     <Compile Include="Permissions\Identity\RoleStore.cs" />
     <Compile Include="Permissions\Identity\UserManager.cs" />
     <Compile Include="Permissions\Identity\UserStore.cs" />
@@ -156,6 +157,8 @@
     <Compile Include="Services\User\UserService.generated.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Services\Wx\WxService.cs" />
+    <Compile Include="Services\Wx\WxService.generated.cs" />
     <Compile Include="T4\Include\ServicesTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -190,6 +193,7 @@
       <LastOutputs>
 ..\Services\Student\StudentService.generated.cs
 ..\Services\User\UserService.generated.cs
+..\Services\Wx\WxService.generated.cs
 .\ServicesCodeScript.cs
 </LastOutputs>
     </None>

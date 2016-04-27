@@ -2198,7 +2198,7 @@
                 data = this._data,
                 seconds, minutes, hours, years;
 
-            // The following code bubbles up values, see the tests for
+            // The following Code bubbles up values, see the tests for
             // examples of what that means.
             data.milliseconds = milliseconds % 1000;
 

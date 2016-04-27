@@ -278,7 +278,7 @@ return {
 
 
 		/**
-		 * Start of animation specific code
+		 * Start of animation specific Code
 		 */
 		Fx = function (elem, options, prop) {
 			this.options = options;

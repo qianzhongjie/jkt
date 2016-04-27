@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created with JetBrains PhpStorm.
  * User: taoqili
  * Date: 12-6-12
@@ -13,7 +13,7 @@ UE.I18N['en'] = {
         'pasteplain':'PastePlain', 'selectall':'SelectAll', 'print':'Print', 'preview':'Preview',
         'horizontal':'Horizontal', 'removeformat':'RemoveFormat', 'time':'Time', 'date':'Date',
         'unlink':'Unlink', 'insertrow':'InsertRow', 'insertcol':'InsertCol', 'mergeright':'MergeRight', 'mergedown':'MergeDown',
-        'deleterow':'DeleteRow', 'deletecol':'DeleteCol', 'splittorows':'SplitToRows','insertcode':'insert code',
+        'deleterow':'DeleteRow', 'deletecol':'DeleteCol', 'splittorows':'SplitToRows','insertcode':'insert Code',
         'splittocols':'SplitToCols', 'splittocells':'SplitToCells','deletecaption':'DeleteCaption','inserttitle':'InsertTitle',
         'mergecells':'MergeCells', 'deletetable':'DeleteTable', 'cleardoc':'Clear', 'insertparagraphbeforetable':"InsertParagraphBeforeTable",
         'fontfamily':'FontFamily', 'fontsize':'FontSize', 'paragraph':'Paragraph','simpleupload':'Single Image','insertimage':'Multi Image','edittable':'Edit Table', 'edittd':'Edit Td','link':'Link',
@@ -228,7 +228,7 @@ UE.I18N['en'] = {
         'imageFloat':"Image float",
         'removeFontsize':"Remove font size",
         'removeFontFamily':"Remove fontFamily",
-        'removeHtml':"Remove redundant HTML code",
+        'removeHtml':"Remove redundant HTML Code",
         'pasteFilter':"Paste filter",
         'run':"Done",
         'symbol':'Symbol Conversion',

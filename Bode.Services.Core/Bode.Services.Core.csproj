@@ -82,6 +82,8 @@
     <Compile Include="Contracts\IUserContract.generated.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Contracts\IWxContract.cs" />
+    <Compile Include="Contracts\IWxContract.generated.cs" />
     <Compile Include="Dtos\DroMappers.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -140,6 +142,7 @@
     <Compile Include="Dtos\User\ValidateCodeDto.generated.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Dtos\Wx\TokenCodeDto.generated.cs" />
     <Compile Include="Models\BannerEntityBase.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -189,6 +192,7 @@
     <Compile Include="Models\User\ValidateCode.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Wx\TokenCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="T4\ContractsCodeScript.cs">
       <DependentUpon>ContractsCodeScript.tt</DependentUpon>
@@ -233,6 +237,7 @@
       <LastOutputs>
 ..\Contracts\IStudentContract.generated.cs
 ..\Contracts\IUserContract.generated.cs
+..\Contracts\IWxContract.generated.cs
 .\ContractsCodeScript.cs
 </LastOutputs>
     </None>
@@ -258,6 +263,7 @@
 ..\Dtos\User\FeedBackDto.generated.cs
 ..\Dtos\User\UserInfoDto.generated.cs
 ..\Dtos\User\ValidateCodeDto.generated.cs
+..\Dtos\Wx\TokenCodeDto.generated.cs
 .\DtosCodeScript.cs
 </LastOutputs>
     </None>

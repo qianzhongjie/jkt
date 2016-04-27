@@ -132,5 +132,6 @@ namespace Bode.Services.Core.Contracts
         int UpdateUserInfo(SysUser model);
 
         OperationResult SaveUserDetail(UserInfoEditDto dto);
+        OperationResult Register(UserInfoRegistDto dto);
     }
 }

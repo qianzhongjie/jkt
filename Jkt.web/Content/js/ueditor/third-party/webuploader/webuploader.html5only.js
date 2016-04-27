@@ -1,4 +1,4 @@
-/*! WebUploader 0.1.2 */
+﻿/*! WebUploader 0.1.2 */
 
 
 /**
@@ -4888,7 +4888,7 @@
             var tiffOffset = offset + 10,
                 littleEndian, dirOffset;
     
-            // Check for the ASCII code for "Exif" (0x45786966):
+            // Check for the ASCII Code for "Exif" (0x45786966):
             if ( dataView.getUint32( offset + 4 ) !== 0x45786966 ) {
                 // No Exif data, might be XMP data instead
                 return;
@@ -5409,7 +5409,7 @@
     
                     // android直接发送blob会导致服务端接收到的是空文件。
                     // bug详情。
-                    // https://code.google.com/p/android/issues/detail?id=39882
+                    // https://Code.google.com/p/android/issues/detail?id=39882
                     // 所以先用fileReader读取出来再通过arraybuffer的方式发送。
                     if ( Base.os.android ) {
                         fr = new FileReader();

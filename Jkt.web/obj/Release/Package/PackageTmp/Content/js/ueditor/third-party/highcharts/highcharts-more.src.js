@@ -1,4 +1,4 @@
-// ==ClosureCompiler==
+﻿// ==ClosureCompiler==
 // @compilation_level SIMPLE_OPTIMIZATIONS
 
 /**
@@ -1121,7 +1121,7 @@ var GaugeSeries = {
 	drawTracker: seriesTypes.column.prototype.drawTracker
 };
 seriesTypes.gauge = Highcharts.extendClass(seriesTypes.line, GaugeSeries);/* ****************************************************************************
- * Start Box plot series code											      *
+ * Start Box plot series Code											      *
  *****************************************************************************/
 
 // Set default options
@@ -1390,10 +1390,10 @@ seriesTypes.boxplot = extendClass(seriesTypes.column, {
 });
 
 /* ****************************************************************************
- * End Box plot series code												*
+ * End Box plot series Code												*
  *****************************************************************************/
 /* ****************************************************************************
- * Start error bar series code                                                *
+ * Start error bar series Code                                                *
  *****************************************************************************/
 
 // 1 - set default options
@@ -1428,10 +1428,10 @@ seriesTypes.errorbar = extendClass(seriesTypes.boxplot, {
 });
 
 /* ****************************************************************************
- * End error bar series code                                                  *
+ * End error bar series Code                                                  *
  *****************************************************************************/
 /* ****************************************************************************
- * Start Waterfall series code                                                *
+ * Start Waterfall series Code                                                *
  *****************************************************************************/
 
 // 1 - set default options
@@ -1676,10 +1676,10 @@ seriesTypes.waterfall = extendClass(seriesTypes.column, {
 });
 
 /* ****************************************************************************
- * End Waterfall series code                                                  *
+ * End Waterfall series Code                                                  *
  *****************************************************************************/
 /* ****************************************************************************
- * Start Bubble series code											          *
+ * Start Bubble series Code											          *
  *****************************************************************************/
 
 // 1 - set default options
@@ -1967,7 +1967,7 @@ Axis.prototype.beforePadding = function () {
 };
 
 /* ****************************************************************************
- * End Bubble series code                                                     *
+ * End Bubble series Code                                                     *
  *****************************************************************************/
 /**
  * Extensions for polar charts. Additionally, much of the geometry required for polar charts is

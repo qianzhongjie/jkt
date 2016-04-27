@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Super simple wysiwyg editor on Bootstrap v0.5.1
  * http://hackerwins.github.io/summernote/
  *
@@ -2819,7 +2819,7 @@
         return '<button type="button" class="btn btn-default btn-sm btn-small" title="' + lang.options.fullscreen + '" data-event="fullscreen" tabindex="-1"><i class="fa fa-arrows-alt icon-fullscreen"></i></button>';
       },
       codeview: function (lang) {
-        return '<button type="button" class="btn btn-default btn-sm btn-small" title="' + lang.options.codeview + '" data-event="codeview" tabindex="-1"><i class="fa fa-code icon-code"></i></button>';
+        return '<button type="button" class="btn btn-default btn-sm btn-small" title="' + lang.options.codeview + '" data-event="codeview" tabindex="-1"><i class="fa fa-Code icon-Code"></i></button>';
       },
       undo: function (lang) {
         return '<button type="button" class="btn btn-default btn-sm btn-small" title="' + lang.history.undo + '" data-event="undo" tabindex="-1"><i class="fa fa-undo icon-undo"></i></button>';
@@ -3275,7 +3275,7 @@
         var info = renderer.layoutInfoFromHolder($holder);
         eventHandler.attach(info, options);
 
-        // Textarea: auto filling the code before form submit.
+        // Textarea: auto filling the Code before form submit.
         if (dom.isTextarea($holder[0])) {
           $holder.closest('form').submit(function () {
             $holder.html($holder.code());
