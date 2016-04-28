@@ -15,7 +15,7 @@ namespace WX
         private AppIdentication m_appIdent = new AppIdentication(
              ConfigurationManager.AppSettings["wxappid"],
             ConfigurationManager.AppSettings["wxappsecret"]);
-        public void GetAccessToken()
+        public string GetAccessToken()
         {
             var request = new SnsOAuthAccessTokenRequest
             {
@@ -24,7 +24,7 @@ namespace WX
                 Code = "json"
             };
             var response = m_client.Execute(request);
-
+            return response.AccessToken;
         }
     }
 }

@@ -211,6 +211,8 @@
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\typicons.min.css" />
     <Content Include="Content\css\weather-icons.min.css" />
+    <Content Include="Content\css\weui.css" />
+    <Content Include="Content\css\weui.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\typicons.svg" />
@@ -749,6 +751,7 @@
     <Content Include="Areas\Wx\Views\Home\SuccessSubmit.cshtml" />
     <Content Include="Areas\Wx\Views\Home\College.cshtml" />
     <Content Include="Areas\Wx\Views\Result\AuthTokenUrl.cshtml" />
+    <Content Include="Areas\Wx\Views\Shared\_Layout.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\本地.pubxml" />
     <None Include="Web.Debug.config">
@@ -763,7 +766,6 @@
     <Folder Include="Areas\Wx\Models\" />
     <Folder Include="Areas\Wx\Views\Frist\" />
     <Folder Include="Areas\Wx\Views\Function\" />
-    <Folder Include="Areas\Wx\Views\Shared\" />
     <Folder Include="Areas\Wx\Views\Wx\" />
     <Folder Include="Content\js\angular\i18n\ngLocale\" />
     <Folder Include="Content\js\charts\chartjs\" />

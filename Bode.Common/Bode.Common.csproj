@@ -65,6 +65,7 @@
     <Compile Include="RarOrZip\ZipAndUnzipFile.cs" />
     <Compile Include="Result\ResultJsonP.cs" />
     <Compile Include="Result\SendMsg53kf.cs" />
+    <Compile Include="Result\WxResult.cs" />
     <Compile Include="Upload\UeditorUploader.cs" />
     <Compile Include="Upload\UploadHelper.cs" />
   </ItemGroup>

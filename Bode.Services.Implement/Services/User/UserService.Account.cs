@@ -282,20 +282,47 @@ namespace Bode.Services.Implement.Services
                     PasswordHash = dto.Password,//密码加密
                     UserType = UserType.App用户
                 };
-                SysUserRepo.Insert(sUser);
-                SysUserRepo.UnitOfWork.SaveChanges();
+                if (dto.Id == 0)
+                {
+                    SysUserRepo.Insert(sUser);
+                    SysUserRepo.UnitOfWork.SaveChanges();
+                    UserInfoRepo.UnitOfWork.TransactionEnabled = true;
+                    var userInfo = new UserInfo();
+                    userInfo.SysUser = SysUserRepo.GetByKey(sUser.Id);
+                    userInfo.HeadPic = dto.HeadPic;
+                    userInfo.Province = dto.Province;
+                    userInfo.City = dto.City;
+                    userInfo.Country = dto.Country;
+                    userInfo.Sex = dto.Sex;
+                    userInfo.Token = dto.Token;
+                    UserInfoRepo.Insert(userInfo);
+                    UserInfoRepo.UnitOfWork.SaveChanges();
+                    return new OperationResult(OperationResultType.Success, "注册成功", userInfo.Id);
+                }
+                else
+                {
+                    var User = UserInfoRepo.GetByKey(dto.Id);
+                    sUser = User.SysUser;
+                    sUser.UserName = dto.UserName;
+                    sUser.NickName = dto.NickName;
+                    sUser.PasswordHash = dto.Password;//密码加密
+                    sUser.UserType = UserType.App用户;
+                    SysUserRepo.Update(User.SysUser);
+                    SysUserRepo.UnitOfWork.SaveChanges();
 
-                UserInfoRepo.UnitOfWork.TransactionEnabled = true;
-                var userInfo = new UserInfo();
-                userInfo.SysUser = SysUserRepo.GetByKey(sUser.Id);
-                userInfo.HeadPic = dto.HeadPic;
-                userInfo.Province = dto.Province;
-                userInfo.City = dto.City;
-                userInfo.Country = dto.Country;
-                userInfo.Sex = dto.Sex;
-                UserInfoRepo.Insert(userInfo);
-                UserInfoRepo.UnitOfWork.SaveChanges();
-                return new OperationResult(OperationResultType.Success, "注册成功", userInfo.Id);
+                    var userInfo = User;
+                    userInfo.SysUser = SysUserRepo.GetByKey(sUser.Id);
+                    userInfo.HeadPic = dto.HeadPic;
+                    userInfo.Province = dto.Province;
+                    userInfo.City = dto.City;
+                    userInfo.Country = dto.Country;
+                    userInfo.Sex = dto.Sex;
+                    userInfo.Token = dto.Token;
+                    UserInfoRepo.Update(userInfo);
+                    UserInfoRepo.UnitOfWork.SaveChanges();
+                    return new OperationResult(OperationResultType.Success, "更新成功", userInfo.Id);
+                }
+
             }
             catch (Exception e)
             {

@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = "~/Areas/Wx/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,6 +13,7 @@
     <title>滴滴驾考</title>
     <link rel="stylesheet" type="text/css" href="/Content/css/amazeui.min.css">
     <link rel="stylesheet" type="text/css" href="/Content/css/index.css">
+
 </head>
 <body id="indexPage">
 
@@ -43,12 +47,7 @@
         <div class="am-offcanvas-bar">
             <div class="bar-user">
                 <i class="user"
-                   style="background: url(@ViewBag.HeadPic);background-size: 100% 100%;
-	background-repeat: no-repeat;
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	display: inline-block;"></i>
+                   style="background: url(@ViewBag.HeadPic);background-size: 100% 100%;background-repeat: no-repeat;width: 100px;height: 100px;border-radius: 50%;display: inline-block;"></i>
                 <span>@ViewBag.NickName</span>
             </div>
             <ul class="bar-list">
@@ -67,6 +66,7 @@
             </ul>
         </div>
     </div>
+
     <!--[if (gte IE 9)|!(IE)]><!-->
     <script src="/Content/js/jquery.min.js"></script>
     <!--<![endif]-->

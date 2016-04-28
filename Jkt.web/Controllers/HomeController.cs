@@ -23,7 +23,7 @@ namespace Bode.Web.Controllers
         // GET: Home
 
         [Description("主页")]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             //string modelFile = Path.Combine(projectPath, @"bin\Debug\Bode.Services.Core.dll");
             //byte[] fileData = File.ReadAllBytes(modelFile);
@@ -39,14 +39,14 @@ namespace Bode.Web.Controllers
             //};
 
             //await UserContract.SaveValidateCodes(dtos: validate);
-            int threadId1 = Thread.CurrentThread.ManagedThreadId;
+            //int threadId1 = Thread.CurrentThread.ManagedThreadId;
 
-            var codes = await UserContract.ValidateCodes.ToListAsync().ConfigureAwait(false);
+            //var codes = await UserContract.ValidateCodes.ToListAsync().ConfigureAwait(false);
 
-            int threadId2 = Thread.CurrentThread.ManagedThreadId;
+            //int threadId2 = Thread.CurrentThread.ManagedThreadId;
 
-            string content = string.Format("start:{0};end:{1};", threadId1, threadId2);
-            return Content(content);
+            //string content = string.Format("start:{0};end:{1};", threadId1, threadId2);
+            return Content("ok");
         }
 
         [Description("微信Url授权")]

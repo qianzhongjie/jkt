@@ -260,6 +260,7 @@ D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
 D:\Work\jkt\Jkt.web\obj\Debug\Bode.Web.dll
 D:\Work\jkt\Jkt.web\obj\Debug\Bode.Web.pdb
+D:\Work\jkt\Jkt.web\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
 E:\Work\jkt\Jkt.web\bin\Bode.Web.dll.config
 E:\Work\jkt\Jkt.web\bin\Bode.Web.dll
 E:\Work\jkt\Jkt.web\bin\Bode.Web.pdb
@@ -333,4 +334,3 @@ E:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
 E:\Work\jkt\Jkt.web\obj\Debug\Bode.Web.csprojResolveAssemblyReference.cache
 E:\Work\jkt\Jkt.web\obj\Debug\Bode.Web.dll
 E:\Work\jkt\Jkt.web\obj\Debug\Bode.Web.pdb
-D:\Work\jkt\Jkt.web\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
