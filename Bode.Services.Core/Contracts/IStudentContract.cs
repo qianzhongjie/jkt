@@ -18,5 +18,13 @@ namespace Bode.Services.Core.Contracts
         /// <param name="pic"></param>
         /// <returns></returns>
         Task<OperationResult> AddFactory(SiteFactoryDto dto, SitePic[] pic);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        Task<OperationResult> AddSutdent(StudentInfoDto dto, DateTime time);
     }
 }

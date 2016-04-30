@@ -35,7 +35,7 @@ namespace Bode.Services.Core.Models.Student
         [Description("姓名")]
         public string UserRealName { get; set; }
 
-        [Description("身份证号")]
+        [Description("临时手机")]
         public string IdCard { get; set; }
 
         [Description("经度")]
@@ -43,6 +43,7 @@ namespace Bode.Services.Core.Models.Student
 
         [Description("纬度")]
         public string Lat { get; set; }
+
     }
     public enum Schedule
     {

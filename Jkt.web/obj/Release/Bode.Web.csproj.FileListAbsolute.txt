@@ -144,4 +144,3 @@ D:\Work\jkt\Jkt.web\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
 D:\Work\jkt\Jkt.web\obj\Release\Bode.Web.csprojResolveAssemblyReference.cache
 D:\Work\jkt\Jkt.web\obj\Release\Bode.Web.dll
 D:\Work\jkt\Jkt.web\obj\Release\Bode.Web.pdb
-D:\Work\jkt\Jkt.web\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll

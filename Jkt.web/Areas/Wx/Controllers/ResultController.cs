@@ -42,7 +42,7 @@ namespace Bode.Web.Areas.Wx.Controllers
                 var result = WxContract.AddTokenCode(dto);
                 //打日志
                 loger.Error("orderNo:{0};tradeStatus:{1};", Request["Code"], Request.UrlReferrer);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home", new { count = 1 });
             }
             return Content("code");
             //return Content(Code);

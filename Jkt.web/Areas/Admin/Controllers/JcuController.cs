@@ -13,6 +13,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Bode.Common.Result;
+using OSharp.Core.Data;
 
 namespace Bode.Web.Areas.Admin.Controllers
 {
@@ -21,6 +23,7 @@ namespace Bode.Web.Areas.Admin.Controllers
     public class JcuController : AdminBaseController
     {
         public IStudentContract studentContract { get; set; }
+        public IRepository<City, int> CityRepo { protected get; set; }
         [AjaxOnly]
         [Description("获取校区信息")]
         public ActionResult GetJcuData(int cityId)
@@ -35,6 +38,8 @@ namespace Bode.Web.Areas.Admin.Controllers
                         m.Id,
                         m.Name,
                         m.Address,
+                        m.Lat,
+                        m.Log,
                         CityId = m.City.Id,
                         CityName = m.City.Name,
                         Sum = student.Count(x => x.Jcu.Id == m.Id)
@@ -47,7 +52,21 @@ namespace Bode.Web.Areas.Admin.Controllers
         public async Task<ActionResult> SaveJcuData(JCUDto[] dtos)
         {
             dtos.CheckNotNull("dtos");
-            OperationResult result = await studentContract.SaveJCUs(dtos: dtos);
+
+            List<JCUDto> dtoList = new List<JCUDto>();
+            foreach (var dto in dtos)
+            {
+                if (string.IsNullOrWhiteSpace(dto.Address))
+                {
+                    return Json(new OperationResult(OperationResultType.Error, "必须输入地址", "").ToAjaxResult());
+                }
+                var cityName = CityRepo.GetByKey(dto.CityId);
+                var reLng = BaiDuResult.GetLngLat(cityName.Name + dto.Address).result.location;
+                dto.Lat = reLng.lat.ToString();
+                dto.Log = reLng.lng.ToString();
+                dtoList.Add(dto);
+            }
+            OperationResult result = await studentContract.SaveJCUs(dtos: dtoList.ToArray());
             return Json(result.ToAjaxResult());
         }
 

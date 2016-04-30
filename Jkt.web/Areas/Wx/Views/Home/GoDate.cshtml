@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Areas/Wx/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -42,10 +42,12 @@
     </div>
 
     <div class="submit">
-        <a href="@Url.Action("SuccessDate")">确认提交</a>
+        <a href="javascript:void(0)" onclick="save()">确认提交</a>
     </div>
+    @RenderPage("~/Areas/Wx/Views/Shared/_Layout.cshtml")
     <!--[if (gte IE 9)|!(IE)]><!-->
     <script src="/Content/js/jquery.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <!--<![endif]-->
     <!--[if lte IE 8 ]>
     <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
@@ -56,6 +58,7 @@
     <script type="text/javascript" src="/Content/js/app.js"></script>
     <script type="text/javascript" src="/Content/js/handlebars.min.js"></script>
     <script type="text/javascript">
+
         function save() {
             if ($("#name").val() === '') {
                 msgShow("请填写姓名");
@@ -73,14 +76,15 @@
                 msgShow("请填写预约试练的时间");
                 return;
             }
-            $.post("", { name: $("#name").val(), phone: $('#phone').val(), time: $("#time").val() }, function (data) {
-
+            $.post("@Url.Action("SaveGodata")", { openId: "@ViewBag.OpenId", name: $("#name").val(), phone: $('#phone').val(), time: $("#time").val(), lng: lngAll, lat: latAll }, function (data) {
+                if (data.ReturnCode == 1) {
+                    window.location.href = "@Url.Action("SuccessDate")";
+                } else {
+                    msgShow(data.ReturnMsg);
+                }
             });
         }
-        function close() {
-            $("#msgContent").html("");
-            $("#msgBox").addCalss("hidden");
-        }
+
         //正则--手机号
         function checkForm(o) {
             if (!!o.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/) == false) {

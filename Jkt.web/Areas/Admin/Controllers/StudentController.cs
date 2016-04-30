@@ -48,7 +48,9 @@ namespace Bode.Web.Areas.Admin.Controllers
                         m.UserRealName,
                         m.UserInfo.SysUser.NickName,
                         m.ScheduleState,
-                        SysRealName = m.JcuSystem.SystemInfo.RealName,
+                        m.IdCard,
+                        JcuSystemId = m.JcuSystem == null ? 0 : m.JcuSystem.Id,
+                        // SysRealName = m.JcuSystem == null ? "" : m.JcuSystem.SystemInfo.RealName,
                         m.ExaminationTime,
                         m.SubscribeTime
                     });
@@ -68,7 +70,9 @@ namespace Bode.Web.Areas.Admin.Controllers
                         m.UserRealName,
                         m.UserInfo.SysUser.NickName,
                         m.ScheduleState,
-                        SysRealName = m.JcuSystem.SystemInfo.RealName,
+                        m.IdCard,
+                        JcuSystemId = m.JcuSystem == null ? 0 : m.JcuSystem.Id,
+                        //SysRealName = m.JcuSystem == null ? "" : m.JcuSystem.SystemInfo.RealName,
                         m.ExaminationTime,
                         m.SubscribeTime
                     });
@@ -118,6 +122,11 @@ namespace Bode.Web.Areas.Admin.Controllers
         {
             var user = UserContract.UserInfos.SingleOrDefault(p => p.SysUser.UserName == User.Identity.Name);
             ViewBag.UserId = user.Id;
+            ViewBag.UserList = StudentContract.JcuSystems.Select(x => new
+            {
+                val = x.Id,
+                text = x.SystemInfo.RealName
+            });
             ViewBag.ScheduleState = typeof(Schedule).ToDictionary().Select(p => new
             {
                 val = p.Key,

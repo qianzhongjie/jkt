@@ -5,7 +5,6 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Bode.Common.Data
 {
     public class DataCode
@@ -221,5 +220,28 @@ namespace Bode.Common.Data
             return (sb.ToString());
         }
         #endregion
+
+        /// <summary>
+        /// sha1签名
+        /// </summary>
+        /// <param name="mystr"></param>
+        /// <returns></returns>
+        public static string Sha1(string mystr)
+        {
+            SHA1 sha1 = new SHA1CryptoServiceProvider();
+            byte[] bytes_sha1_in = System.Text.UTF8Encoding.Default.GetBytes(mystr);
+            byte[] bytes_sha1_out = sha1.ComputeHash(bytes_sha1_in);
+            string str_sha1_out = BitConverter.ToString(bytes_sha1_out);
+            str_sha1_out = str_sha1_out.Replace("-", "").ToLower();
+            return str_sha1_out;
+        }
+        //public static string Sha1(string targetPassword)
+        //{
+        //    byte[] pwBytes = Encoding.UTF8.GetBytes(targetPassword);
+        //    byte[] hash = SHA1.Create().ComputeHash(pwBytes);
+        //    StringBuilder hex = new StringBuilder();
+        //    for (int i = 0; i < hash.Length; i++) hex.Append(hash[i].ToString("X2"));
+        //    return hex.ToString();
+        //}
     }
 }

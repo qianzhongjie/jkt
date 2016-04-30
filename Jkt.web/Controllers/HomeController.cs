@@ -46,7 +46,7 @@ namespace Bode.Web.Controllers
             //int threadId2 = Thread.CurrentThread.ManagedThreadId;
 
             //string content = string.Format("start:{0};end:{1};", threadId1, threadId2);
-            return Content("ok");
+            return Redirect("/Admin/Home/Index");
         }
 
         [Description("微信Url授权")]

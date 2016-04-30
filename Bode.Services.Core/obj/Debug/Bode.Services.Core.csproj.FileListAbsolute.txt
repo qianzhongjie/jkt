@@ -113,3 +113,4 @@ E:\Work\jkt\Bode.Services.Core\bin\Debug\OSharp.Utility.xml
 E:\Work\jkt\Bode.Services.Core\bin\Debug\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
 E:\Work\jkt\Bode.Services.Core\obj\Debug\Bode.Services.Core.dll
 E:\Work\jkt\Bode.Services.Core\obj\Debug\Bode.Services.Core.pdb
+D:\Work\jkt\Bode.Services.Core\obj\Debug\Bode.Services.Core.csprojResolveAssemblyReference.cache

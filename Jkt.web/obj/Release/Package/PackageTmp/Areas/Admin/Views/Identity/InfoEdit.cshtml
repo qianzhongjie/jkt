@@ -4,7 +4,7 @@
     ViewBag.Title = "InfoEdit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     var info = (Bode.Services.Core.Models.User.UserInfo)ViewBag.UserInfo;
-}E
+}
 
 <div class="col-lg-6 col-sm-6 col-xs-12">
     <div class="widget">
@@ -25,8 +25,8 @@
                     <div class="form-group">
                         <label for="HeadPic" class="col-sm-2 control-label no-padding-right">头像：</label>
                         <div class="col-sm-10">
-                            <input type="file" id="headPic"/>
-                            <img width="120" height="100" id="HeadPic" src="@info.HeadPic"/>
+                            <input type="file" id="headPic" />
+                            <img width="120" height="100" id="HeadPic" src="@info.HeadPic" />
                         </div>
                     </div>
                     <div class="form-group">

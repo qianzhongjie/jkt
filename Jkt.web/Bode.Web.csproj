@@ -668,10 +668,8 @@
     <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
     <Compile Include="Areas\Api\Controllers\AccountController.cs" />
     <Compile Include="Areas\Api\Controllers\BasicInfoController.cs" />
-    <Compile Include="Areas\Wx\Controllers\FristController.cs" />
     <Compile Include="Areas\Wx\Controllers\HomeController.cs" />
     <Compile Include="Areas\Wx\Controllers\ResultController.cs" />
-    <Compile Include="Areas\Wx\Controllers\WxController.cs" />
     <Compile Include="Areas\Wx\WxAreaRegistration.cs" />
     <Compile Include="Content\js\ueditor\net\App_Code\Config.cs" />
     <Compile Include="Content\js\ueditor\net\App_Code\ConfigHandler.cs" />

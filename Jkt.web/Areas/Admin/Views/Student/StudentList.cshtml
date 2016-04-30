@@ -3,29 +3,47 @@
     Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
     ViewBag.GridDataUrl = Url.Action("GetStudentData");
     ViewBag.SaveUrl = Url.Action("SaveStudentData");
-    ViewBag.ToolbarItem = "edit,cancel";
+    ViewBag.ToolbarItem = "edit,cancel,save";
 }
 @section customScript
 {
     <script src="~/Content/js/osharp/osharp.treeview.js"></script>
     <script type="text/javascript">
         var jcuId = 0;
-        var orderStates=@Html.Raw(Json.Encode(ViewBag.ScheduleState));
+        var orderStates = '@Html.Raw(Json.Encode(ViewBag.ScheduleState))';
+        var userList = '@Html.Raw(Json.Encode(ViewBag.UserList))';
         columns = [
         //{ data: "Id", title: "编号" },
         { data: "UserInfoId", title: "校区Id", type: "hide" },
         { data: "Id", title: "学员编号", type: "number" },
-        { data: "HeadPic", title: "头像", type: "img"},
-        { data: "UserRealName", title: "姓名", type: "text", search: true, },
+        { data: "HeadPic", title: "头像", type: "img" },
+        { data: "UserRealName", title: "姓名", type: "text", search: true },
         { data: "NickName", title: "微信昵称", type: "text" },
-        { data: "PhoneNumber", title: "电话号码", type: "number" },
-        { data: "SysRealName", title: "所属校区经理", type: "text" },
+        { data: "IdCard", title: "电话号码", type: "text", editor: {} },
+        //{ data: "SysRealName", title: "所属校区经理", type: "text" },
+        //{ data: "JcuSystemId", title: "所属校区经理", type: "hide" },
+         {
+             data: "JcuSystemId",
+             title: "所属校区经理",
+             type: "combobox",
+             search: true,
+             editor: {},
+             source: { data: userList },
+             format: function (v) {
+                 for (var i = 0; i < userList.length; i++) {
+                     if (userList[i]["val"].toString() === v.toString()) {
+                         return userList[i]["text"];
+                     }
+                 }
+                 return v;
+             }
+         },
         {
             data: "ScheduleState",
             title: "学车进度",
             type: "combobox",
             search: true,
-            eidtor:{},
+            editor: {},
             source: { data: orderStates },
             format: function (v) {
                 for (var i = 0; i < orderStates.length; i++) {
@@ -70,23 +88,21 @@
         ];
 
         startfunction = function () {
-            var uid=0;
-            uid='@ViewBag.UserId';
-            if(Number(uid)===0)
-            {
-                window.location.href='/Admin/Home/Login';
+            var uid = 0;
+            uid = '@ViewBag.UserId';
+            if (Number(uid) === 0) {
+                window.location.href = '/Admin/Home/Login';
                 return false;
             }
             var tabArea = $(".page-body>.row>div");
             tabArea.attr("class", "col-xs-8 col-md-9 col-lg-10");
             tabArea.before($("#tree"));
             $("#tree .widget-body").height(document.body.scrollHeight - 140);
-            $.post("@Url.Action("GetJcuSystemTree")", {userId: uid}, function (data) {
+            $.post("@Url.Action("GetJcuSystemTree")", { userId: uid }, function (data) {
                 var html = '';
                 var dataP = data.data;
                 var dataC = data.datas;
-                if(dataP.length===0)
-                {
+                if (dataP.length === 0) {
                     $('#content').html("你还不是校区经理，不能查看，若要继续请联系管理员");
                     return false;
                 }
@@ -107,13 +123,12 @@
             jcuId = pId;
             $('.bg-palegreen').removeClass('bg-palegreen');
             $(obj).addClass('bg-palegreen');
-            uid='@ViewBag.UserId';
-            if(Number(uid)===0)
-            {
-                window.location.href='/Admin/Home/Login';
+            uid = '@ViewBag.UserId';
+            if (Number(uid) === 0) {
+                window.location.href = '/Admin/Home/Login';
                 return false;
             }
-            dataTable.conf.ajax = "@ViewBag.GridDataUrl" + "?jcusId=" + pId+"&userId="+uid;
+            dataTable.conf.ajax = "@ViewBag.GridDataUrl" + "?jcusId=" + pId + "&userId=" + uid;
             dataTable.reload();
 
         }

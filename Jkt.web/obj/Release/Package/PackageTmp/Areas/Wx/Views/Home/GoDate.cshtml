@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +32,7 @@
             <label for="time" class="am-form-group">
                 <span>时间:</span>
                 <div class="time am-input-group am-datepicker-date" data-am-datepicker="{format: 'yyyy-mm-dd'}">
-                    <input type="text" class="am-form-field" placeholder="请选择日期" readonly>
+                    <input type="text" class="am-form-field" placeholder="请选择日期" readonly id="time">
                     <span class="time am-input-group-btn am-datepicker-add-on">
                         <button class="am-btn am-btn-default" type="button"><span class="am-icon-calendar"></span> </button>
                     </span>
@@ -39,10 +42,12 @@
     </div>
 
     <div class="submit">
-        <a href="@Url.Action("SuccessDate")">确认提交</a>
+        <a href="javascript:void(0)" onclick="save()">确认提交</a>
     </div>
+    @RenderPage("~/Areas/Wx/Views/Shared/_Layout.cshtml")
     <!--[if (gte IE 9)|!(IE)]><!-->
     <script src="/Content/js/jquery.min.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <!--<![endif]-->
     <!--[if lte IE 8 ]>
     <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
@@ -52,5 +57,42 @@
     <script src="/Content/js/amazeui.min.js"></script>
     <script type="text/javascript" src="/Content/js/app.js"></script>
     <script type="text/javascript" src="/Content/js/handlebars.min.js"></script>
+    <script type="text/javascript">
+
+        function save() {
+            if ($("#name").val() === '') {
+                msgShow("请填写姓名");
+                return;
+            }
+            if ($("#phone").val() === '') {
+                msgShow("请填写手机号");
+                return;
+            }
+            if (!checkForm($('#phone').val())) {
+                msgShow("请填写正确的手机号");
+                return;
+            }
+            if ($("#time").val() === '') {
+                msgShow("请填写预约试练的时间");
+                return;
+            }
+            $.post("@Url.Action("SaveGodata")", { openId: "@ViewBag.OpenId", name: $("#name").val(), phone: $('#phone').val(), time: $("#time").val(), lng: lngAll, lat: latAll }, function (data) {
+                if (data.ReturnCode == 1) {
+                    window.location.href = "@Url.Action("SuccessDate")";
+                } else {
+                    msgShow(data.ReturnMsg);
+                }
+            });
+        }
+
+        //正则--手机号
+        function checkForm(o) {
+            if (!!o.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/) == false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
 </body>
 </html>
