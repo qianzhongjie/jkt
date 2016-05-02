@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "bode-后台管理系统";
+    ViewBag.Title = "呱呱-后台管理系统";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -30,7 +30,8 @@
             <div class="navbar-header pull-left">
                 <a href="#" class="navbar-brand">
                     <small>
-                        <img src="~/Content/images/logo.png" alt="" />
+                        呱呱驾考管理系统
+                        @*<img src="~/Content/images/logo.png" alt="" />*@
                     </small>
                 </a>
             </div>
@@ -45,10 +46,10 @@
                 <div class="navbar-account">
                     <ul class="account-area">
                         @*<li>
-                            <a title="修改密码" href="javascript:setUserInfoContentFunction()">
-                                <i class="icon fa fa-wrench"></i>
-                            </a>
-                        </li>*@
+                                <a title="修改密码" href="javascript:setUserInfoContentFunction()">
+                                    <i class="icon fa fa-wrench"></i>
+                                </a>
+                            </li>*@
                         <li>
                             <a title="退出" href="@Url.Action("SignOut")">
 
@@ -57,52 +58,52 @@
                         </li>
                     </ul>
                     @*<ul class="account-area">
-                        <li>
-                            <a class="login-area dropdown-toggle" data-toggle="dropdown">
-                                <div class="avatar" title="View your public profile" style="border-left-width:0;margin-right:5px;">
-                                    <img src="/Content/images/user.png" />
-                                </div>
-                                <section style="margin-top: 6px;">
-                                    <h2><span class="profile"><span>@ViewBag.User.UserName</span></span></h2>
-                                </section>
-                            </a>
-                            <!--Login Area Dropdown-->
-                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                <li class="username"><a>@ViewBag.User.UserName</a></li>
-                                <li class="email"><a>@ViewBag.User.Email</a></li>
-                                <!--Avatar Area-->
-                                <!--Avatar Area-->
-                                <li class="edit">
-                                    <a href="javascript:changePassword()" class="pull-right">修改密码</a>
-                                </li>
-                                <!--Theme Selector Area-->
-                                <li class="theme-area">
-                                    <ul class="colorpicker" id="skin-changer">
-                                        <li><a class="colorpick-btn" href="#" style="background-color:#5DB2FF;" rel="~/Content/css/skins/blue.min.css"></a></li>
-                                        <li><a class="colorpick-btn" href="#" style="background-color:#2dc3e8;" rel="~/Content/css/skins/azure.min.css"></a></li>
-                                        <li><a class="colorpick-btn" href="#" style="background-color:#03B3B2;" rel="~/Content/css/skins/teal.min.css"></a></li>
-                                        <li><a class="colorpick-btn" href="#" style="background-color:#53a93f;" rel="~/Content/css/skins/green.min.css"></a></li>
-                                        <li><a class="colorpick-btn" href="#" style="background-color:#FF8F32;" rel="~/Content/css/skins/orange.min.css"></a></li>
-                                        <li><a class="colorpick-btn" href="#" style="background-color:#cc324b;" rel="~/Content/css/skins/pink.min.css"></a></li>
-                                        <li><a class="colorpick-btn" href="#" style="background-color:#AC193D;" rel="~/Content/css/skins/darkred.min.css"></a></li>
-                                        <li><a class="colorpick-btn" href="#" style="background-color:#8C0095;" rel="~/Content/css/skins/purple.min.css"></a></li>
-                                        <li><a class="colorpick-btn" href="#" style="background-color:#0072C6;" rel="~/Content/css/skins/darkblue.min.css"></a></li>
-                                        <li><a class="colorpick-btn" href="#" style="background-color:#585858;" rel="~/Content//css/skins/gray.min.css"></a></li>
-                                        <li><a class="colorpick-btn" href="#" style="background-color:#474544;" rel="~/Content/css/skins/black.min.css"></a></li>
-                                        <li><a class="colorpick-btn" href="#" style="background-color:#001940;" rel="~/Content/css/skins/deepblue.min.css"></a></li>
-                                    </ul>
-                                </li>
-                                <!--/Theme Selector Area-->
-                                <li class="dropdown-footer">
-                                    <a href="@Url.Action("SignOut")">
-                                        退出登录
-                                    </a>
-                                </li>
-                            </ul>
-                            <!--/Login Area Dropdown-->
-                        </li>
-                        <!-- /Account Area -->
-                    </ul>*@
+                            <li>
+                                <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                                    <div class="avatar" title="View your public profile" style="border-left-width:0;margin-right:5px;">
+                                        <img src="/Content/images/user.png" />
+                                    </div>
+                                    <section style="margin-top: 6px;">
+                                        <h2><span class="profile"><span>@ViewBag.User.UserName</span></span></h2>
+                                    </section>
+                                </a>
+                                <!--Login Area Dropdown-->
+                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                                    <li class="username"><a>@ViewBag.User.UserName</a></li>
+                                    <li class="email"><a>@ViewBag.User.Email</a></li>
+                                    <!--Avatar Area-->
+                                    <!--Avatar Area-->
+                                    <li class="edit">
+                                        <a href="javascript:changePassword()" class="pull-right">修改密码</a>
+                                    </li>
+                                    <!--Theme Selector Area-->
+                                    <li class="theme-area">
+                                        <ul class="colorpicker" id="skin-changer">
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#5DB2FF;" rel="~/Content/css/skins/blue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#2dc3e8;" rel="~/Content/css/skins/azure.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#03B3B2;" rel="~/Content/css/skins/teal.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#53a93f;" rel="~/Content/css/skins/green.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#FF8F32;" rel="~/Content/css/skins/orange.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#cc324b;" rel="~/Content/css/skins/pink.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#AC193D;" rel="~/Content/css/skins/darkred.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#8C0095;" rel="~/Content/css/skins/purple.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#0072C6;" rel="~/Content/css/skins/darkblue.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#585858;" rel="~/Content//css/skins/gray.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#474544;" rel="~/Content/css/skins/black.min.css"></a></li>
+                                            <li><a class="colorpick-btn" href="#" style="background-color:#001940;" rel="~/Content/css/skins/deepblue.min.css"></a></li>
+                                        </ul>
+                                    </li>
+                                    <!--/Theme Selector Area-->
+                                    <li class="dropdown-footer">
+                                        <a href="@Url.Action("SignOut")">
+                                            退出登录
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!--/Login Area Dropdown-->
+                            </li>
+                            <!-- /Account Area -->
+                        </ul>*@
                 </div>
             </div>
             <!-- /Account Area and Settings -->
@@ -431,7 +432,7 @@
                     $("#navMenus .active .submenu").slideDown();
                     $("#navMenus .active").addClass("open");
                     $("#navMenus li").find('span').each(function () {
-                       
+
                         if ($(this).text() === "实体列表") {
                             $(this).parent().parent().addClass('hidden');
                         } if ($(this).text() === "功能列表") {

@@ -78,7 +78,7 @@
                     html += '<div class="tree-folder" style="display: block;"><div data-value="' + dataP[i].text + '" class="tree-folder-header" onclick="parent(this)"><i class="fa blueberry fa-folder-open"></i><div class="tree-folder-name">' + dataP[i].text + '<div class="tree-actions"></div></div></div><div class="tree-folder-content" style="display: block;">';
                     for (var k = 0; k < dataC.length; k++) {
                         if (dataC[k].parentId === dataP[i].value) {
-                            html += '<div data-value="' + dataC[k].Id + '" class="tree-item"style="display: block;" onclick="contents(this,' + dataP[i].value + ')" data-text="' + dataC[k].text + '" data-parentId="' + dataP[i].value + '"> <div class="tree-item-name">' + dataC[k].text + '</div><div class="tree-actions"></div></div>';
+                            html += '<div data-value="' + dataC[k].Id + '" class="tree-item"style="display: block;" onclick="contents(this,' + dataC[k].value + ')" data-text="' + dataC[k].text + '" data-parentId="' + dataP[i].value + '"> <div class="tree-item-name">' + dataC[k].text + '</div><div class="tree-actions"></div></div>';
                         }
                     }
                     html += '</div><div class="tree-loader" style="display: none;"><div class="tree-loading"><i class="fa fa-rotate-right fa-spin blueberry"></i></div> </div> </div>';

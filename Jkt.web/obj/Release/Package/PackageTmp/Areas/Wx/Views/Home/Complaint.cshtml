@@ -8,9 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="renderer" content="webkit">
-    <title>滴滴驾考</title>
+    <title>投诉建议</title>
     <link rel="stylesheet" type="text/css" href="/Content/css/amazeui.min.css">
     <link rel="stylesheet" type="text/css" href="/Content/css/index.css">
     <style type="text/css">
@@ -33,12 +33,29 @@
 </head>
 <body id="complaint">
     <div class="complaint">
-        <textarea placeholder="对我们有任何不爽,请告诉我们~" rows="8" autofocus></textarea>
+        <textarea placeholder="对我们有任何不爽,请告诉我们~" rows="8" autofocus id="content"></textarea>
     </div>
 
     <div class="submit">
-        <a href="@Url.Action("SuccessSubmit")">确认提交</a>
+        <a onclick="submitC()">确认提交</a>
     </div>
+    @RenderPage("~/Areas/Wx/Views/Shared/_Layout.cshtml")
+    <script src="~/Content/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript">
 
+        function submitC() {
+            if ($("#content").val() == '') {
+                msgShow("请填写你的不爽");
+                return;
+            }
+            $.post("@Url.Action("PostComplaint")", { openId: "@ViewBag.OpenId", content: $("#content").val() }, function (data) {
+                if (data.ReturnCode == 1) {
+                    window.location.href = "@Url.Action("SuccessSubmit")";
+                } else {
+                    msgShow(data.ReturnMsg);
+                }
+            });
+        } function loadJScript() { }
+    </script>
 </body>
 </html>

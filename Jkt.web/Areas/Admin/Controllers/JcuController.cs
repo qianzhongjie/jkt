@@ -29,7 +29,7 @@ namespace Bode.Web.Areas.Admin.Controllers
         public ActionResult GetJcuData(int cityId)
         {
             int total;
-            var student = studentContract.StudentInfos.Where(x => x.ScheduleState > Schedule.申请试练);
+            var student = studentContract.StudentInfos.Where(x => x.ScheduleState > Schedule.已试炼);
             GridRequest request = new GridRequest(Request);
             var datas = GetQueryData<JCU, int>(studentContract.JCUs.Where(x => x.City.Id == cityId), out total,
                     request).Select(m => new
@@ -60,8 +60,12 @@ namespace Bode.Web.Areas.Admin.Controllers
                 {
                     return Json(new OperationResult(OperationResultType.Error, "必须输入地址", "").ToAjaxResult());
                 }
-                var cityName = CityRepo.GetByKey(dto.CityId);
-                var reLng = BaiDuResult.GetLngLat(cityName.Name + dto.Address).result.location;
+                if (string.IsNullOrWhiteSpace(dto.Name))
+                {
+                    return Json(new OperationResult(OperationResultType.Error, "必须输入学校名称", "").ToAjaxResult());
+                }
+                // var cityName = CityRepo.GetByKey(dto.CityId);
+                var reLng = BaiDuResult.GetLngLat(dto.Name).result.location;
                 dto.Lat = reLng.lat.ToString();
                 dto.Log = reLng.lng.ToString();
                 dtoList.Add(dto);

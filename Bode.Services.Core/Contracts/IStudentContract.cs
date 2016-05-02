@@ -26,5 +26,14 @@ namespace Bode.Services.Core.Contracts
         /// <param name="time"></param>
         /// <returns></returns>
         Task<OperationResult> AddSutdent(StudentInfoDto dto, DateTime time);
+
+        /// <summary>
+        /// 保存StudentInfo信息(新增/更新)
+        /// </summary>
+        /// <param name="updateForeignKey">更新时是否更新外键信息</param>
+        /// <param name="dtos">要保存的StudentInfoDto信息</param>
+        /// <returns>业务操作集合</returns>
+        Task<OperationResult> AddEditStudentInfos(bool updateForeignKey = false,
+           params StudentInfoDto[] dtos);
     }
 }

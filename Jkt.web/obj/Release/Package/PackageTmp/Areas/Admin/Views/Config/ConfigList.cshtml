@@ -1,0 +1,46 @@
+﻿
+
+@{
+    ViewBag.Title = "配置联系方式";
+    Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
+    ViewBag.GridDataUrl = Url.Action("GetConfigData");
+    ViewBag.SaveUrl = Url.Action("SaveConfigData");
+    ViewBag.DeleteUrl = Url.Action("DeleteConfig");
+}
+@section customScript
+{
+    <script type="text/javascript">
+        var orderStates = @Html.Raw(Json.Encode(ViewBag.Type));
+        columns = [
+            { data: "Id", type: "hide" },
+            { data: "Value", title: "号码", type: "text", search: true, editor: {} },
+                       {
+                           data: "Type",
+                           title: "类别",
+                           type: "combobox",
+                           search: true,
+                           editor: {},
+                           source: { data: orderStates },
+                           format: function(v) {
+                               for (var i = 0; i < orderStates.length; i++) {
+                                   if (orderStates[i]["val"].toString() === v.toString()) {
+                                       return orderStates[i]["text"];
+                                   }
+                               }
+                               return v;
+                           }
+                       },
+            //{ data: "ProName", title: "省", type: "text", search: true, editor: {} },
+            {
+                data: "CreatedTime",
+                title: "创建时间",
+                type: "datepicker",
+                search: true,
+                format: function (d) {
+                    return $.osharp.tools.formatDate(d);
+                },
+                isformatval: true
+            }
+        ];
+    </script>
+}

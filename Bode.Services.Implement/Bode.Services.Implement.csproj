@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="DbContext\DemoDbContext.cs" />
     <Compile Include="DbContext\DemoDbContextInitializer.cs" />
+    <Compile Include="ModelConfigs\Config\ContactConfigConfiguration.cs" />
     <Compile Include="ModelConfigs\Identity\SysOrganizationConfiguration.cs" />
     <Compile Include="ModelConfigs\Identity\SysRoleConfiguration.cs" />
     <Compile Include="ModelConfigs\Identity\SysUserConfiguration.cs" />
@@ -119,6 +120,7 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="ServiceCollectionExtensions.cs" />
+    <Compile Include="Services\Config\ConfigService.generated.cs" />
     <Compile Include="Services\Identity\IdentityService.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -191,6 +193,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ServicesCodeScript.cs</LastGenOutput>
       <LastOutputs>
+..\Services\Config\ConfigService.generated.cs
 ..\Services\Student\StudentService.generated.cs
 ..\Services\User\UserService.generated.cs
 ..\Services\Wx\WxService.generated.cs

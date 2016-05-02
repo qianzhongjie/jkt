@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IConfigContract.generated.cs" />
     <Compile Include="Contracts\IIdentityContract.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -84,6 +85,7 @@
     </Compile>
     <Compile Include="Contracts\IWxContract.cs" />
     <Compile Include="Contracts\IWxContract.generated.cs" />
+    <Compile Include="Dtos\Config\ContactConfigDto.generated.cs" />
     <Compile Include="Dtos\DroMappers.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -146,6 +148,7 @@
     <Compile Include="Models\BannerEntityBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Config\ContactConfig.cs" />
     <Compile Include="Models\Identity\SysOrganization.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -235,6 +238,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ContractsCodeScript.cs</LastGenOutput>
       <LastOutputs>
+..\Contracts\IConfigContract.generated.cs
 ..\Contracts\IStudentContract.generated.cs
 ..\Contracts\IUserContract.generated.cs
 ..\Contracts\IWxContract.generated.cs
@@ -253,6 +257,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DtosCodeScript.cs</LastGenOutput>
       <LastOutputs>
+..\Dtos\Config\ContactConfigDto.generated.cs
 ..\Dtos\Student\CityDto.generated.cs
 ..\Dtos\Student\JCUDto.generated.cs
 ..\Dtos\Student\JcuSystemDto.generated.cs

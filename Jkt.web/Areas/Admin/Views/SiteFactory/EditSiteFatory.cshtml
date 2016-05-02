@@ -41,7 +41,7 @@
                                 </label>
                                 <div class="col-sm-3">
                                     <input type="file" id="upLogo" data-text="上传封面">
-                                    <img style="width: 120px; height: 120px" src="@info.Cover" id="HaedPic">
+                                    <img style="width: 150px; height: 120px" src="@info.Cover" id="HaedPic">
                                 </div>
                             </div>
                             @*<div class="form-group">
@@ -138,9 +138,31 @@
 
     function SaveData() {
 
-        localSearch.search($("#Address").val());
+        // localSearch.search($("#Address").val());
+        var pic = [];
+        var dto = {
+            Id: '@info.Id',
+            JCUId: '@info.JCU.Id',
+            Name: $('#Name').val(),
+            Cover: $('#HaedPic').attr('src'),
+            Address: $("#Address").val(),
+            Lng: 0,
+            Lat: 0,
+            Detail: $("#Information").val()
+        };
+        //$('#imgs').find('img').each(function () {
+        //    pic.push({
+        //        Path: $(this).attr('src')
+        //    });
+        //});
 
-
+        $.post("@Url.Action("SaveSiteFactoryData")", { dtos: dto, pic: pic }, function (data) {
+            if (data.Type === 'Error') {
+                Notify(data.Content, 'bottom-right', '5000', 'danger', 'fa-bolt', true);
+                return;
+            }
+            Notify(data.Content, 'bottom-right', '5000', 'info', 'fa-envelope', true);
+        });
     }
 
 

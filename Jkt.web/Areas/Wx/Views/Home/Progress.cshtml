@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="renderer" content="webkit">
-    <title>滴滴驾考</title>
+    <title>学车进度</title>
     <link rel="stylesheet" type="text/css" href="/Content/css/amazeui.min.css">
     <link rel="stylesheet" type="text/css" href="/Content/css/index.css">
     <link rel="stylesheet" type="text/css" href="/Content/css/percircle.css">
@@ -73,7 +73,7 @@
         </div>
         <p class="prog-text">已拿证</p>
     </div>
-
+    @RenderPage("~/Areas/Wx/Views/Shared/_Layout.cshtml")
     <!--[if (gte IE 9)|!(IE)]><!-->
     <script src="/Content/js/jquery.min.js"></script>
     <!--<![endif]-->
@@ -91,26 +91,24 @@
             var p = '@ViewBag.progress';
             if (Number(p) === 8) {
                 msgShow("亲~还没有报名,你可以在线申请试练!免费的哦~");
+            } else if (Number(p) === 0) {
+                msgShow("亲~还没有报名");
             } else {
-                switch (Number(p)) {
-                    case 3:
-                        $('.progress1').show();
-                    case 4:
-                        $('.progress2').show();
-                    case 5:
-                        $('.progress3').show();
-                    case 6:
-                        $('.progress4').show();
-                    case 7:
-                        $('.progress5').show();
-                }
+                var pp = Number(p);
+                if (pp == 3)
+                { $('.progress1').show(); }
+                if (pp == 4)
+                { $('.progress2').show(); }
+                if (pp == 5)
+                { $('.progress3').show(); }
+                if (pp == 6)
+                { $('.progress4').show(); }
+                if (pp == 7)
+                { $('.progress5').show(); }
             }
+
         });
-        function close() {
-            $("#msgContent").html("");
-            $("#msgBox").addCalss("hidden");
-            window.location.href = '@Url.Action("GoDate")';
-        }
+        function loadJScript() { }
     </script>
 
 </body>

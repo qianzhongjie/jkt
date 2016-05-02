@@ -4,6 +4,8 @@
     ViewBag.GridDataUrl = Url.Action("GetUserData");
     ViewBag.SaveUrl = Url.Action("SaveUserData");
     ViewBag.DeleteUrl = Url.Action("DeleteUsers");
+
+
 }
 
 @section customScript
@@ -19,7 +21,7 @@
                 roles = data;
 
                 for (var i = 0, n = roles.length; i < n; i++) {
-                    $('<div class="col-sm-4 col-md-3"><div class="checkbox"><label><input type="checkbox" value="' + roles[i]["Id"] +
+                    $('<div class="col-sm-4 col-md-3"><div class="checkbox"><label onclick="changeBox(this)"><input type="checkbox" value="' + roles[i]["Id"] +
                         '"><span class="text">' + roles[i]["Name"] + '</span></label></div></div>').appendTo($("#roleContent"));
 
                     //默认未选中
@@ -38,7 +40,21 @@
             $.get("@Url.Action("GetOrganizationTree")", {}, function (data) {
                 organizations = data;
             });
+
         });
+        var countBox = 0;
+
+        function changeBox(obj) {
+            if ($(obj).find('input').is(':checked')) {
+                $(obj).find('input').attr("checked", true);
+                return;
+            }
+            $('.modal-dialog :checkbox').each(function () {
+                $(this).attr("checked", false);
+            });
+
+            $(obj).find('input').attr("checked", true);
+        }
 
         //根据roles的状态初始化复选框
         function initRoleSelect() {
@@ -65,6 +81,10 @@
                             $('.modal-dialog :checkbox:checked').each(function () {
                                 roleIds.push(parseInt($(this).val()));
                             });
+                            if (roleIds.length > 1) {
+                                Notify("角色只能选择一个", 'bottom-right', '5000', 'danger', 'fa-bolt', true);
+                                return;
+                            }
                             $.post("@Url.Action("SetUserRoles")", { userId: userId, strRoleIds: JSON.stringify(roleIds) }, function (data) {
                                 if (data.Type === "Error") {
                                     Notify(data.Content, 'bottom-right', '5000', 'danger', 'fa-bolt', true);
@@ -84,6 +104,7 @@
 
             //初始化复选框状态
             if (curUserId !== userId) {
+
                 for (var i = 0, n = roles.length; i < n; i++) {
                     roles[i]["Checked"] = false;
                 }
@@ -114,20 +135,40 @@
 
             //添加复选框点击事件
             $('.modal-dialog :checkbox').click(function () {
+
                 var roleId = parseInt($(this).val());
                 roleIdMap[roleId]["Checked"] = $(this).is(":checked");
+
+                //$(this).attr("checked", true);
+                //    $('#roleContent :checkbox').each(function () {
+                //        var chkTest = $(this);
+                //        if (chkTest.watch) {
+                //            chkTest.watch("checked", function (id, oldval, newval) {
+                //                //alert(newval);
+                //                return newval;
+                //            });
+                //        }
+                //        else {
+                //            chkTest.onpropertychange = function () {
+                //                $('#roleContent :checkbox').attr("checked", false);
+                //                $(this).attr("checked", true);
+                //                alert(this.checked);
+                //            }
+                //        }
+                //        //$('#roleContent :checkbox').attr("checked", false);
+                //        //$(this).attr("checked", true);
+                //    });
             });
         }
 
         columns = [
             { data: "Id", title: "编号" },
-
             { data: "HeadPic", title: "头像", type: "img", editor: {} },
             { data: "UserInfoId", type: "hide" },
-                     { data: "RealName", title: "姓名", type: "text", search: true, editor: {} },
+            { data: "RealName", title: "姓名", type: "text", search: true, editor: {} },
             { data: "UserName", title: "帐号", type: "text", editor: {}, validation: { required: true } },
             { data: "NickName", title: "昵称", type: "text", editor: {} },
-               { data: "Qq", title: "QQ", type: "number", search: true, editor: {} },
+            { data: "Qq", title: "QQ", type: "number", search: true, editor: {} },
             { data: "PhoneNumber", title: "电话号码", type: "text", editor: {} },
             { data: "IsLocked", title: "是否锁定", type: "switch", editor: {} },
             { data: "CreatedTime", title: "创建时间", type: "datepicker", search: true, format: function (d) { return $.osharp.tools.formatDate(d); }, isformatval: true },

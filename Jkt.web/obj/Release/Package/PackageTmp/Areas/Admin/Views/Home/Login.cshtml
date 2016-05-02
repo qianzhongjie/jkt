@@ -7,7 +7,7 @@
     <meta content="IE=11.0000"
           http-equiv="X-UA-Compatible" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>登录页面</title>
+    <title>呱呱驾考-后台登录</title>
     <script type="text/javascript" src="~/Content/js/jquery-2.0.3.min.js"></script>
     <style>
         body {
@@ -132,62 +132,62 @@
         }
     </style>
     <script type="text/javascript">
-    $(function () {
-        //得到焦点
-        $("#loginPsw").focus(function () {
-            $("#left_hand").animate({
-                left: "150",
-                top: " -38"
-            }, {
-                step: function () {
-                    if (parseInt($("#left_hand").css("left")) > 140) {
-                        $("#left_hand").attr("class", "left_hand");
+        $(function () {
+            //得到焦点
+            $("#loginPsw").focus(function () {
+                $("#left_hand").animate({
+                    left: "150",
+                    top: " -38"
+                }, {
+                    step: function () {
+                        if (parseInt($("#left_hand").css("left")) > 140) {
+                            $("#left_hand").attr("class", "left_hand");
+                        }
                     }
-                }
-            }, 2000);
-            $("#right_hand").animate({
-                right: "-64",
-                top: "-38px"
-            }, {
-                step: function () {
-                    if (parseInt($("#right_hand").css("right")) > -70) {
-                        $("#right_hand").attr("class", "right_hand");
+                }, 2000);
+                $("#right_hand").animate({
+                    right: "-64",
+                    top: "-38px"
+                }, {
+                    step: function () {
+                        if (parseInt($("#right_hand").css("right")) > -70) {
+                            $("#right_hand").attr("class", "right_hand");
+                        }
                     }
-                }
-            }, 2000);
-        });
-        //失去焦点
-        $("#loginPsw").blur(function () {
-            $("#left_hand").attr("class", "initial_left_hand");
-            $("#left_hand").attr("style", "left:100px;top:-12px;");
-            $("#right_hand").attr("class", "initial_right_hand");
-            $("#right_hand").attr("style", "right:-112px;top:-12px");
-        });
+                }, 2000);
+            });
+            //失去焦点
+            $("#loginPsw").blur(function () {
+                $("#left_hand").attr("class", "initial_left_hand");
+                $("#left_hand").attr("style", "left:100px;top:-12px;");
+                $("#right_hand").attr("class", "initial_right_hand");
+                $("#right_hand").attr("style", "right:-112px;top:-12px");
+            });
 
-        document.onkeydown = function (event) {
-            var e = event || window.event || arguments.callee.caller.arguments[0];
-            if (e && e.keyCode === 13) { // enter 键
-                $("#login").click();
-            }
-        };
-
-        $("#login").click(function () {
-            if ($("#loginName").val() === "") {
-                alert("登录名不能为空");
-                return false;
-            }
-            if ($("#loginPsw").val() === "") {
-                alert("登录密码不能为空");
-                return false;
-            }
-            $.post("@Url.Action("LoginPostDo")", { userName: $("#loginName").val(), password: $("#loginPsw").val() }, function (data) {
-                if (data.Type == "Success") {
-                    location.href = "@Url.Action("Index")"
+            document.onkeydown = function (event) {
+                var e = event || window.event || arguments.callee.caller.arguments[0];
+                if (e && e.keyCode === 13) { // enter 键
+                    $("#login").click();
                 }
-                else { alert(data.Content);}
+            };
+
+            $("#login").click(function () {
+                if ($("#loginName").val() === "") {
+                    alert("登录名不能为空");
+                    return false;
+                }
+                if ($("#loginPsw").val() === "") {
+                    alert("登录密码不能为空");
+                    return false;
+                }
+                $.post("@Url.Action("LoginPostDo")", { userName: $("#loginName").val(), password: $("#loginPsw").val() }, function (data) {
+                    if (data.Type == "Success") {
+                        location.href = "@Url.Action("Index")"
+                    }
+                    else { alert(data.Content); }
+                });
             });
         });
-    });
     </script>
     <meta name="GENERATOR" content="MSHTML 11.00.9600.17496" />
 </head>
@@ -211,9 +211,9 @@
             <div style="height: 50px; line-height: 50px; margin-top: 30px; border-top-color: rgb(231, 231, 231); border-top-width: 1px; border-top-style: solid;">
                 <p style="margin: 0px 35px 20px 45px;">
                     @*<span style="float: left;">
-                        <a style="color: rgb(204, 204, 204);"
-                           href="#">忘记密码?</a>
-                    </span>*@
+                            <a style="color: rgb(204, 204, 204);"
+                               href="#">忘记密码?</a>
+                        </span>*@
                     <span style="float: right;">
                         <a style="background: rgb(0, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;"
                            href="javascript:void(0)" id="login">登录</a>

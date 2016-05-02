@@ -12,7 +12,7 @@ namespace Bode.Services.Implement.ModelConfigs.Student
     {
         public SiteFactoryConfiguration()
         {
-            HasRequired(x => x.JCU);
+            HasRequired(x => x.JCU).WithMany(x => x.SiteFactory);
         }
     }
 }

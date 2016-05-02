@@ -1,5 +1,6 @@
 ﻿@{
     Layout = null;
+    var data = (Bode.Services.Core.Models.Student.SiteFactory)ViewBag.Detail;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -8,9 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="renderer" content="webkit">
-    <title>滴滴驾考</title>
+    <title>呱呱驾考</title>
     <link rel="stylesheet" type="text/css" href="/Content/css/amazeui.min.css">
     <link rel="stylesheet" type="text/css" href="/Content/css/sprites.css">
     <link rel="stylesheet" type="text/css" href="/Content/css/index.css">
@@ -18,19 +19,15 @@
 <body id="detailsPage">
 
     <div class="detail-head">
-        <img src="/Content/static/img/banner2.png" style="max-width:100%">
+        @*<img src="/Content/static/img/banner2.png" style="max-width:100%">*@
+        <img src="@data.Cover" style="width:100%">
     </div>
 
     <ul class="near-list am-list m-widget-list">
-        <li class="detail-tit">马家河训练场</li>
+        <li class="detail-tit">@data.Name</li>
     </ul>
     <div class="details-con">
-        <p>马家河位于湖南省株洲市河西，东临湘江，北依国家高薪技术产业开发区，西与湘潭市隔江相望，南与本区群丰镇接壤，总面积67平方公里</p>
-
-        <p>马家河位于湖南省株洲市河西，东临湘江，北依国家高薪技术产业开发区，西与湘潭市隔江相望，南与本区群丰镇接壤，总面积67平方公里</p>
-
-        <p>马家河位于湖南省株洲市河西，东临湘江，北依国家高薪技术产业开发区，西与湘潭市隔江相望，南与本区群丰镇接壤，总面积67平方公里</p>
-        <p>马家河位于湖南省株洲市河西，东临湘江，北依国家高薪技术产业开发区，西与湘潭市隔江相望，南与本区群丰镇接壤，总面积67平方公里</p>
+        @data.Detail
     </div>
 
 

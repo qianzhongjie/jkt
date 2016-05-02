@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Bode.Services.Core.Dtos.Student;
 using Bode.Services.Core.Models.Identity;
 using Bode.Services.Core.Models.Student;
+using OSharp.Utility;
 using OSharp.Utility.Data;
 
 namespace Bode.Services.Implement.Services
@@ -90,6 +91,47 @@ namespace Bode.Services.Implement.Services
             await SysUserRepo.UnitOfWork.SaveChangesAsync();
             await StudentInfoRepo.UnitOfWork.SaveChangesAsync();
             return new OperationResult(OperationResultType.Success, "预约成功,", student.Id);
+        }
+
+        /// <summary>
+        /// 保存StudentInfo信息(新增/更新)
+        /// </summary>
+        /// <param name="updateForeignKey">更新时是否更新外键信息</param>
+        /// <param name="dtos">要保存的StudentInfoDto信息</param>
+        /// <returns>业务操作集合</returns>
+        public async Task<OperationResult> AddEditStudentInfos(bool updateForeignKey = false, params StudentInfoDto[] dtos)
+        {
+            try
+            {
+                dtos.CheckNotNull("dtos");
+                StudentInfoRepo.UnitOfWork.TransactionEnabled = true;
+
+                if (dtos.Length > 0)
+                {
+                    foreach (var dto in dtos)
+                    {
+                        var model = StudentInfoRepo.GetByKey(dto.Id);
+                        if (dto.JcuSystemId > 0)
+                        {
+                            model.JcuSystem = JcuSystemRepo.GetByKey(dto.JcuSystemId);
+                        }
+                        else
+                        {
+                            model.JcuSystem = null;
+                        }
+                        model.IdCard = dto.IdCard;
+                        model.UserRealName = dto.UserRealName;
+                        model.ScheduleState = dto.ScheduleState;
+                        await StudentInfoRepo.UpdateAsync(model);
+                        await StudentInfoRepo.UnitOfWork.SaveChangesAsync();
+                    }
+                }
+                return new OperationResult(OperationResultType.Success, "保存成功");
+            }
+            catch (Exception e)
+            {
+                return new OperationResult(OperationResultType.Error, e.Message);
+            }
         }
     }
 }

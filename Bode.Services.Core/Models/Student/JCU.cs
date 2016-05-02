@@ -18,6 +18,7 @@ namespace Bode.Services.Core.Models.Student
         {
             SysUser = new List<JcuSystem>();
             StudenInfos = new List<StudentInfo>();
+            SiteFactory = new List<SiteFactory>();
         }
 
         [Description("名称")]
@@ -39,5 +40,6 @@ namespace Bode.Services.Core.Models.Student
         public virtual ICollection<JcuSystem> SysUser { get; set; }
         //校区的学员
         public virtual ICollection<StudentInfo> StudenInfos { get; set; }
+        public virtual ICollection<SiteFactory> SiteFactory { get; set; }
     }
 }

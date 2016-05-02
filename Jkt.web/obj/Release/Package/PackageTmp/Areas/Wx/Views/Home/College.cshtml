@@ -8,9 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="renderer" content="webkit">
-    <title>滴滴驾考</title>
+    <title>训练场</title>
     <link rel="stylesheet" type="text/css" href="/Content/css/amazeui.min.css">
     <link rel="stylesheet" type="text/css" href="/Content/css/sprites.css">
     <link rel="stylesheet" type="text/css" href="/Content/css/index.css">
@@ -38,29 +38,29 @@
             <label for="search">
                 <i class="am-icon-search search-icon"></i>
                 <input type="search" placeholder="输入大学进行查找" id="search" class="search-input" size="100%"></input>
-                <span class="search-cancel">取消</span>
+                <span class="search-cancel" onclick="Select()">搜索</span>
             </label>
         </form>
 
     </div>
 
-    <div class="near-header">
+    <div class="near-header" id="container">
         <div class="nearPos">
             <i class="mark" style="display: block;"></i>
-            <span>当前坐标：成都大学</span>
+            <span>当前坐标：</span>
         </div>
     </div>
 
-    <ul class="near-list am-list m-widget-list" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
-        <li>
-            <a href="@Url.Action("Detail")">马家河训练场</a>
-        </li>
-        <li>
-            <a href="details.html">云南</a>
-        </li>
-        <li>
-            <a href="details.html">西藏</a>
-        </li>
+    <ul class="near-list am-list m-widget-list" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);" id="neraList">
+        @*<li>
+                <a href="@Url.Action("Detail")">马家河训练场</a>
+            </li>
+            <li>
+                <a href="details.html">云南</a>
+            </li>
+            <li>
+                <a href="details.html">西藏</a>
+            </li>*@
 
     </ul>
     <!--[if (gte IE 9)|!(IE)]><!-->
@@ -74,5 +74,61 @@
     <script src="/Content/js/amazeui.min.js"></script>
     <script type="text/javascript" src="/Content/js/app.js"></script>
     <script type="text/javascript" src="/Content/js/handlebars.min.js"></script>
+    <script type="text/javascript">
+        function Select() {
+            $.post("@Url.Action("GetJucToNera")", { data: $("#search").val() },
+                function (data) {
+                    var html = '';
+                    for (var i = 0; i < data.length; i++) {
+                        html += ' <li><a onclick="changemap(' + data[i].Log + ',' + data[i].Lat + ',\''+data[i].Name+'\')">' + data[i].Name + '</a></li>';
+                    }
+                    //href="/Wx/Home/Detail?id=' + data[i].Id + '"
+                    $("#neraList").html(html);
+                });
+        }
+
+        $(function () {
+            Select();
+        });
+
+        function loadJScript() {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "http://api.map.baidu.com/api?v=2.0&ak=RMPTma1blVcK5DVPhB37saNL&callback=init";
+            document.body.appendChild(script);
+        }
+
+        function changemap(lng, lat, name) {
+            var map = new BMap.Map("container");
+            var point = new BMap.Point(lng, lat); // 创建点坐标
+            map.centerAndZoom(point, 15);
+            map.enableScrollWheelZoom(); //启用滚轮放大缩小
+            //设置标注的图标
+            //var marker = new BMap.Marker(point);
+            //map.addOverlay(marker);
+            var infoWindow = new BMap.InfoWindow("当前坐标:" +name);  // 创建信息窗口对象
+            map.openInfoWindow(infoWindow, point); //开启信息窗口
+            document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + infoWindow.getContent();
+        }
+
+        function init() {
+            //异步请求最优学校
+
+
+            //   jcuId = data.Id;
+            var map = new BMap.Map("container"); // 创建Map实例
+            var point = new BMap.Point('@ViewBag.Lng', '@ViewBag.Lat'); // 创建点坐标
+            map.centerAndZoom(point, 15);
+            map.enableScrollWheelZoom(); //启用滚轮放大缩小
+            //设置标注的图标
+           //var marker = new BMap.Marker(point);
+            //map.addOverlay(marker);
+            var infoWindow = new BMap.InfoWindow("当前坐标:" + '@ViewBag.Name');  // 创建信息窗口对象
+            map.openInfoWindow(infoWindow, point); //开启信息窗口
+            document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + infoWindow.getContent();
+            //$("#address").html('当前定位:' + data.Name);
+        }
+        window.onload = loadJScript;  //异步加载地图
+    </script>
 </body>
 </html>

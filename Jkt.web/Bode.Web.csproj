@@ -654,6 +654,7 @@
   <ItemGroup>
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CityController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ConfigController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\IdentityController.cs" />
     <Compile Include="Areas\Admin\Controllers\JcuController.cs" />
@@ -665,9 +666,6 @@
     <Compile Include="Areas\Admin\ViewModels\ClassifyNode.cs" />
     <Compile Include="Areas\Admin\ViewModels\CultureConfig.cs" />
     <Compile Include="Areas\Admin\ViewModels\TreeNode.cs" />
-    <Compile Include="Areas\Api\ApiAreaRegistration.cs" />
-    <Compile Include="Areas\Api\Controllers\AccountController.cs" />
-    <Compile Include="Areas\Api\Controllers\BasicInfoController.cs" />
     <Compile Include="Areas\Wx\Controllers\HomeController.cs" />
     <Compile Include="Areas\Wx\Controllers\ResultController.cs" />
     <Compile Include="Areas\Wx\WxAreaRegistration.cs" />
@@ -750,6 +748,7 @@
     <Content Include="Areas\Wx\Views\Home\College.cshtml" />
     <Content Include="Areas\Wx\Views\Result\AuthTokenUrl.cshtml" />
     <Content Include="Areas\Wx\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Config\ConfigList.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\本地.pubxml" />
     <None Include="Web.Debug.config">

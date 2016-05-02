@@ -9,9 +9,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="renderer" content="webkit">
-    <title>滴滴驾考</title>
+    <title>呱呱驾考</title>
     <link rel="stylesheet" type="text/css" href="/Content/css/amazeui.min.css">
     <link rel="stylesheet" type="text/css" href="/Content/css/index.css">
 </head>
@@ -26,7 +26,7 @@
     <div class="position">
         <p class="position-bg am-btn am-btn-primary am-btn-block">
             <i class="position-mark am-icon-map-marker" style="font-size: 20px"></i>
-            <a class="position-txt" href="@Url.Action("College")" id="address">当前定位：成都大学</a>
+            <a class="position-txt" id="address" onclick="goCollege()">当前坐标：</a>
         </p>
     </div>
     <div class="mark">
@@ -41,7 +41,7 @@
         </div>
         <div class="foot-right am-u-sm-6">
             <i class="phone"></i>
-            <a href="@Url.Action("Online")" href="javascrit:void(0)">在线咨询</a>
+            <a onclick="goOnline()">在线咨询</a>
         </div>
 
     </div>
@@ -55,15 +55,15 @@
             <ul class="bar-list">
                 <li class="listBar">
                     <i class="progress"></i>
-                    <a href="@Url.Action("Progress")">学车进度</a>
+                    <a onclick="goProgress()">学车进度</a>
                 </li>
                 <li class="listBar">
                     <i class="near"></i>
-                    <a href="@Url.Action("Near")">附近场地</a>
+                    <a onclick="goNear()">附近场地</a>
                 </li>
                 <li class="listBar">
                     <i class="complaint"></i>
-                    <a href="@Url.Action("Complaint")">投诉建议</a>
+                    <a onclick="goComplaint()">投诉建议</a>
                 </li>
             </ul>
         </div>
@@ -86,6 +86,7 @@
         var openId = '@ViewBag.OpenId';
         var url = '@ViewBag.Url';
         var count = '@ViewBag.Count';
+        var jcuId = 0;
         $(function () {
             if (openId === '' || openId == 'null' || openId == null) {
                 //alert(url);
@@ -106,25 +107,53 @@
             document.body.appendChild(script);
         }
         function init() {
+            //异步请求最优学校
+            $.post("@Url.Action("GetJcu")", {openId:openId, lng: longitude, lat: latitude }, function (data) {
+                if (data.ReturnCode == 1) {
+                    jcuId = data.ReturnData.Id;
+                    var map = new BMap.Map("container"); // 创建Map实例
+                    var point = new BMap.Point(data.ReturnData.Lng, data.ReturnData.Lat); // 创建点坐标
+                    map.centerAndZoom(point, 15);
+                    map.enableScrollWheelZoom(); //启用滚轮放大缩小
+                    //设置标注的图标
+                    var marker = new BMap.Marker(point);
+                    map.addOverlay(marker);
+                    $("#address").html('当前定位:' + data.ReturnData.Name);
 
-            var map = new BMap.Map("container");            // 创建Map实例
-            var point = new BMap.Point(longitude, latitude); // 创建点坐标
-            map.centerAndZoom(point, 15);
-            map.enableScrollWheelZoom();                 //启用滚轮放大缩小
-            //设置标注的图标
-            var marker = new BMap.Marker(point);
-            map.addOverlay(marker);
-            var geoc = new BMap.Geocoder();
+                    //var geoc = new BMap.Geocoder();
 
-            geoc.getLocation(point, function (rs) {
-                var addComp = rs.addressComponents;
-                $("#address").html('当前定位:' + addComp.city + addComp.street + addComp.streetNumber);
-                //alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                    //geoc.getLocation(point, function (rs) {
+                    //    var addComp = rs.addressComponents;
+                    //    $("#address").html('当前定位:' + addComp.city + addComp.street + addComp.streetNumber);
+                    //    //alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                    //});
+                } else {
+                    msgShow(data.ReturnMsg);
+                }
             });
+
         }
         function goDate() {
             window.location.href = "@Url.Action("GoDate")" + "?openId=" + openId;
         }
+        function goNear() {
+            window.location.href = "@Url.Action("Near")" + "?jcuId=" + jcuId;
+        }
+        function goOnline() {
+            window.location.href = "@Url.Action("Online")";
+        }
+        function goProgress() {
+            window.location.href = "@Url.Action("Progress")" + "?openId=" + openId;
+        }
+
+        function goComplaint() {
+            window.location.href = "@Url.Action("Complaint")" + "?openId=" + openId;
+        }
+
+        function goCollege() {
+            window.location.href = "@Url.Action("College")" + "?jcuId=" + jcuId;
+        }
+
         //window.onload = loadJScript;  //异步加载地图
 
     </script>

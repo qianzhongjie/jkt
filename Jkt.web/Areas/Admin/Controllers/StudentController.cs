@@ -51,7 +51,7 @@ namespace Bode.Web.Areas.Admin.Controllers
                         m.IdCard,
                         JcuSystemId = m.JcuSystem == null ? 0 : m.JcuSystem.Id,
                         // SysRealName = m.JcuSystem == null ? "" : m.JcuSystem.SystemInfo.RealName,
-                        m.ExaminationTime,
+                        ExaminationTime = m.ExaminationTime == null ? "无" : m.ExaminationTime.ToString(),
                         m.SubscribeTime
                     });
             if (user.SysUser.UserName == "admin" || user.SysUser.UserName == "Admin")
@@ -59,7 +59,7 @@ namespace Bode.Web.Areas.Admin.Controllers
 
                 return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
             }
-            datas = GetQueryData<StudentInfo, int>(StudentContract.StudentInfos.Where(x => x.Jcu.Id == jcusId && x.JcuSystem.Id == userId), out total,
+            datas = GetQueryData<StudentInfo, int>(StudentContract.StudentInfos.Where(x => x.Jcu.Id == jcusId && x.JcuSystem.SystemInfo.Id == userId), out total,
                     request).Select(m => new
                     {
                         m.CreatedTime,
@@ -73,7 +73,7 @@ namespace Bode.Web.Areas.Admin.Controllers
                         m.IdCard,
                         JcuSystemId = m.JcuSystem == null ? 0 : m.JcuSystem.Id,
                         //SysRealName = m.JcuSystem == null ? "" : m.JcuSystem.SystemInfo.RealName,
-                        m.ExaminationTime,
+                        ExaminationTime = m.ExaminationTime == null ? "无" : m.ExaminationTime.ToString(),
                         m.SubscribeTime
                     });
             return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
@@ -84,7 +84,7 @@ namespace Bode.Web.Areas.Admin.Controllers
         public async Task<ActionResult> SaveStudentData(StudentInfoDto[] dtos)
         {
             dtos.CheckNotNull("dtos");
-            OperationResult result = await StudentContract.SaveStudentInfos(dtos: dtos);
+            OperationResult result = await StudentContract.AddEditStudentInfos(dtos: dtos);
             return Json(result.ToAjaxResult());
         }
 
@@ -113,7 +113,7 @@ namespace Bode.Web.Areas.Admin.Controllers
         public async Task<ActionResult> DeleteEntryPracticeData(int[] ids)
         {
             ids.CheckNotNull("ids");
-            OperationResult result = await StudentContract.DeletePracticeEntrys(ids);
+            OperationResult result = await StudentContract.DeleteStudentInfos(ids);
             return Json(result.ToAjaxResult());
         }
 
@@ -122,11 +122,14 @@ namespace Bode.Web.Areas.Admin.Controllers
         {
             var user = UserContract.UserInfos.SingleOrDefault(p => p.SysUser.UserName == User.Identity.Name);
             ViewBag.UserId = user.Id;
-            ViewBag.UserList = StudentContract.JcuSystems.Select(x => new
+            ViewBag.Name = user.SysUser.UserName;
+            var UserList = StudentContract.JcuSystems.Select(x => new
             {
                 val = x.Id,
                 text = x.SystemInfo.RealName
-            });
+            }).ToList();
+            UserList.Add(new { val = 0, text = "无" });
+            ViewBag.UserList = UserList;
             ViewBag.ScheduleState = typeof(Schedule).ToDictionary().Select(p => new
             {
                 val = p.Key,

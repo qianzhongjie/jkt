@@ -10,7 +10,7 @@
     <script type="text/javascript">
         columns = [
             { data: "Id", title: "编号" },
-            { data: "UserName", title: "用户名", type: "text", search: true },
+            //{ data: "UserName", title: "用户名", type: "text", search: true },
             { data: "NickName", title: "昵称", type: "text", search: true },
             { data: "Content", title: "反馈内容", type: "text", search: true },
             {
@@ -18,7 +18,7 @@
                 title: "创建时间",
                 type: "datepicker",
                 search: true,
-                format: function(d) {
+                format: function (d) {
                     return $.osharp.tools.formatDate(d);
                 },
                 isformatval: true

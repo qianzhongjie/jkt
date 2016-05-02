@@ -1,5 +1,7 @@
-﻿@{
+﻿@using Bode.Services.Core.Models.Student
+@{
     Layout = null;
+    var nearList = (List<SiteFactory>)ViewBag.Near;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -8,33 +10,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="renderer" content="webkit">
-    <title>滴滴驾考</title>
+    <title>附近场地</title>
     <link rel="stylesheet" type="text/css" href="/Content/css/amazeui.min.css">
     <link rel="stylesheet" type="text/css" href="/Content/css/sprites.css">
     <link rel="stylesheet" type="text/css" href="/Content/css/index.css">
 </head>
 <body id="nearPage">
 
-    <div class="near-header">
+    <div class="near-header" id="container">
         <div class="nearPos">
             <i class="mark" style="display: block;"></i>
-            <span>当前坐标：成都大学</span>
+            <span id="name">当前坐标：</span>
         </div>
     </div>
 
     <ul class="near-list am-list m-widget-list" style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
-        <li>
-            <a href="@Url.Action("Detail")">马家河训练场</a>
-        </li>
-        <li>
-            <a href="details.html">长兵训练场</a>
-        </li>
-        <li>
-            <a href="details.html">龙泉训练场</a>
-        </li>
-
+        @{
+            foreach (var near in nearList)
+            {
+                <li>
+                    <a href="@Url.Action("Detail")?id=@near.Id">@near.Name</a>
+                </li>
+            }
+        }
     </ul>
     <!--[if (gte IE 9)|!(IE)]><!-->
     <script src="/Content/js/jquery.min.js"></script>
@@ -47,5 +47,32 @@
     <script src="/Content/js/amazeui.min.js"></script>
     <script type="text/javascript" src="/Content/js/app.js"></script>
     <script type="text/javascript" src="/Content/js/handlebars.min.js"></script>
+    <script type="text/javascript">
+        function loadJScript() {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "http://api.map.baidu.com/api?v=2.0&ak=RMPTma1blVcK5DVPhB37saNL&callback=init";
+            document.body.appendChild(script);
+        }
+        function init() {
+            //异步请求最优学校
+
+
+            //   jcuId = data.Id;
+            var map = new BMap.Map("container"); // 创建Map实例
+            var point = new BMap.Point('@ViewBag.Lng', '@ViewBag.Lat'); // 创建点坐标
+            map.centerAndZoom(point, 15);
+            map.enableScrollWheelZoom(); //启用滚轮放大缩小
+            //设置标注的图标
+            var marker = new BMap.Marker(point);
+            map.addOverlay(marker);
+            var infoWindow = new BMap.InfoWindow("当前坐标:" + '@ViewBag.Name');  // 创建信息窗口对象
+            map.openInfoWindow(infoWindow, point); //开启信息窗口
+            document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + infoWindow.getContent();
+            //$("#address").html('当前定位:' + data.Name);
+        }
+        window.onload = loadJScript;  //异步加载地图
+
+    </script>
 </body>
 </html>

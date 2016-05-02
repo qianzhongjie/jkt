@@ -16,6 +16,7 @@ using Bode.Services.Core.Contracts;
 using Bode.Services.Core.Dtos.Student;
 using Bode.Services.Core.Dtos.User;
 using Bode.Services.Core.Dtos.Wx;
+using Bode.Services.Core.Models.Config;
 using Bode.Services.Core.Models.Student;
 using Bode.Services.Core.Models.User;
 using WX.Api;
@@ -37,6 +38,7 @@ namespace Bode.Web.Areas.Wx.Controllers
     public class HomeController : Controller
     {
         public IStudentContract StudentContract { get; set; }
+        public IConfigContract ConfigContract { get; set; }
         public IWxContract WxContract { get; set; }
         public static string OpenId { get; set; }
         public static int UserId { get; set; }
@@ -144,6 +146,10 @@ namespace Bode.Web.Areas.Wx.Controllers
             {
                 return Json(new ApiResult(OperationResultType.ValidError, "无法获取你的定位,请打开定位,再提交"));
             }
+            if (time <= DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")))
+            {
+                return Json(new ApiResult(OperationResultType.ValidError, "预约时间不能小于或等于当前时间"));
+            }
             var jcuList = StudentContract.JCUs.AsEnumerable().Select(x => new
             {
                 x.Id,
@@ -160,6 +166,18 @@ namespace Bode.Web.Areas.Wx.Controllers
                 if (userinfo.Any())
                 {
                     userId = userinfo.First().Id;
+                    var student = StudentContract.StudentInfos.Where(x => x.UserInfo.Id == userId);
+                    if (student.Any())
+                    {
+                        if (student.First().SubscribeTime > DateTime.Now)
+                        {
+                            return Json(new ApiResult(OperationResultType.Error, "你已经预约过了,不要重复提交"));
+                        }
+                        else if (student.First().ScheduleState != Schedule.申请试练)
+                        {
+                            return Json(new ApiResult(OperationResultType.Error, "你已经是我们的学员,无须再预约"));
+                        }
+                    }
                 }
                 else
                 {
@@ -182,6 +200,94 @@ namespace Bode.Web.Areas.Wx.Controllers
             return Json(new ApiResult(OperationResultType.ValidError, "对不起,目前未开放你所在地区,敬请期待"));
         }
 
+
+        [Description("异步获取最近学校")]
+        [HttpPost]
+        public ActionResult GetJcu(string openId = "", double lng = 0, double lat = 0)
+        {
+            if (lng == 0)
+            {
+                return Json(new ApiResult(OperationResultType.ValidError, "无法获取你的定位,请打开定位,"));
+            }
+            if (lat == 0)
+            {
+                return Json(new ApiResult(OperationResultType.ValidError, "无法获取你的定位,请打开定位,"));
+            }
+            if (!string.IsNullOrWhiteSpace(openId))
+            {
+                var jcu = StudentContract.StudentInfos.Where(x => x.UserInfo.Token == openId).Select(x => new
+                {
+                    x.Jcu.Lat,
+                    x.Jcu.Log,
+                    x.Jcu.Name,
+                    x.Id
+                });
+                if (jcu.Any())
+                {
+                    return
+                        Json(new ApiResult("获取成功",
+                            new
+                            {
+                                Id = jcu.First().Id,
+                                Lng = jcu.First().Log,
+                                Lat = jcu.First().Lat,
+                                Name = jcu.First().Name
+                            }));
+                }
+            }
+            var jcuList = StudentContract.JCUs.AsEnumerable().Select(x => new
+            {
+                x.Id,
+                x.Lat,
+                x.Log,
+                x.Name,
+                Distance = LngLat.GetDistance(Double.Parse(x.Lat), Double.Parse(x.Log), lat, lng)
+            }).OrderBy(x => x.Distance);
+            if (jcuList.Any())
+            {
+                return Json(new ApiResult("获取成功", new { Id = jcuList.First().Id, Lng = jcuList.First().Log, Lat = jcuList.First().Lat, Name = jcuList.First().Name }));
+            }
+            return Json(new ApiResult(OperationResultType.Error, "对不起,暂时还未开通到你的地区"));
+        }
+
+
+        [Description("提交投诉建议")]
+        [HttpPost]
+        public async Task<ActionResult> PostComplaint(string openId = "", string content = "")
+        {
+            if (string.IsNullOrWhiteSpace(openId))
+            {
+                return Json(new ApiResult("无法获取你的信息,请重新关注公众号,再做提交"));
+            }
+            var user = UserContract.UserInfos.Where(x => x.Token == openId);
+            if (!user.Any())
+            {
+                return Json(new ApiResult("请联系我们的客服,成为我们的学员"));
+            }
+            var dto = new FeedBackDto()
+            {
+                Content = content,
+                UserInfoId = user.First().Id
+            };
+            var result = await UserContract.SaveFeedBacks(dtos: dto);
+            return Json(result.ToApiResult());
+        }
+
+        [Description("大学名称查场地")]
+        [HttpPost]
+        public ActionResult GetJucToNera(string data = "")
+        {
+            data = data.Trim();
+            var list = StudentContract.JCUs.Where(x => x.Name.Contains(data)).Select(x => new
+            {
+                x.Id,
+                x.Lat,
+                x.Log,
+                x.Name,
+            }).Take(50).ToList();
+            return Json(list);
+        }
+
         #endregion
         #region 视图
         [Description("预约试学")]
@@ -194,17 +300,35 @@ namespace Bode.Web.Areas.Wx.Controllers
         [Description("在线咨询")]
         public ActionResult Online()
         {
-
+            var config = ConfigContract.ContactConfigs;
+            if (config.Any())
+            {
+                var phone = config.Where(x => x.Type == ContactType.手机);
+                var qq = config.Where(x => x.Type == ContactType.QQ);
+                if (phone.Any())
+                {
+                    ViewBag.Phone = phone.First().Value;
+                }
+                if (qq.Any())
+                {
+                    ViewBag.QQ = qq.First().Value;
+                }
+            }
             return View();
         }
 
         [Description("学车进度")]
-        public ActionResult Progress()
+        public ActionResult Progress(string openId = "")
         {
-            var progress = StudentContract.StudentInfos.Single(x => x.UserInfo.Id == UserId);
-            if (progress != null)
+            if (string.IsNullOrWhiteSpace(openId))
             {
-                ViewBag.progress = progress.ScheduleState;
+                ViewBag.progress = 8;
+                return View();
+            }
+            var progress = StudentContract.StudentInfos.Where(x => x.UserInfo.Token == openId);
+            if (progress.Any())
+            {
+                ViewBag.progress = (int)progress.First().ScheduleState;
                 return View();
             }
             ViewBag.progress = 8;
@@ -212,26 +336,53 @@ namespace Bode.Web.Areas.Wx.Controllers
         }
 
         [Description("附近场地")]
-        public ActionResult Near()
+        public ActionResult Near(int jcuId = 0)
         {
+            var near = StudentContract.SiteFactorys;
+            if (jcuId > 0)
+            {
+                var data = near.Where(x => x.JCU.Id == jcuId).ToList();
+                ViewBag.Near = data;
+                var jcuM = StudentContract.JCUs.SingleOrDefault(x => x.Id == jcuId);
+                ViewBag.Lng = jcuM.Log;
+                ViewBag.Lat = jcuM.Lat;
+                ViewBag.Name = jcuM.Name;
+                return View();
+            }
+            ViewBag.Near = near.Take(3).ToList();
             return View();
         }
 
         [Description("当前定位详情")]
-        public ActionResult College()
+        public ActionResult College(int jcuId = 0)
         {
+
+            if (jcuId > 0)
+            {
+                var jcuM = StudentContract.JCUs.Where(x => x.Id == jcuId);
+                if (jcuM.Any())
+                {
+                    ViewBag.Lng = jcuM.First().Log;
+                    ViewBag.Lat = jcuM.First().Lat;
+                    ViewBag.Name = jcuM.First().Name;
+                }
+                return View();
+            }
             return View();
         }
 
         [Description("场地详细")]
-        public ActionResult Detail()
+        public ActionResult Detail(int id)
         {
+            var data = StudentContract.SiteFactorys.Single(x => x.Id == id);
+            ViewBag.Detail = data;
             return View();
         }
 
         [Description("投诉建议")]
-        public ActionResult Complaint()
+        public ActionResult Complaint(string openId = "")
         {
+            ViewBag.OpenId = openId;
             return View();
         }
 
