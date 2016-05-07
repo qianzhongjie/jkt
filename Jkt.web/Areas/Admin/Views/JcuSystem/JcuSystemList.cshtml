@@ -4,8 +4,8 @@
     Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
     ViewBag.GridDataUrl = Url.Action("GetJcuSystemData");
     ViewBag.DeleteUrl = Url.Action("DeleteJcuSystem");
-    //ViewBag.SaveUrl = Url.Action("SaveJcuSystemData");
-    ViewBag.ToolbarItem = "add,cancel,delete";
+    ViewBag.SaveUrl = Url.Action("SaveJcuSystemData");
+    // ViewBag.ToolbarItem = "add,cancel,delete";
 }
 @section customScript
 {
@@ -13,28 +13,27 @@
     <script type="text/javascript">
         var jcuId = 0;
         columns = [
-        //{ data: "Id", title: "编号" },
-        { data: "JcusId", title: "校区Id", type: "hide" },
-        { data: "SystemInfoId", title: "校区经理用户Id", type: "hide" },
-        { data: "Id", title: "用户Id", type: "hide" },
-        { data: "HeadPic", title: "头像", type: "img" },
-        { data: "UserName", title: "帐号", type: "text" },
-          { data: "RealName", title: "姓名", type: "text" },
-
-          { data: "NickName", title: "昵称", type: "text" },
-               { data: "PhoneNumber", title: "电话号码", type: "number" },
-                 { data: "Qq", title: "QQ", type: "text" },
-        { data: "Name", title: "所属校区", type: "text" }, { data: "Sum", title: "学员数量", type: "text" },
-      {
-          data: "CreatedTime",
-          title: "上任时间",
-          type: "datepicker",
-          search: true,
-          format: function (d) {
-              return $.osharp.tools.formatDate(d);
-          },
-          isformatval: true
-      }
+            //{ data: "Id", title: "编号" },
+            { data: "JcusId", title: "校区Id", type: "hide" },
+            { data: "UserInfoId", title: "校区经理用户Id", type: "hide" },
+            { data: "Id", title: "用户Id", type: "hide" },
+            { data: "HeadPic", title: "头像", type: "img" },
+            { data: "UserName", title: "帐号", type: "text" },
+            { data: "NickName", title: "昵称", type: "text" },
+            { data: "RealName", title: "姓名", type: "text", editor: {} },
+            { data: "PhoneNumber", title: "电话号码", type: "number", editor: {} },
+            { data: "Qq", title: "QQ", type: "text", editor: {} },
+            { data: "Name", title: "所属校区", type: "text" }, { data: "Sum", title: "学员数量", type: "text" },
+            {
+                data: "CreatedTime",
+                title: "上任时间",
+                type: "datepicker",
+                search: true,
+                format: function (d) {
+                    return $.osharp.tools.formatDate(d);
+                },
+                isformatval: true
+            }
         ];
         //$(function () {
         //    dataTable.beforeEdit = function (index, row) {
@@ -44,6 +43,7 @@
         startfunction = function () {
 
             $("#btAdd").unbind();
+            
             $("#btAdd").click(function () {
 
 
@@ -86,7 +86,6 @@
             $("#tree .widget-body").height(document.body.scrollHeight - 140);
 
 
-
             // UITree.init();
             @* var tree = new $.osharp.Treeview("#treeContent", {
                 ajax: "@Url.Action("GetJcuSystemTree")",
@@ -124,6 +123,7 @@
                 $("#Account").html(htmls);
             });
         }
+
         function contents(obj, pId) {
             jcuId = pId;
             $('.bg-palegreen').removeClass('bg-palegreen');
@@ -132,6 +132,7 @@
             dataTable.reload();
 
         }
+
         function parent(obj) {
             $('.tree-folder-content').css('display', "none");
             if ($(obj).next('div').css('display') === "block") {

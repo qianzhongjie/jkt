@@ -46,6 +46,7 @@ namespace Bode.Web.Areas.Admin.Controllers
                     });
             return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
         }
+
         [AjaxOnly]
         [HttpPost]
         [Description("保存校区数据")]
@@ -56,6 +57,18 @@ namespace Bode.Web.Areas.Admin.Controllers
             List<JCUDto> dtoList = new List<JCUDto>();
             foreach (var dto in dtos)
             {
+                var model = studentContract.JCUs.Where(x => x.Name == dto.Name);
+                if (model.Any())
+                {
+                    if (dto.Id == 0)
+                    {
+                        return Json(new OperationResult(OperationResultType.QueryNull, "此名称已存在,请不要重复添加").ToAjaxResult());
+                    }
+                    else if (model.First().Id != dto.Id)
+                    {
+                        return Json(new OperationResult(OperationResultType.QueryNull, "此名称已存在,请不要重复添加").ToAjaxResult());
+                    }
+                }
                 if (string.IsNullOrWhiteSpace(dto.Address))
                 {
                     return Json(new OperationResult(OperationResultType.Error, "必须输入地址", "").ToAjaxResult());
@@ -80,6 +93,14 @@ namespace Bode.Web.Areas.Admin.Controllers
         public async Task<ActionResult> DeleteJcu(int[] ids)
         {
             ids.CheckNotNull("ids");
+            foreach (var id in ids)
+            {
+                var model = studentContract.StudentInfos.Where(x => x.Jcu.Id == id);
+                if (model.Any())
+                {
+                    return Json(new OperationResult(OperationResultType.Error, "此校区下还有学员，不能删除"));
+                }
+            }
             OperationResult result = await Task.Run(() => studentContract.DeleteJCUs(ids));
             return Json(result.ToAjaxResult());
         }

@@ -220,7 +220,7 @@ namespace Bode.Web.Areas.Wx.Controllers
                     x.Jcu.Lat,
                     x.Jcu.Log,
                     x.Jcu.Name,
-                    x.Id
+                    x.Jcu.Id
                 });
                 if (jcu.Any())
                 {
@@ -298,10 +298,20 @@ namespace Bode.Web.Areas.Wx.Controllers
         }
 
         [Description("在线咨询")]
-        public ActionResult Online()
+        public ActionResult Online(int jcuId = 0)
         {
             var config = ConfigContract.ContactConfigs;
-            if (config.Any())
+            if (jcuId > 0)
+            {
+                var phone = StudentContract.JcuSystems.Where(x => x.Jcus.Id == jcuId);
+                //var qq = config.Where(x => x.Type == ContactType.QQ);
+                if (phone.Any())
+                {
+                    ViewBag.Phone = phone.First().SystemInfo.SysUser.PhoneNumber;
+                    ViewBag.QQ = phone.First().SystemInfo.Qq;
+                }
+            }
+            else if (config.Any())
             {
                 var phone = config.Where(x => x.Type == ContactType.手机);
                 var qq = config.Where(x => x.Type == ContactType.QQ);

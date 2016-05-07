@@ -133,5 +133,13 @@ namespace Bode.Services.Core.Contracts
 
         OperationResult SaveUserDetail(UserInfoEditDto dto);
         OperationResult Register(UserInfoRegistDto dto);
+
+
+        /// <summary>
+        /// 编辑UserInfo信息
+        /// </summary>
+        /// <param name="dtos">要更新的UserInfoEditDto信息</param>
+        /// <returns>业务操作结果</returns>
+        Task<OperationResult> UpdateUserInfos(params UserInfoEditDto[] dtos);
     }
 }

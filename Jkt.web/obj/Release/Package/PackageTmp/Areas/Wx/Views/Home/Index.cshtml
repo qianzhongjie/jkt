@@ -108,7 +108,7 @@
         }
         function init() {
             //异步请求最优学校
-            $.post("@Url.Action("GetJcu")", {openId:openId, lng: longitude, lat: latitude }, function (data) {
+            $.post("@Url.Action("GetJcu")", { openId: openId, lng: longitude, lat: latitude }, function (data) {
                 if (data.ReturnCode == 1) {
                     jcuId = data.ReturnData.Id;
                     var map = new BMap.Map("container"); // 创建Map实例
@@ -140,7 +140,7 @@
             window.location.href = "@Url.Action("Near")" + "?jcuId=" + jcuId;
         }
         function goOnline() {
-            window.location.href = "@Url.Action("Online")";
+            window.location.href = "@Url.Action("Online")" + "?jcuId=" + jcuId;
         }
         function goProgress() {
             window.location.href = "@Url.Action("Progress")" + "?openId=" + openId;

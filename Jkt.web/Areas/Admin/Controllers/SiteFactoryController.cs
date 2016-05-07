@@ -51,6 +51,18 @@ namespace Bode.Web.Areas.Admin.Controllers
         public async Task<ActionResult> SaveSiteFactoryData(SiteFactoryDto dtos, SitePic[] pic)
         {
             dtos.CheckNotNull("dtos");
+            var model = StudentContract.SiteFactorys.Where(x => x.Name == dtos.Name);
+            if (model.Any())
+            {
+                if (dtos.Id == 0)
+                {
+                    return Json(new OperationResult(OperationResultType.QueryNull, "此名称已存在,请不要重复添加").ToAjaxResult());
+                }
+                else if (dtos.Id != model.First().Id)
+                {
+                    return Json(new OperationResult(OperationResultType.QueryNull, "此名称已存在,请不要重复添加").ToAjaxResult());
+                }
+            }
             OperationResult result = await StudentContract.AddFactory(dtos, pic);
             return Json(result.ToAjaxResult());
         }

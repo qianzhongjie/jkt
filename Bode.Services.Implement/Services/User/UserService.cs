@@ -35,16 +35,42 @@ namespace Bode.Services.Implement.Services
         /// </summary>
         /// <param name="dtos">要更新的UserInfoEditDto信息</param>
         /// <returns>业务操作结果</returns>
+        public async Task<OperationResult> UpdateUserInfos(params UserInfoEditDto[] dtos)
+        {
+            dtos.CheckNotNull("dtos");
+            UserInfoRepo.UnitOfWork.TransactionEnabled = true;
+            SysUserRepo.UnitOfWork.TransactionEnabled = true;
+            foreach (var dto in dtos)
+            {
+                var userInfo = UserInfoRepo.GetByKey(dto.UserInfoId);
+                userInfo.Qq = dto.Qq;
+                userInfo.RealName = dto.RealName;
+                var sysUser = userInfo.SysUser;
+                sysUser.PhoneNumber = dto.PhoneNumber;
+                SysUserRepo.Update(sysUser);
+                UserInfoRepo.Update(userInfo);
+            }
+            await SysUserRepo.UnitOfWork.SaveChangesAsync();
+            await UserInfoRepo.UnitOfWork.SaveChangesAsync();
+            return new OperationResult(OperationResultType.Success, "保存成功");
+        }
+
+        /// <summary>
+        /// 编辑UserInfo信息
+        /// </summary>
+        /// <param name="dtos">要更新的UserInfoEditDto信息</param>
+        /// <returns>业务操作结果</returns>
         public async Task<OperationResult> EditUserInfos(params UserInfoEditDto[] dtos)
         {
             dtos.CheckNotNull("dtos");
-
             var result = UserInfoRepo.Update(dtos, updateFunc: (dto, userInfo) =>
             {
                 var sysUser = userInfo.SysUser;
                 userInfo.Id = dto.UserInfoId;
                 sysUser.NickName = dto.NickName;
                 sysUser.PhoneNumber = dto.PhoneNumber;
+                userInfo.Qq = dto.Qq;
+                userInfo.RealName = dto.RealName;
                 return userInfo;
             });
             return await Task.FromResult(result);

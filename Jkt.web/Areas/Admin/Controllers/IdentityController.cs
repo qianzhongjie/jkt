@@ -536,17 +536,16 @@ namespace Bode.Web.Areas.Admin.Controllers
             return View();
         }
 
-        //[Description("功能列表")]
-        //public ActionResult FunctionList()
-        //{
-        //    ViewBag.FunctionTypes = typeof(FunctionType).ToDictionary().Select(p => new
-        //    {
-        //        val = p.Key,
-        //        text = p.Value
-        //    }).ToList();
-
-        //    return View();
-        //}
+        [Description("功能列表")]
+        public ActionResult FunctionList()
+        {
+            ViewBag.FunctionTypes = typeof(FunctionType).ToDictionary().Select(p => new
+            {
+                val = p.Key,
+                text = p.Value
+            }).ToList();
+            return View();
+        }
 
         //[Description("实体列表")]
         //public ActionResult EntityInfoList()

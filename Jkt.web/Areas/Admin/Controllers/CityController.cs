@@ -44,6 +44,21 @@ namespace Bode.Web.Areas.Admin.Controllers
         public async Task<ActionResult> SaveCityData(CityDto[] dtos)
         {
             dtos.CheckNotNull("dtos");
+            foreach (var dto in dtos)
+            {
+                var model = studentContract.Citys.Where(x => x.Name == dto.Name);
+                if (model.Any())
+                {
+                    if (dto.Id == 0)
+                    {
+                        return Json(new OperationResult(OperationResultType.QueryNull, "此名称已存在,请不要重复添加").ToAjaxResult());
+                    }
+                    else if (model.First().Id != dto.Id)
+                    {
+                        return Json(new OperationResult(OperationResultType.QueryNull, "此名称已存在,请不要重复添加").ToAjaxResult());
+                    }
+                }
+            }
             OperationResult result = await studentContract.SaveCitys(dtos: dtos);
             return Json(result.ToAjaxResult());
         }
@@ -53,6 +68,14 @@ namespace Bode.Web.Areas.Admin.Controllers
         public async Task<ActionResult> DeleteCity(int[] ids)
         {
             ids.CheckNotNull("ids");
+            foreach (var id in ids)
+            {
+                var model = studentContract.JCUs.Where(x => x.City.Id == id);
+                if (model.Any())
+                {
+                    return Json(new OperationResult(OperationResultType.Error, "此城市下还有校区，不能删除").ToAjaxResult());
+                }
+            }
             OperationResult result = await Task.Run(() => studentContract.DeleteCitys(ids));
             return Json(result.ToAjaxResult());
         }

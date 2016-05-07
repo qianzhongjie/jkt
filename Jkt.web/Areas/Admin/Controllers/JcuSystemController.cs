@@ -43,7 +43,8 @@ namespace Bode.Web.Areas.Admin.Controllers
                             NickName = m.SystemInfo.SysUser.NickName,
                             UserName = m.SystemInfo.SysUser.UserName,
                             m.SystemInfo.RealName,
-                            SystemInfoId = m.SystemInfo.Id,
+                            //SystemInfoId = m.SystemInfo.Id,
+                            UserInfoId = m.SystemInfo.Id,
                             Name = m.Jcus.Name,
                             m.SystemInfo.Qq,
                             JcusId = m.Jcus.Id,
@@ -58,15 +59,17 @@ namespace Bode.Web.Areas.Admin.Controllers
             }
 
         }
-        //[Description("保存校区经理数据")]
-        //[AjaxOnly]
-        //[HttpPost]
-        //public async Task<ActionResult> SaveJcuSystemData(UserInfoEditDto[] dtos)
-        //{
-        //    dtos.CheckNotNull("dtos");
-        //    OperationResult result = await UserContract.EditUserInfos(dtos: dtos);
-        //    return Json(result.ToAjaxResult());
-        //}
+        [Description("保存校区经理数据")]
+        [AjaxOnly]
+        [HttpPost]
+        public async Task<ActionResult> SaveJcuSystemData(UserInfoEditDto[] dtos)
+        {
+            dtos.CheckNotNull("dtos");
+    
+            OperationResult result = await UserContract.UpdateUserInfos(dtos: dtos);
+            return Json(result.ToAjaxResult());
+        }
+
         [Description("添加校区经理")]
         [HttpPost]
         public async Task<ActionResult> AddJcuSystem(JcuSystemDto[] dtos)
