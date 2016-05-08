@@ -47,14 +47,14 @@ namespace Bode.Web.Areas.Admin.Controllers
             return Json(new GridData<object>(datas, total), JsonRequestBehavior.AllowGet);
         }
 
-        [AjaxOnly]
+        // [AjaxOnly]
         [HttpPost]
         [Description("保存校区数据")]
         public async Task<ActionResult> SaveJcuData(JCUDto[] dtos)
         {
             dtos.CheckNotNull("dtos");
 
-            List<JCUDto> dtoList = new List<JCUDto>();
+            //List<JCUDto> dtoList = new List<JCUDto>();
             foreach (var dto in dtos)
             {
                 var model = studentContract.JCUs.Where(x => x.Name == dto.Name);
@@ -69,21 +69,22 @@ namespace Bode.Web.Areas.Admin.Controllers
                         return Json(new OperationResult(OperationResultType.QueryNull, "此名称已存在,请不要重复添加").ToAjaxResult());
                     }
                 }
-                if (string.IsNullOrWhiteSpace(dto.Address))
-                {
-                    return Json(new OperationResult(OperationResultType.Error, "必须输入地址", "").ToAjaxResult());
-                }
-                if (string.IsNullOrWhiteSpace(dto.Name))
-                {
-                    return Json(new OperationResult(OperationResultType.Error, "必须输入学校名称", "").ToAjaxResult());
-                }
-                // var cityName = CityRepo.GetByKey(dto.CityId);
-                var reLng = BaiDuResult.GetLngLat(dto.Name).result.location;
-                dto.Lat = reLng.lat.ToString();
-                dto.Log = reLng.lng.ToString();
-                dtoList.Add(dto);
+                //if (string.IsNullOrWhiteSpace(dto.Address))
+                //{
+                //    return Json(new OperationResult(OperationResultType.Error, "必须输入地址", "").ToAjaxResult());
+                //}
+                //if (string.IsNullOrWhiteSpace(dto.Name))
+                //{
+                //    return Json(new OperationResult(OperationResultType.Error, "必须输入学校名称", "").ToAjaxResult());
+                //}
+                //// var cityName = CityRepo.GetByKey(dto.CityId);
+                //var reLng = BaiDuResult.GetLngLat(dto.Name).result.location;
+                //dto.Lat = reLng.lat.ToString();
+                //dto.Log = reLng.lng.ToString();
+                //dtoList.Add(dto);
             }
-            OperationResult result = await studentContract.SaveJCUs(dtos: dtoList.ToArray());
+
+            OperationResult result = await studentContract.SaveJCUs(dtos: dtos.ToArray());
             return Json(result.ToAjaxResult());
         }
 
@@ -108,6 +109,20 @@ namespace Bode.Web.Areas.Admin.Controllers
         [Description("校区列表")]
         public ActionResult JcuList()
         {
+            return View();
+        }
+
+        [Description("添加校区视图")]
+        public ActionResult EditAddJcuView(int cityId)
+        {
+            ViewBag.CityId = cityId;
+            return View();
+        }
+
+        [Description("编辑校区试图")]
+        public ActionResult EditJcuView(int id)
+        {
+            ViewBag.DataJcu = studentContract.JCUs.Single(x => x.Id == id);
             return View();
         }
 

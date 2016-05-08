@@ -3,7 +3,7 @@
     ViewBag.Title = "校区列表";
     Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
     ViewBag.GridDataUrl = Url.Action("GetJcuData");
-    ViewBag.SaveUrl = Url.Action("SaveJcuData");
+   // ViewBag.SaveUrl = Url.Action("SaveJcuData");
     ViewBag.DeleteUrl = Url.Action("DeleteJcu");
 }
 @section customScript
@@ -11,23 +11,44 @@
     <script src="~/Content/js/osharp/osharp.treeview.js"></script>
     <script type="text/javascript">
         columns = [
-               { data: "Id", title: "编号" },
-                { data: "CityId", title: "编号", type: "hide" },
-               { data: "Name", title: "名称", type: "text", search: true, editor: {} },
-                   { data: "Address", title: "详细地址", type: "text", search: true, editor: {} },
-               { data: "CityName", title: "所属城市", type: "text", search: true },
-               { data: "Sum", title: "学员数量", type: "number", search: true, },
-             {
-                 data: "CreatedTime",
-                 title: "创建时间",
-                 type: "datepicker",
-                 search: true,
-                 format: function (d) {
-                     return $.osharp.tools.formatDate(d);
-                 },
-                 isformatval: true
-             }
+            { data: "Id", title: "编号" },
+            { data: "CityId", title: "编号", type: "hide" },
+            { data: "Name", title: "名称", type: "text", search: true },
+            { data: "Address", title: "详细地址", type: "text", search: true},
+            { data: "CityName", title: "所属城市", type: "text", search: true },
+            { data: "Sum", title: "学员数量", type: "number" },
+            {
+                data: "CreatedTime",
+                title: "创建时间",
+                type: "datepicker",
+                search: true,
+                format: function (d) {
+                    return $.osharp.tools.formatDate(d);
+                },
+                isformatval: true
+            }
         ];
+        endfunction = function () {
+            $("#btAdd").unbind();
+            $("#btEdit").unbind();
+            $('#btAdd').click(function () {
+                var cid = $("#treeContent").find('.bg-palegreen').attr("data-value");
+                if (cid == 0) {
+                    Notify("请先选择城市", 'bottom-right', '5000', 'danger', 'fa-bolt', true);
+                    return;
+                }
+                window.location.href = "@Url.Action("EditAddJcuView")" + "?cityId=" + cid;
+            });
+            $("#btEdit").click(function () {
+                var selectRow = dataTable.getCurrent();
+                if (selectRow.length > 0) {
+                    var stylistId = dataTable.getRowData(selectRow)["Id"];
+                    location.href = "@Url.Action("EditJcuView")" + "?id=" + stylistId;
+                } else {
+                    Notify("请选择要操作的行", 'bottom-right', '5000', 'danger', 'fa-bolt', true);
+                }
+            });
+        }
         startfunction = function () {
             var tabArea = $(".page-body>.row>div");
             tabArea.attr("class", "col-xs-8 col-md-9 col-lg-10");

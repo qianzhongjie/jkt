@@ -748,6 +748,8 @@
     <Content Include="Areas\Wx\Views\Result\AuthTokenUrl.cshtml" />
     <Content Include="Areas\Wx\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Config\ConfigList.cshtml" />
+    <Content Include="Areas\Admin\Views\Jcu\EditAddJcuView.cshtml" />
+    <Content Include="Areas\Admin\Views\Jcu\EditJcuView.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\本地.pubxml" />
     <None Include="Web.Debug.config">
