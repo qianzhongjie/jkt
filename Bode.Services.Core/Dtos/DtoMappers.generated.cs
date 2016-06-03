@@ -14,6 +14,8 @@ using AutoMapper;
         using Bode.Services.Core.Dtos.Student;
                 using Bode.Services.Core.Models.Config;
         using Bode.Services.Core.Dtos.Config;
+                using Bode.Services.Core.Models.Bnaners;
+        using Bode.Services.Core.Dtos.Bnaners;
         
 namespace Bode.Services.Core.Dtos
 {
@@ -33,6 +35,7 @@ namespace Bode.Services.Core.Dtos
                                         Mapper.CreateMap<SitePicDto, SitePic>();
                                         Mapper.CreateMap<StudentInfoDto, StudentInfo>();
                                         Mapper.CreateMap<ContactConfigDto, ContactConfig>();
+                                        Mapper.CreateMap<BnanerDto, Bnaner>();
                     
             MapperRegisterCustom();
         }

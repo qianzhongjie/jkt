@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Banner列表";
+    Layout = "~/Areas/Admin/Views/Shared/_DataGridLayout.cshtml";
+    ViewBag.GridDataUrl = Url.Action("GetBannerData");
+    ViewBag.SaveUrl = Url.Action("SaveBannerData");
+    ViewBag.DeleteUrl = Url.Action("DeleteBnaners");
+}
+@section customScript
+{
+    <script type="text/javascript">
+        columns = [
+               { data: "Id", title: "编号" },
+               { data: "Path", title: "图片/16:9", type: "img",editor: {} },
+               { data: "Url", title: "跳转地址", type: "text", search: true, editor: {} },
+               { data: "IsDisPlay", title: "是否显示", type: "switch", search: true, editor: {} },
+             {
+                 data: "CreatedTime",
+                 title: "创建时间",
+                 type: "datepicker",
+                 search: true,
+                 format: function (d) {
+                     return $.osharp.tools.formatDate(d);
+                 },
+                 isformatval: true
+             }
+        ];
+    </script>
+}
+

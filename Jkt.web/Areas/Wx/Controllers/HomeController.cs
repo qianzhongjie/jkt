@@ -48,7 +48,7 @@ namespace Bode.Web.Areas.Wx.Controllers
             ConfigurationManager.AppSettings["wxappid"],
             ConfigurationManager.AppSettings["wxappsecret"]);
         public IUserContract UserContract { get; set; }
-
+        public IBnanersContract BnanersContract { get; set; }
         // GET: Wx/Home
         [Description("主页")]
         public ActionResult Index(int count = 0)
@@ -130,6 +130,7 @@ namespace Bode.Web.Areas.Wx.Controllers
             }
             ViewBag.Appid = ConfigurationManager.AppSettings["wxappid"];
             ViewBag.Url = Host + "Wx/Result/AuthNotifyUrl";
+            ViewBag.Banner = BnanersContract.Bnaners.Where(x => x.IsDisPlay).ToList();
             return View();
         }
         #region ajax

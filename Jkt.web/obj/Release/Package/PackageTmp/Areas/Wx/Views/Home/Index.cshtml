@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
     var lng = "";
+    var bannerList = (List<Bode.Services.Core.Models.Bnaners.Bnaner>)ViewBag.Banner;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -16,10 +17,27 @@
     <link rel="stylesheet" type="text/css" href="/Content/css/index.css">
 </head>
 <body id="indexPage">
-
-    <div class="header">
+    <div class="title">
         <div class="head-menu">
             <i class="am-header-icon am-icon-bars" data-am-offcanvas="{target: '#sideBar',effect:'push'}"></i>
+        </div>
+        <p>呱呱驾考</p>
+    </div>
+    <div class="header">
+        <div class="head-menu">
+            <div class="am-slider am-slider-default" data-am-flexslider="{playAfterPaused: 5000}">
+                <ul class="am-slides">
+                    @{
+                        if (bannerList.Any())
+                        {
+                            foreach (Bode.Services.Core.Models.Bnaners.Bnaner b in bannerList)
+                            {
+                                <li><img src="@b.Path" /></li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
         </div>
         <img src="/Content/static/img/banner.png" class="head-img" />
     </div>
@@ -80,23 +98,34 @@
     <![endif]-->
     <script src="/Content/js/amazeui.min.js"></script>
     <script type="text/javascript" src="/Content/js/handlebars.min.js"></script>
-    <script type="text/javascript">
-        var latitude;
-        var longitude;
-        var openId = '@ViewBag.OpenId';
-        var url = '@ViewBag.Url';
-        var count = '@ViewBag.Count';
-        var jcuId = 0;
-        $(function () {
-            if (openId === '' || openId == 'null' || openId == null) {
-                //alert(url);
-                if (Number(count) == 0) {
-                    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + '@ViewBag.Appid' + '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=snsapi_base&state=getCode#wechat_redirect';
-                }
-
+<script type="text/javascript">
+    
+    $(function () {
+        var $slider = $('#demo-slider-0');
+        var counter = 0;
+        var getSlide = function () {
+            counter++;
+            return '<li><img src="http://s.amazeui.org/media/i/demos/bing-' +
+              (Math.floor(Math.random() * 4) + 1) + '.jpg" />' +
+              '<div class="am-slider-desc">动态插入的 slide ' + counter + '</div></li>';
+        };
+    });
+    var latitude;
+    var longitude;
+    var openId = '@ViewBag.OpenId';
+    var url = '@ViewBag.Url';
+    var count = '@ViewBag.Count';
+    var jcuId = 0;
+    $(function () {
+        if (openId === '' || openId == 'null' || openId == null) {
+            //alert(url);
+            if (Number(count) == 0) {
+                window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + '@ViewBag.Appid' + '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=snsapi_base&state=getCode#wechat_redirect';
             }
-        });
-    </script>
+
+        }
+    });
+</script>
     @RenderPage("~/Areas/Wx/Views/Shared/_Layout.cshtml")
     <script type="text/javascript">
         //百度地图API功能

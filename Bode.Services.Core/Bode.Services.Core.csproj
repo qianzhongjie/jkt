@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IBnanersContract.generated.cs" />
     <Compile Include="Contracts\IConfigContract.generated.cs" />
     <Compile Include="Contracts\IIdentityContract.cs">
       <SubType>Code</SubType>
@@ -85,6 +86,7 @@
     </Compile>
     <Compile Include="Contracts\IWxContract.cs" />
     <Compile Include="Contracts\IWxContract.generated.cs" />
+    <Compile Include="Dtos\Bnaners\BnanerDto.generated.cs" />
     <Compile Include="Dtos\Config\ContactConfigDto.generated.cs" />
     <Compile Include="Dtos\DroMappers.cs">
       <SubType>Code</SubType>
@@ -148,6 +150,7 @@
     <Compile Include="Models\BannerEntityBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Bnaners\Bnaner.cs" />
     <Compile Include="Models\Config\ContactConfig.cs" />
     <Compile Include="Models\Identity\SysOrganization.cs">
       <SubType>Code</SubType>
@@ -238,6 +241,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ContractsCodeScript.cs</LastGenOutput>
       <LastOutputs>
+..\Contracts\IBnanersContract.generated.cs
 ..\Contracts\IConfigContract.generated.cs
 ..\Contracts\IStudentContract.generated.cs
 ..\Contracts\IUserContract.generated.cs
@@ -257,6 +261,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DtosCodeScript.cs</LastGenOutput>
       <LastOutputs>
+..\Dtos\Bnaners\BnanerDto.generated.cs
 ..\Dtos\Config\ContactConfigDto.generated.cs
 ..\Dtos\Student\CityDto.generated.cs
 ..\Dtos\Student\JCUDto.generated.cs

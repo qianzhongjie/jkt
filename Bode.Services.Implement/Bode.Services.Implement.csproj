@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="DbContext\DemoDbContext.cs" />
     <Compile Include="DbContext\DemoDbContextInitializer.cs" />
+    <Compile Include="ModelConfigs\Bnaners\BnanerConfiguration.cs" />
     <Compile Include="ModelConfigs\Config\ContactConfigConfiguration.cs" />
     <Compile Include="ModelConfigs\Identity\SysOrganizationConfiguration.cs" />
     <Compile Include="ModelConfigs\Identity\SysRoleConfiguration.cs" />

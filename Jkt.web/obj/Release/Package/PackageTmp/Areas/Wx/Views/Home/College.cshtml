@@ -80,7 +80,7 @@
                 function (data) {
                     var html = '';
                     for (var i = 0; i < data.length; i++) {
-                        html += ' <li><a onclick="changemap(' + data[i].Log + ',' + data[i].Lat + ',\''+data[i].Name+'\')">' + data[i].Name + '</a></li>';
+                        html += ' <li><a onclick="changemap(' + data[i].Log + ',' + data[i].Lat + ',\'' + data[i].Name + '\')">' + data[i].Name + '</a></li>';
                     }
                     //href="/Wx/Home/Detail?id=' + data[i].Id + '"
                     $("#neraList").html(html);
@@ -104,9 +104,9 @@
             map.centerAndZoom(point, 15);
             map.enableScrollWheelZoom(); //启用滚轮放大缩小
             //设置标注的图标
-            //var marker = new BMap.Marker(point);
-            //map.addOverlay(marker);
-            var infoWindow = new BMap.InfoWindow("当前坐标:" +name);  // 创建信息窗口对象
+            var marker = new BMap.Marker(point);
+            map.addOverlay(marker);
+            var infoWindow = new BMap.InfoWindow("当前坐标:" + name);  // 创建信息窗口对象
             map.openInfoWindow(infoWindow, point); //开启信息窗口
             document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + infoWindow.getContent();
         }
@@ -121,8 +121,8 @@
             map.centerAndZoom(point, 15);
             map.enableScrollWheelZoom(); //启用滚轮放大缩小
             //设置标注的图标
-           //var marker = new BMap.Marker(point);
-            //map.addOverlay(marker);
+            var marker = new BMap.Marker(point);
+            map.addOverlay(marker);
             var infoWindow = new BMap.InfoWindow("当前坐标:" + '@ViewBag.Name');  // 创建信息窗口对象
             map.openInfoWindow(infoWindow, point); //开启信息窗口
             document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + infoWindow.getContent();
