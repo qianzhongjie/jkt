@@ -285,8 +285,18 @@ namespace Bode.Web.Areas.Wx.Controllers
                 x.Lat,
                 x.Log,
                 x.Name,
-            }).Take(50).ToList();
-            return Json(list);
+                CityId = x.City.Id,
+                CityName = x.City.Name
+            }).ToList();
+            return Json(list.GroupBy(x => x.CityId).ToList());
+        }
+
+        [Description("修改校区")]
+        [HttpPost]
+        public ActionResult ChangeJcu(int jcuId, string openId)
+        {
+            var result = StudentContract.ChangeJcu(jcuId, openId);
+            return Json(result.ToApiResult());
         }
 
         #endregion
@@ -365,9 +375,9 @@ namespace Bode.Web.Areas.Wx.Controllers
         }
 
         [Description("当前定位详情")]
-        public ActionResult College(int jcuId = 0)
+        public ActionResult College(int jcuId = 0, string openId = "")
         {
-
+            ViewBag.openId = openId;
             if (jcuId > 0)
             {
                 var jcuM = StudentContract.JCUs.Where(x => x.Id == jcuId);

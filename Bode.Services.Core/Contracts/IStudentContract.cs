@@ -35,5 +35,13 @@ namespace Bode.Services.Core.Contracts
         /// <returns>业务操作集合</returns>
         Task<OperationResult> AddEditStudentInfos(bool updateForeignKey = false,
            params StudentInfoDto[] dtos);
+
+        /// <summary>
+        /// 更改学yuan校区
+        /// </summary>
+        /// <param name="jcuId"></param>
+        /// <param name="openId"></param>
+        /// <returns></returns>
+        OperationResult ChangeJcu(int jcuId, string openId);
     }
 }

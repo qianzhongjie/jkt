@@ -32,30 +32,37 @@
     </style>
 </head>
 <body id="complaint">
-    <div class="complaint">
-        <textarea placeholder="对我们有任何不爽,请告诉我们~" rows="8" autofocus id="content"></textarea>
+    <div class="title sliderBottom">
+        <a class="am-icon-angle-left back" href="@Url.Action("Index")"></a>
+        <p class="name">投诉建议</p>
     </div>
 
-    <div class="submit">
-        <a onclick="submitC()">确认提交</a>
-    </div>
-    @RenderPage("~/Areas/Wx/Views/Shared/_Layout.cshtml")
-    <script src="~/Content/js/jquery-2.0.3.min.js"></script>
-    <script type="text/javascript">
+<div class="complaint">
+    <textarea placeholder="对我们有任何不爽,请告诉我们~" rows="8" autofocus id="content"></textarea>
+</div>
 
-        function submitC() {
-            if ($("#content").val() == '') {
-                msgShow("请填写你的不爽");
-                return;
+<div class="submit">
+    <a onclick="submitC()">确认提交</a>
+</div>
+@RenderPage("~/Areas/Wx/Views/Shared/_Layout.cshtml")
+<script src="~/Content/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript">
+
+    function submitC() {
+        if ($("#content").val() == '') {
+            msgShow("请填写你的不爽");
+            return;
+        }
+        $.post("@Url.Action("PostComplaint")", { openId: "@ViewBag.OpenId", content: $("#content").val() }, function(data) {
+            if (data.ReturnCode == 1) {
+                window.location.href = "@Url.Action("SuccessSubmit")";
+            } else {
+                msgShow(data.ReturnMsg);
             }
-            $.post("@Url.Action("PostComplaint")", { openId: "@ViewBag.OpenId", content: $("#content").val() }, function (data) {
-                if (data.ReturnCode == 1) {
-                    window.location.href = "@Url.Action("SuccessSubmit")";
-                } else {
-                    msgShow(data.ReturnMsg);
-                }
-            });
-        } function loadJScript() { }
-    </script>
+        });
+    }
+
+    function loadJScript() {}
+</script>
 </body>
 </html>

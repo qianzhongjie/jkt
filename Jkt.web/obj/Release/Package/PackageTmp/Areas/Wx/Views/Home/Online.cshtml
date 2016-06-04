@@ -19,44 +19,48 @@
     <script src="/Content/js/jquery.min.js"></script>
 </head>
 <body id="online">
-    <!-- one -->
-    <div class="progress">
-        <div class="online-bar">
-            <img src="/Content/static/img/user2.png" style="max-width: 100%">
-        </div>
-        <p class="prog-text">免费在线咨询</p>
+    <div class="title sliderBottom">
+        <a class="am-icon-angle-left back" href="@Url.Action("Index")"></a>
+        <p class="name">在线咨询</p>
     </div>
-
-    <div class="online-style">
-        <a class="phone" href="tel:@ViewBag.Phone">电话咨询</a>
-        @*<img style="CURSOR: pointer" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=438104003&o=呱呱驾考&q=7', '_blank', 'height=502, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');" border="0" SRC=http://wpa.qq.com/pa?p =1:438104003:1 alt="QQ咨询">*@
-        <a class="qq" href="http://wpa.qq.com/msgrd?v=3&uin=@ViewBag.QQ&site=qq&menu=yes&from=message&isappinstalled=0">QQ咨询</a>
-        @*<a class="qq" onclick="alertContact(@ViewBag.QQ)">QQ咨询</a>*@
+<!-- one -->
+<div class="progress">
+    <div class="online-bar">
+        <img src="/Content/static/img/user2.png" style="max-width: 100%">
     </div>
+    <p class="prog-text">免费在线咨询</p>
+</div>
+
+<div class="online-style">
+    <a class="phone" href="tel:@ViewBag.Phone">电话咨询</a>
+    @*<img style="CURSOR: pointer" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=438104003&o=呱呱驾考&q=7', '_blank', 'height=502, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');" border="0" SRC=http://wpa.qq.com/pa?p =1:438104003:1 alt="QQ咨询">*@
+    <a class="qq" href="http://wpa.qq.com/msgrd?v=3&uin=@ViewBag.QQ&site=qq&menu=yes&from=message&isappinstalled=0">QQ咨询</a>
+    @*<a class="qq" onclick="alertContact(@ViewBag.QQ)">QQ咨询</a>*@
+</div>
 
 
-    @RenderPage("~/Areas/Wx/Views/Shared/_Layout.cshtml")
-    <!--[if (gte IE 9)|!(IE)]><!-->
-    <!--<![endif]-->
-    <!--[if lte IE 8 ]>
+@RenderPage("~/Areas/Wx/Views/Shared/_Layout.cshtml")
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
     <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
     <script src="src/js/amazeui.ie8polyfill.min.js"></script>
-    <![endif]-->
-    <script src="/Content/js/amazeui.min.js"></script>
-    <script type="text/javascript" src="/Content/js/app.js"></script>
-    <script type="text/javascript" src="/Content/js/handlebars.min.js"></script>
-    <script type="text/javascript" src="/Content/js/percircle.js"></script>
-    <script>
-        function alertContact(data) {
-            if (data == 'undefined') {
-                msgShow("暂时没有客服在线");
-                return;
-            }
-            msgShow("请联系:" + data);
+<![endif]-->
+<script src="/Content/js/amazeui.min.js"></script>
+<script type="text/javascript" src="/Content/js/app.js"></script>
+<script type="text/javascript" src="/Content/js/handlebars.min.js"></script>
+<script type="text/javascript" src="/Content/js/percircle.js"></script>
+<script>
+    function alertContact(data) {
+        if (data == 'undefined') {
+            msgShow("暂时没有客服在线");
+            return;
         }
+        msgShow("请联系:" + data);
+    }
 
-        function loadJScript() { }
-    </script>
+    function loadJScript() {}
+</script>
 </body>
 </html>

@@ -32,7 +32,7 @@
                         {
                             foreach (Bode.Services.Core.Models.Bnaners.Bnaner b in bannerList)
                             {
-                                <li><img src="@b.Path" /></li>
+                                <li><img src="@b.Path" onclick="takeTo(@b.Url)" /></li>
                             }
                         }
                     }
@@ -98,34 +98,36 @@
     <![endif]-->
     <script src="/Content/js/amazeui.min.js"></script>
     <script type="text/javascript" src="/Content/js/handlebars.min.js"></script>
-<script type="text/javascript">
-    
-    $(function () {
-        var $slider = $('#demo-slider-0');
-        var counter = 0;
-        var getSlide = function () {
-            counter++;
-            return '<li><img src="http://s.amazeui.org/media/i/demos/bing-' +
-              (Math.floor(Math.random() * 4) + 1) + '.jpg" />' +
-              '<div class="am-slider-desc">动态插入的 slide ' + counter + '</div></li>';
-        };
-    });
-    var latitude;
-    var longitude;
-    var openId = '@ViewBag.OpenId';
-    var url = '@ViewBag.Url';
-    var count = '@ViewBag.Count';
-    var jcuId = 0;
-    $(function () {
-        if (openId === '' || openId == 'null' || openId == null) {
-            //alert(url);
-            if (Number(count) == 0) {
-                window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + '@ViewBag.Appid' + '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=snsapi_base&state=getCode#wechat_redirect';
-            }
-
+    <script type="text/javascript">
+        function takeTo(url) {
+            window.location.href = url;
         }
-    });
-</script>
+        $(function () {
+            var $slider = $('#demo-slider-0');
+            var counter = 0;
+            var getSlide = function () {
+                counter++;
+                return '<li><img src="http://s.amazeui.org/media/i/demos/bing-' +
+                  (Math.floor(Math.random() * 4) + 1) + '.jpg" />' +
+                  '<div class="am-slider-desc">动态插入的 slide ' + counter + '</div></li>';
+            };
+        });
+        var latitude;
+        var longitude;
+        var openId = '@ViewBag.OpenId';
+        var url = '@ViewBag.Url';
+        var count = '@ViewBag.Count';
+        var jcuId = 0;
+        $(function () {
+            if (openId === '' || openId == 'null' || openId == null) {
+                //alert(url);
+                if (Number(count) == 0) {
+                    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + '@ViewBag.Appid' + '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=snsapi_base&state=getCode#wechat_redirect';
+                }
+
+            }
+        });
+    </script>
     @RenderPage("~/Areas/Wx/Views/Shared/_Layout.cshtml")
     <script type="text/javascript">
         //百度地图API功能
@@ -180,7 +182,7 @@
         }
 
         function goCollege() {
-            window.location.href = "@Url.Action("College")" + "?jcuId=" + jcuId;
+            window.location.href = "@Url.Action("College")" + "?jcuId=" + jcuId + "&openId=" + openId;
         }
 
         //window.onload = loadJScript;  //异步加载地图

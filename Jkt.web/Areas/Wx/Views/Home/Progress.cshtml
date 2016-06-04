@@ -16,100 +16,110 @@
 
 </head>
 <body id="progress">
-    <!-- one -->
-    <div class="progress progress1" style="display: none">
-        <div id="bluecircle" class="c100 p0 big center" style="display: block">
-            <span>0%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p class="prog-text">科目一待考....</p>
+    <div class="title sliderBottom">
+        <a class="am-icon-angle-left back" href="@Url.Action("Index")"></a>
+        <p class="name">学车进度</p>
     </div>
+<!-- one -->
+<div class="progress progress1" style="display: none">
+    <div id="bluecircle" class="c100 p0 big center" style="display: block">
+        <span>0%</span>
+        <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+        </div>
+    </div>
+    <p class="prog-text">科目一待考....</p>
+</div>
 
-    <!-- two -->
-    <div class="progress progress2" style="display: none">
-        <div id="bluecircle" class="c100 p25 big center">
-            <span>25%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
+<!-- two -->
+<div class="progress progress2" style="display: none">
+    <div id="bluecircle" class="c100 p25 big center">
+        <span>25%</span>
+        <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
         </div>
-        <p class="prog-text">科目二待考....</p>
     </div>
+    <p class="prog-text">科目二待考....</p>
+</div>
 
-    <!-- three -->
-    <div class="progress progress3" style="display: none;">
-        <div id="bluecircle" class="c100 p75 big center">
-            <span>75%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
+<!-- three -->
+<div class="progress progress3" style="display: none;">
+    <div id="bluecircle" class="c100 p75 big center">
+        <span>75%</span>
+        <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
         </div>
-        <p class="prog-text">科目三待考....</p>
     </div>
+    <p class="prog-text">科目三待考....</p>
+</div>
 
-    <!-- four -->
-    <div class="progress progress4" style="display: none;">
-        <div id="bluecircle" class="c100 p99 big center">
-            <span>99%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
+<!-- four -->
+<div class="progress progress4" style="display: none;">
+    <div id="bluecircle" class="c100 p99 big center">
+        <span>99%</span>
+        <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
         </div>
-        <p class="prog-text">科目四待考....</p>
     </div>
-    <div class="progress progress5" style="display: none;">
-        <div id="bluecircle" class="c100 p99 big center">
-            <span>100%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
+    <p class="prog-text">科目四待考....</p>
+</div>
+<div class="progress progress5" style="display: none;">
+    <div id="bluecircle" class="c100 p99 big center">
+        <span>100%</span>
+        <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
         </div>
-        <p class="prog-text">已拿证</p>
     </div>
-    @RenderPage("~/Areas/Wx/Views/Shared/_Layout.cshtml")
-    <!--[if (gte IE 9)|!(IE)]><!-->
-    <script src="/Content/js/jquery.min.js"></script>
-    <!--<![endif]-->
-    <!--[if lte IE 8 ]>
+    <p class="prog-text">已拿证</p>
+</div>
+@RenderPage("~/Areas/Wx/Views/Shared/_Layout.cshtml")
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/Content/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
     <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
     <script src="src/js/amazeui.ie8polyfill.min.js"></script>
-    <![endif]-->
-    <script src="/Content/js/amazeui.min.js"></script>
-    <!-- <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/handlebars.min.js"></script> -->
-    <script type="text/javascript" src="/Content/js/percircle.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            var p = '@ViewBag.progress';
-            if (Number(p) === 8) {
-                msgShow("亲~还没有报名,你可以在线申请试练!免费的哦~");
-            } else if (Number(p) === 0) {
-                msgShow("亲~还没有报名");
-            } else {
-                var pp = Number(p);
-                if (pp == 3)
-                { $('.progress1').show(); }
-                if (pp == 4)
-                { $('.progress2').show(); }
-                if (pp == 5)
-                { $('.progress3').show(); }
-                if (pp == 6)
-                { $('.progress4').show(); }
-                if (pp == 7)
-                { $('.progress5').show(); }
+<![endif]-->
+<script src="/Content/js/amazeui.min.js"></script>
+<!-- <script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/handlebars.min.js"></script> -->
+<script type="text/javascript" src="/Content/js/percircle.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var p = '@ViewBag.progress';
+        if (Number(p) === 8) {
+            msgShow("亲~还没有报名,你可以在线申请试练!免费的哦~");
+        } else if (Number(p) === 0) {
+            msgShow("亲~还没有报名");
+        } else {
+            var pp = Number(p);
+            if (pp == 3) {
+                $('.progress1').show();
             }
+            if (pp == 4) {
+                $('.progress2').show();
+            }
+            if (pp == 5) {
+                $('.progress3').show();
+            }
+            if (pp == 6) {
+                $('.progress4').show();
+            }
+            if (pp == 7) {
+                $('.progress5').show();
+            }
+        }
 
-        });
-        function loadJScript() { }
-    </script>
+    });
+
+    function loadJScript() {}
+</script>
 
 </body>
 </html>

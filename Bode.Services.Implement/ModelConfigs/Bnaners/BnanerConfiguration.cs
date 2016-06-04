@@ -10,6 +10,10 @@ namespace Bode.Services.Implement.ModelConfigs.Bnaners
 {
     public class BnanerConfiguration : EntityConfigurationBase<Bnaner, int>
     {
+        public BnanerConfiguration()
+        {
+        }
+
 
     }
 }

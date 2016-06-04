@@ -121,6 +121,7 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="ServiceCollectionExtensions.cs" />
+    <Compile Include="Services\Bnaners\BnanersService.generated.cs" />
     <Compile Include="Services\Config\ConfigService.generated.cs" />
     <Compile Include="Services\Identity\IdentityService.cs">
       <SubType>Code</SubType>
@@ -194,6 +195,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ServicesCodeScript.cs</LastGenOutput>
       <LastOutputs>
+..\Services\Bnaners\BnanersService.generated.cs
 ..\Services\Config\ConfigService.generated.cs
 ..\Services\Student\StudentService.generated.cs
 ..\Services\User\UserService.generated.cs

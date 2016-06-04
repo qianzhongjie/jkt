@@ -133,5 +133,23 @@ namespace Bode.Services.Implement.Services
                 return new OperationResult(OperationResultType.Error, e.Message);
             }
         }
+
+        /// <summary>
+        /// 更改学yuan校区
+        /// </summary>
+        /// <param name="jcuId"></param>
+        /// <param name="openId"></param>
+        /// <returns></returns>
+        public OperationResult ChangeJcu(int jcuId, string openId)
+        {
+            StudentInfoRepo.UnitOfWork.TransactionEnabled = true;
+            var user = StudentInfoRepo.GetByPredicate(x => x.UserInfo.Token == openId);
+            if (!user.Any()) return new OperationResult(OperationResultType.Error, "服务器繁忙,请稍候再试");
+            var u = user.First();
+            u.Jcu = JCURepo.GetByKey(jcuId);
+            StudentInfoRepo.Update(u);
+            StudentInfoRepo.UnitOfWork.SaveChanges();
+            return new OperationResult(OperationResultType.Success, "修改成功");
+        }
     }
 }
